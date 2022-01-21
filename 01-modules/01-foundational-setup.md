@@ -1,0 +1,529 @@
+# Prerequisites
+
+In this module, we will cover the folowing-<br>
+[1. Create a GCP Organization Folder](01-general.md#1-gcp-organization-folder)<br>
+[2. Create a GCP Project](01-general.md#2-gcp-project)<br>
+[3. Enable requisite Google APIs for Project Indra](01-general.md#3-enable-requisite-google-apis)<br>
+[4. Create a VPC, a subnet, firewall rules](01-general.md#4-create-a-vpc-a-subnet-firewall-rules)<br>
+[5. Implement organizational policies](01-general.md#5-implement-organizational-policies)<br>
+[6. Create a Service Account](01-general.md#6-create-a-service-account)<br>
+[7. General IAM Permissions](01-general.md#7-grant-iam-permissions)<br>
+[8. Cloud Composer Specific Permissions](01-general.md#8-permissions-specific-to-composer2)<br>
+[9. Cloud Functions Specific Permissions](01-general.md#9-permissions-specific-to-cloud-functions)<br>
+[10. Cloud Dataflow Specific Permissions](01-general.md#10-permissions-specific-to-cloud-dataflow)<br>
+[11. Cloud Storage Specific Permissions](01-general.md#11-permissions-specific-to-cloud-storage)<br>
+[12. IAM permissions Recap](01-general.md#12-permissions-recap)<br>
+
+## Complexity Level
+Moderate
+
+## Duration
+~ 1 hour
+
+## Dependencies
+None, but the rest of the labs are dependent on this module being successfully completed.
+
+
+## 1. GCP Organization Folder
+
+Follow the GCP documentation for setting up a GCP Organization folder in Cloud IAM. 
+The author's folder is called "kicking-tires".
+
+<hr style="border:12px solid gray"> </hr>
+<br>
+
+
+## 2. GCP Project
+
+Create a GCP project inside the folder created.
+The author's project is called "e2e-demo-indra"
+For the rest of the hands on lab, we will refer to the project as "e2e-demo-indra"
+From the cloud console project dashboard, capture the project number.
+
+In Cloud Shell, lets create some variables we will use for the rest of the project-
+```
+PROJECT_NUMBER=914583619622
+PROJECT_ID=e2e-demo-indra
+```
+
+![Dashboard](../01-images/00-00-dashboard.png)
+
+<hr style="border:12px solid gray"> </hr>
+<br>
+
+## 3. Enable requisite Google APIs
+
+Launch cloud shell, change scope to the project you created (if required), and run the below commands-
+
+```
+gcloud services enable orgpolicy.googleapis.com
+gcloud services enable compute.googleapis.com
+gcloud services enable container.googleapis.com
+gcloud services enable containerregistry.googleapis.com
+gcloud services enable composer.googleapis.com
+gcloud services enable monitoring.googleapis.com 
+gcloud services enable cloudtrace.googleapis.com 
+gcloud services enable clouddebugger.googleapis.com 
+gcloud services enable bigquery.googleapis.com 
+gcloud services enable storage.googleapis.com
+gcloud services enable cloudfunctions.googleapis.com
+gcloud services enable pubsub.googleapis.com
+gcloud services enable dataflow.googleapis.com
+gcloud services enable dns.googleapis.com
+gcloud services enable sqladmin.googleapis.com
+```
+
+Composer 2 is enabled by default.
+
+<hr style="border:12px solid gray"> </hr>
+<br>
+
+## 4. Create a VPC, a subnet, firewall rules
+
+Launch cloud shell, change scope to the project you created (if required), and run the commands below to create the networking entities required for the hands on lab.
+
+
+#### 4.1. Create a VPC
+
+a) Create the network
+```
+gcloud compute networks create indra-vpc \
+    --subnet-mode=custom \
+    --bgp-routing-mode=regional \
+    --mtu=1500
+```
+
+b) List VPCs with:
+```
+gcloud compute networks list
+```
+
+c) Describe your network with:
+```
+gcloud compute networks describe indra-vpc
+```
+
+d) View in the Cloud Console
+
+![VPC](../01-images/00-01-vpc.png)
+<br>
+
+#### 4.2. Create a subnet for composer, dataflow and dataproc each
+
+a) Create subnet for Composer2
+```
+gcloud compute networks subnets create indra-composer2-snet \
+     --network=indra-vpc \
+     --range=10.0.0.0/24 \
+     --region=us-central1 \
+     --enable-private-ip-google-access
+```
+
+b) Create subnet for Dataflow
+```
+gcloud compute networks subnets create indra-dataflow-snet \
+     --network=indra-vpc \
+     --range=10.0.1.0/24 \
+     --region=us-central1 \
+     --enable-private-ip-google-access
+```
+
+c) Create subnet for Dataproc
+```
+gcloud compute networks subnets create indra-dataproc-snet \
+     --network=indra-vpc \
+     --range=10.0.2.0/24 \
+     --region=us-central1 \
+     --enable-private-ip-google-access
+```
+
+![SNET](../01-images/00-02-snet.png)
+<br>
+
+#### 4.3. Create firewall rules
+
+a) Intra-VPC, allow all communication
+
+```
+gcloud compute firewall-rules create allow-all-intra-vpc --project=e2e-demo-indra --network="projects/e2e-demo-indra/global/networks/indra-vpc" --description="Allows\ connection\ from\ any\ source\ to\ any\ instance\ on\ the\ network\ using\ custom\ protocols." --direction=INGRESS --priority=65534 --source-ranges=10.0.0.0/20 --action=ALLOW --rules=all
+```
+
+b) Allow SSH
+
+```
+gcloud compute firewall-rules create allow-all-ssh --project=e2e-demo-indra --network="projects/e2e-demo-indra/global/networks/indra-vpc" --description="Allows\ TCP\ connections\ from\ any\ source\ to\ any\ instance\ on\ the\ network\ using\ port\ 22." --direction=INGRESS --priority=65534 --source-ranges=0.0.0.0/0 --action=ALLOW --rules=tcp:22
+```
+
+c) Create a firewall rule to allow yourself to ingress
+
+Replace with your IP address below-
+```
+gcloud compute --project=e2e-demo-indra firewall-rules create allow-all-to-my-machine --direction=INGRESS --priority=1000 --network=indra-vpc --action=ALLOW --rules=all --source-ranges=xx.xxx.xx.xx
+```
+
+d) Validate in Cloud Console
+
+![FIREWALL](../01-images/00-03-firewall.png)
+<br>
+
+<hr style="border:12px solid gray"> </hr>
+<br>
+
+## 5. Implement organizational policies
+
+Applicable for Google Customer Engineers working in Argolis-
+
+a) Create variables for use further in the rest of project in cloud shell
+
+```
+PROJECT_ID=e2e-demo-indra
+```
+
+b) Relax require OS Login
+```
+rm os_login.yaml
+
+cat > os_login.yaml << ENDOFFILE
+name: projects/${PROJECT_ID}/policies/compute.requireOsLogin
+spec:
+  rules:
+  - enforce: false
+ENDOFFILE
+
+gcloud org-policies set-policy os_login.yaml 
+
+rm os_login.yaml
+```
+
+c) Disable Serial Port Logging
+
+```
+
+rm disableSerialPortLogging.yaml
+
+cat > disableSerialPortLogging.yaml << ENDOFFILE
+name: projects/${PROJECT_ID}/policies/compute.disableSerialPortLogging
+spec:
+  rules:
+  - enforce: false
+ENDOFFILE
+
+gcloud org-policies set-policy disableSerialPortLogging.yaml 
+
+rm disableSerialPortLogging.yaml
+
+```
+
+d) Disable Shielded VM requirement
+
+```
+
+shieldedVm.yaml 
+
+cat > shieldedVm.yaml << ENDOFFILE
+name: projects/$PROJECT_ID/policies/compute.requireShieldedVm
+spec:
+  rules:
+  - enforce: false
+ENDOFFILE
+
+gcloud org-policies set-policy shieldedVm.yaml 
+
+rm shieldedVm.yaml 
+
+```
+
+e) Disable VM can IP forward requirement
+
+```
+rm vmCanIpForward.yaml
+
+cat > vmCanIpForward.yaml << ENDOFFILE
+name: projects/$PROJECT_ID/policies/compute.vmCanIpForward
+spec:
+  rules:
+  - allowAll: true
+ENDOFFILE
+
+gcloud org-policies set-policy vmCanIpForward.yaml
+
+rm vmCanIpForward.yaml
+
+```
+
+f) Enable VM external access 
+
+```
+
+rm vmExternalIpAccess.yaml
+
+cat > vmExternalIpAccess.yaml << ENDOFFILE
+name: projects/$PROJECT_ID/policies/compute.vmExternalIpAccess
+spec:
+  rules:
+  - allowAll: true
+ENDOFFILE
+
+gcloud org-policies set-policy vmExternalIpAccess.yaml
+
+rm vmExternalIpAccess.yaml
+
+```
+
+g) Enable restrict VPC peering
+
+```
+rm restrictVpcPeering.yaml
+
+cat > restrictVpcPeering.yaml << ENDOFFILE
+name: projects/$PROJECT_ID/policies/compute.restrictVpcPeering
+spec:
+  rules:
+  - allowAll: true
+ENDOFFILE
+
+gcloud org-policies set-policy restrictVpcPeering.yaml
+
+rm restrictVpcPeering.yaml
+
+```
+
+
+h) Configure ingress settings for Cloud Functions
+
+```
+rm gcf-ingress-settings.yaml
+
+cat > gcf-ingress-settings.yaml << ENDOFFILE
+name: projects/$PROJECT_NUMBER/policies/cloudfunctions.allowedIngressSettings
+spec:
+  etag: CO2D6o4GEKDk1wU=
+  rules:
+  - allowAll: true
+ENDOFFILE
+
+gcloud org-policies set-policy gcf-ingress-settings.yaml
+
+rm gcf-ingress-settings.yaml
+
+```
+
+i) Validation<br>
+To describe a particular constratint, run like the below describes the constraint for cloud function ingress setting for the author's project-
+```
+gcloud org-policies describe \
+cloudfunctions.allowedIngressSettings --project=e2e-demo-indra
+```
+
+Author's output:
+```
+name: projects/xxxnn/policies/cloudfunctions.allowedIngressSettings
+spec:
+  etag: CPz46Y4GELiOlfQB
+  rules:
+  - values:
+      allowedValues:
+      - ALLOW_ALL
+  updateTime: '2022-01-09T06:11:08.512051Z'
+  
+ ```
+
+<hr style="border:12px solid gray"> </hr>
+<br>
+
+## 6. Create a Service Account
+
+```
+PROJECT_NUMBER=914583619622
+PROJECT_ID=e2e-demo-indra
+UMSA="indra-sa"
+ADMIN_FQ_UPN="admin@akhanolkar.altostrat.com" # Replace with your Argolis UPN
+
+gcloud iam service-accounts create ${UMSA} \
+    --description="User Managed Service Account for the Indra E2E Project" \
+    --display-name=$UMSA 
+```
+
+![UMSA-4](../01-images/00-04-UMSA-nav.png)
+<br>
+![UMSA-5](../01-images/00-05-UMSA.png)
+<br>
+<hr style="border:12px solid gray"> </hr>
+<br>
+
+
+## 7. Grant IAM Permissions 
+
+The variables if you have not already run these commands-
+```
+PROJECT_NUMBER=914583619622
+PROJECT_ID=e2e-demo-indra
+UMSA="indra-sa"
+UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
+ADMIN_FQ_UPN="admin@akhanolkar.altostrat.com" # Replace with your Argolis UPN
+```
+
+### 7.1. Permissions specific to UMSA
+
+#### 7.1.a. Service Account User role for UMSA
+
+```
+gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+    --member=serviceAccount:${UMSA_FQN} \
+    --role=roles/iam.serviceAccountUser   
+```
+
+![UMSA-5](../01-images/00-05-UMSA.png)
+
+#### 7.1.b. Service Account Token Creator role for UMSA
+
+```
+gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+    --member=serviceAccount:${UMSA_FQN} \
+    --role=roles/iam.serviceAccountTokenCreator  
+```
+
+<br>
+
+### 7.2. Permissions specific to UMSA
+
+### 7.2.a. Permission for lab attendee to operate as the UMSA
+
+```
+gcloud iam service-accounts add-iam-policy-binding \
+    ${UMSA_FQN} \
+    --member="user:${ADMIN_FQ_UPN}" \
+    --role="roles/iam.serviceAccountUser"
+```
+
+
+![UMSA-6](../01-images/00-06-UMSA-ActAs.png)
+
+## 8. Permissions specific to Cloud Composer
+
+### 8.a. Cloud Composer Administrator role for UMSA
+
+```
+gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+    --member=serviceAccount:${UMSA_FQN} \
+    --role=roles/composer.admin
+```
+
+### 8.b. Cloud Composer Worker role for UMSA
+
+```
+gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+    --member=serviceAccount:${UMSA_FQN} \
+    --role=roles/composer.worker
+```
+
+### 8.c. Cloud Composer ServiceAgentV2Ext role for Composer Google Managed Service Agent Account (CGMSAA)
+
+This account is visible in IAM on Cloud Console only when the "Include Google Provided Role Grants" check box is checked.
+This service accounts gets auto-created in the project when the Google API for Composer is enabled.
+
+```
+CGMSAA_FQN=service-${PROJECT_NUMBER}@cloudcomposer-accounts.iam.gserviceaccount.com
+
+gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+    --member=serviceAccount:${CGMSAA_FQN} \
+    --role roles/composer.ServiceAgentV2Ext
+```
+
+
+### 8.d. Permissions for operator to be able to change configuration of Composer 2 environment and such
+
+```
+gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+    --member=user:${ADMIN_FQ_UPN} \
+    --role roles/composer.admin
+
+```
+
+### 8.e. Permissions for operator to be able to manage the Composer 2 GCS buckets and environments
+
+
+```
+gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+    --member=user:${ADMIN_FQ_UPN} \
+    --role roles/composer.environmentAndStorageObjectViewer
+```
+
+
+<hr style="border:12px solid gray"> </hr>
+<br>
+
+
+## 9. Permissions specific to Cloud Functions
+
+### 9.1. Permissions specific to UMSA
+
+### 9.1.a. Permission for UMSA to operate as a GCF service agent
+
+```
+gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/cloudfunctions.serviceAgent
+```
+
+### 9.1.b. Permission for UMSA to operate as a GCF admin
+
+```
+gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/cloudfunctions.admin
+```
+
+
+<hr style="border:12px solid gray"> </hr>
+<br>
+<br>
+
+
+## 10. Permissions specific to Cloud Dataflow
+
+### 10.1. Permissions for UMSA to spawn Cloud Dataflow pipelines
+
+a) Dataflow worker
+```
+gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/dataflow.worker
+```
+
+b) To Dataflow developer
+```
+gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/dataflow.worker
+``` 
+
+## 11. Permissions specific to Cloud Storage
+
+### 11.1. Permissions for UMSA to read from GCS
+
+a) ObjectViewer
+```
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN --role="roles/storage.objectViewer"
+```
+
+## 12. Permissions recap
+
+Go to the Cloud Console and navigate to the IAM -> IAM & Admin and ensure you check the "Include Google Provided Role Grants". Screenshots of what you should expect are below.
+
+## 12.1. The lab attendee permissions
+![01-03-14](../01-images/01-03-14.png)
+<br>
+
+## 12.2. The UMSA permissions
+![01-03-14](../01-images/01-03-15.png)
+<br>
+
+## 12.3. The Cloud Composer Service Agent Account permissions
+![01-03-16](../01-images/01-03-16.png)
+<br>
+
+## 12.4. The various Google Managed Default Service Accounts
+![01-03-17](../01-images/01-03-17.png)
+<br>
+<br>
+
+![01-03-18](../01-images/01-03-18.png)
+<br>
+
+
+## 13. Whats Next?
+
+This concludes the module. Next, you can run through the data analytics labs.
