@@ -34,9 +34,9 @@ The repository contains modules that are deliberately detailed with sequential s
 
 This is a basic networking setup for *kicking tires* with public deployment of VPC native data analytics services.
 
-| # | Module | Link |
-| -- | :---    | ---|
-| 1 | Create a VPC, a subnet, implement firewall rules | |
+| # | Module | 
+| -- | :---    |
+| 1 | Create a VPC, a subnet, implement firewall rules | 
 
 
 ### 3.0. Advanced One-time Networking Setup (secure setup)
@@ -46,15 +46,7 @@ Section 1.0 above, is pre-requisite.
 
 | # | Module | Link |
 | -- | :---    | ---|
-| 1 | Enable requisite Google APIs | | 
-| 2 | Update organizational policies | |
-| 3 | Create a User Managed Service Account for Data Analytics | | 
-| 4 | Grant general IAM permissions | |
-| 5 | Cloud Composer specific permissions | |
-| 6 | Cloud Functions specific permissions | |
-| 7 | Cloud Dataflow specific permissions | |
-| 8 | Cloud Storage specific permissions | |
-
+| 1 | ..| | 
 
 
 ## Credits
