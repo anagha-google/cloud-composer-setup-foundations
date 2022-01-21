@@ -1,7 +1,7 @@
 # GCP Provisioning Foundations for Data Analytics Endeavors
 
 ## About the Repository
-This repository includes modules that walk through provisioning the foundational infrstracture and security requirements in GCP for Data Analytics projects, and in some cases, securing them. The repository also has a complementary repository that covers provisioning individual data services.
+This repository includes hands-on-lab modules that cover provisioning the foundational infrstracture and security requirements in GCP for Data Analytics projects, and in some cases, securing them. The repository also has a complementary repository that covers provisioning individual data services.
 
 ## Motivation and Audience
 Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on intricacies of foundational setup, unblocking and improving speed to productivity in their core competency
@@ -11,9 +11,11 @@ The repository contains modules that are deliberately detailed with sequential s
 
 ## Table of Contents
 
-### 1.0. Foundational One-time Setup
+### 1.0. Foundational One-time Setup Lab
 
-| # | Module | 
+[Jump to lab module](01-modules/01-foundational-setup.md)
+
+| # | Sub-module | 
 | -- | :---    |
 | 1 | Enable requisite Google APIs |  
 | 2 | Update organizational policies | 
@@ -26,12 +28,11 @@ The repository contains modules that are deliberately detailed with sequential s
 | . | ... | 
 | 20 | IAM permissions recap | 
 
-[Get started](01-modules/01-foundational-setup.md)
+
 
 ### 2.0. Basic One-time Networking Setup in the Data Analytics Project
 
-This is a basic networking setup for kicking tires with public deployment of VPC native data analytics services.
-
+This is a basic networking setup for *kicking tires* with public deployment of VPC native data analytics services.
 
 | # | Module | Link |
 | -- | :---    | ---|
@@ -40,7 +41,7 @@ This is a basic networking setup for kicking tires with public deployment of VPC
 
 ### 3.0. Advanced One-time Networking Setup (secure setup)
 
-This is a secure setup that covers shared VPC, VPC-SC, PSC, configuring DNS and more, for a realitsic and secure setup.<br>
+This is a secure setup that covers security features such as shared VPC, VPC-SC, PSC, configuring DNS and more, for a realitsic and secure setup.<br>
 Section 1.0 above, is pre-requisite.
 
 | # | Module | Link |
