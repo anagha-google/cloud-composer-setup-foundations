@@ -48,6 +48,9 @@ UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
 ADMIN_FQ_UPN="admin@xxx.altostrat.com" # Replace with your Argolis UPN
 ```
 
+<hr style="border:12px solid gray"> </hr>
+<br>
+
 ## 3. Enable requisite Google APIs
 
 Launch cloud shell, change scope to the project you created (if required), and run the below commands-
@@ -290,6 +293,10 @@ gcloud iam service-accounts add-iam-policy-binding \
 ![UMSA-6](../00-images/00-06-UMSA-ActAs.png)
 
 
+<hr style="border:12px solid gray"> </hr>
+<br>
+
+
 ## 7. Permissions specific to Cloud Composer
 
 ### 7.a. Cloud Composer Administrator role for UMSA
@@ -381,6 +388,11 @@ b) To Dataflow developer
 gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/dataflow.worker
 ``` 
 
+
+<hr style="border:12px solid gray"> </hr>
+<br>
+
+
 ## 10. Permissions specific to Cloud Storage
 
 ### 10.1. Permissions for UMSA to read from GCS
@@ -389,6 +401,11 @@ a) ObjectViewer
 ```
 gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN --role="roles/storage.objectViewer"
 ```
+
+
+<hr style="border:12px solid gray"> </hr>
+<br>
+
 
 ## 11. Permissions recap
 
@@ -414,5 +431,8 @@ Go to the Cloud Console and navigate to the IAM -> IAM & Admin and ensure you ch
 ![01-03-18](../00-images/01-03-18.png)
 <br>
 
-<hr>
+
+<hr style="border:12px solid gray"> </hr>
+<br>
+
 This concludes the module. 
