@@ -258,8 +258,6 @@ gcloud iam service-accounts create ${UMSA} \
 
 ## 6. Grant IAM Permissions 
 
-
-```
 ### 6.1. Permissions specific to UMSA
 
 #### 6.1.a. Service Account User role for UMSA
