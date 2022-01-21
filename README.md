@@ -11,7 +11,7 @@ Primary audience: Data Analytics CEs
 Table of contents:<br>
 
 | # | Module | Link |
-| -- | --- | ---|
+| -- | :---    | ---|
 | 1 | Create a GCP Folder | |
 | 2 | Create a GCP Project | |
 | 3 | Enable requisite Google APIs | | 
