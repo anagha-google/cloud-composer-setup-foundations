@@ -1,4 +1,4 @@
-# GCP Provisioning Foundations
+# GCP Provisioning Foundations for Data Analytics Endeavors
 
 ### About the Repository
 This repository includes modules to walk through provisioning data analytics services and associated foundational services, in GCP, and in some cases, securing them. 
