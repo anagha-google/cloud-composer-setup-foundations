@@ -13,18 +13,20 @@ The repository contains modules that are deliberately detailed with sequential s
 
 ### 1.0. Foundational One-time Setup
 
-| # | Module | Link |
-| -- | :---    | ---|
-| 1 | Enable requisite Google APIs | | 
-| 2 | Update organizational policies | |
-| 3 | Create a User Managed Service Account for Data Analytics | | 
-| 4 | Grant general IAM permissions | |
-| 5 | Cloud Composer specific IAM permissions | |
-| 6 | Cloud Functions specific IAM permissions | |
-| 7 | Cloud Dataflow specific IAM permissions | |
-| 8 | Cloud Storage specific IAM permissions | |
-| . | ... | |
-| 20 | IAM permissions recap | |
+| # | Module | 
+| -- | :---    |
+| 1 | Enable requisite Google APIs |  
+| 2 | Update organizational policies | 
+| 3 | Create a User Managed Service Account for Data Analytics | 
+| 4 | Grant general IAM permissions | 
+| 5 | Cloud Composer specific IAM permissions | 
+| 6 | Cloud Functions specific IAM permissions | 
+| 7 | Cloud Dataflow specific IAM permissions | 
+| 8 | Cloud Storage specific IAM permissions | 
+| . | ... | 
+| 20 | IAM permissions recap | 
+
+[Get started](01-modules/01-foundational-setup.md)
 
 ### 2.0. Basic One-time Networking Setup in the Data Analytics Project
 
