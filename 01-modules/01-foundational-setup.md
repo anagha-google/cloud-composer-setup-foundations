@@ -31,18 +31,24 @@ The author's project is called "e2e-demo-indra"<br>
 For the rest of the hands on lab, we will refer to the project as "e2e-demo-indra"<br>
 <br>
 From the cloud console project dashboard, capture the project number.<br>
-In Cloud Shell, lets create some variables we will use for the rest of the project-
-```
-PROJECT_NUMBER=914583619622
-PROJECT_ID=e2e-demo-indra
-```
 
 ![Dashboard](../00-images/00-00-dashboard.png)
 
 <hr style="border:12px solid gray"> </hr>
 <br>
 
-## 2. Enable requisite Google APIs
+## 2. Variables for use in the module
+
+In Cloud Shell, lets create some variables we will use for the rest of the project-
+```
+PROJECT_NUMBER=914583619622  # Replace with your project's
+PROJECT_ID=e2e-demo-indra  # Replace with your project's
+UMSA="indra-sa"
+UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
+ADMIN_FQ_UPN="admin@xxx.altostrat.com" # Replace with your Argolis UPN
+```
+
+## 3. Enable requisite Google APIs
 
 Launch cloud shell, change scope to the project you created (if required), and run the below commands-
 
@@ -70,7 +76,7 @@ gcloud services enable sqladmin.googleapis.com
 
 
 
-## 3. Update organizational policies
+## 4. Update organizational policies
 
 Applicable for Google Customer Engineers working in Argolis-
 
@@ -232,41 +238,31 @@ spec:
 <hr style="border:12px solid gray"> </hr>
 <br>
 
-## 6. Create a Service Account
+## 5. Create a User Managed Service Account (UMSA)
+
+We will use this UMSA as the runtime service account in the Data Analytics hands on labs that complement this repository-
 
 ```
-PROJECT_NUMBER=914583619622
-PROJECT_ID=e2e-demo-indra
-UMSA="indra-sa"
-ADMIN_FQ_UPN="admin@akhanolkar.altostrat.com" # Replace with your Argolis UPN
-
 gcloud iam service-accounts create ${UMSA} \
     --description="User Managed Service Account for the Indra E2E Project" \
     --display-name=$UMSA 
 ```
 
-![UMSA-4](../01-images/00-04-UMSA-nav.png)
+![UMSA-4](../00-images/00-04-UMSA-nav.png)
 <br>
-![UMSA-5](../01-images/00-05-UMSA.png)
+![UMSA-5](../00-images/00-05-UMSA.png)
 <br>
 <hr style="border:12px solid gray"> </hr>
 <br>
 
 
-## 7. Grant IAM Permissions 
+## 6. Grant IAM Permissions 
 
-The variables if you have not already run these commands-
+
 ```
-PROJECT_NUMBER=914583619622
-PROJECT_ID=e2e-demo-indra
-UMSA="indra-sa"
-UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
-ADMIN_FQ_UPN="admin@akhanolkar.altostrat.com" # Replace with your Argolis UPN
-```
+### 6.1. Permissions specific to UMSA
 
-### 7.1. Permissions specific to UMSA
-
-#### 7.1.a. Service Account User role for UMSA
+#### 6.1.a. Service Account User role for UMSA
 
 ```
 gcloud projects add-iam-policy-binding ${PROJECT_ID} \
@@ -274,9 +270,9 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
     --role=roles/iam.serviceAccountUser   
 ```
 
-![UMSA-5](../01-images/00-05-UMSA.png)
+![UMSA-5](../00-images/00-05-UMSA.png)
 
-#### 7.1.b. Service Account Token Creator role for UMSA
+#### 6.1.b. Service Account Token Creator role for UMSA
 
 ```
 gcloud projects add-iam-policy-binding ${PROJECT_ID} \
@@ -284,11 +280,7 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
     --role=roles/iam.serviceAccountTokenCreator  
 ```
 
-<br>
-
-### 7.2. Permissions specific to UMSA
-
-### 7.2.a. Permission for lab attendee to operate as the UMSA
+### 6.1.c. Permission for lab attendee to operate as the UMSA
 
 ```
 gcloud iam service-accounts add-iam-policy-binding \
@@ -297,12 +289,12 @@ gcloud iam service-accounts add-iam-policy-binding \
     --role="roles/iam.serviceAccountUser"
 ```
 
+![UMSA-6](../00-images/00-06-UMSA-ActAs.png)
 
-![UMSA-6](../01-images/00-06-UMSA-ActAs.png)
 
-## 8. Permissions specific to Cloud Composer
+## 7. Permissions specific to Cloud Composer
 
-### 8.a. Cloud Composer Administrator role for UMSA
+### 7.a. Cloud Composer Administrator role for UMSA
 
 ```
 gcloud projects add-iam-policy-binding ${PROJECT_ID} \
@@ -310,7 +302,7 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
     --role=roles/composer.admin
 ```
 
-### 8.b. Cloud Composer Worker role for UMSA
+### 7.b. Cloud Composer Worker role for UMSA
 
 ```
 gcloud projects add-iam-policy-binding ${PROJECT_ID} \
@@ -318,7 +310,7 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
     --role=roles/composer.worker
 ```
 
-### 8.c. Cloud Composer ServiceAgentV2Ext role for Composer Google Managed Service Agent Account (CGMSAA)
+### 7.c. Cloud Composer ServiceAgentV2Ext role for Composer Google Managed Service Agent Account (CGMSAA)
 
 This account is visible in IAM on Cloud Console only when the "Include Google Provided Role Grants" check box is checked.
 This service accounts gets auto-created in the project when the Google API for Composer is enabled.
@@ -332,7 +324,7 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
 ```
 
 
-### 8.d. Permissions for operator to be able to change configuration of Composer 2 environment and such
+### 7.d. Permissions for operator to be able to change configuration of Composer 2 environment and such
 
 ```
 gcloud projects add-iam-policy-binding ${PROJECT_ID} \
@@ -341,7 +333,7 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
 
 ```
 
-### 8.e. Permissions for operator to be able to manage the Composer 2 GCS buckets and environments
+### 7.e. Permissions for operator to be able to manage the Composer 2 GCS buckets and environments
 
 
 ```
@@ -355,17 +347,17 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
 <br>
 
 
-## 9. Permissions specific to Cloud Functions
+## 8. Permissions specific to Cloud Functions
 
-### 9.1. Permissions specific to UMSA
+### 8.1. Permissions specific to UMSA
 
-### 9.1.a. Permission for UMSA to operate as a GCF service agent
+### 8.1.a. Permission for UMSA to operate as a GCF service agent
 
 ```
 gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/cloudfunctions.serviceAgent
 ```
 
-### 9.1.b. Permission for UMSA to operate as a GCF admin
+### 8.1.b. Permission for UMSA to operate as a GCF admin
 
 ```
 gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/cloudfunctions.admin
@@ -377,9 +369,9 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UM
 <br>
 
 
-## 10. Permissions specific to Cloud Dataflow
+## 9. Permissions specific to Cloud Dataflow
 
-### 10.1. Permissions for UMSA to spawn Cloud Dataflow pipelines
+### 9.1. Permissions for UMSA to spawn Cloud Dataflow pipelines
 
 a) Dataflow worker
 ```
@@ -391,40 +383,38 @@ b) To Dataflow developer
 gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/dataflow.worker
 ``` 
 
-## 11. Permissions specific to Cloud Storage
+## 10. Permissions specific to Cloud Storage
 
-### 11.1. Permissions for UMSA to read from GCS
+### 10.1. Permissions for UMSA to read from GCS
 
 a) ObjectViewer
 ```
 gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN --role="roles/storage.objectViewer"
 ```
 
-## 12. Permissions recap
+## 11. Permissions recap
 
 Go to the Cloud Console and navigate to the IAM -> IAM & Admin and ensure you check the "Include Google Provided Role Grants". Screenshots of what you should expect are below.
 
-## 12.1. The lab attendee permissions
-![01-03-14](../01-images/01-03-14.png)
+## 11.1. The lab attendee permissions
+![01-03-14](../00-images/01-03-14.png)
 <br>
 
-## 12.2. The UMSA permissions
-![01-03-14](../01-images/01-03-15.png)
+## 11.2. The UMSA permissions
+![01-03-14](../00-images/01-03-15.png)
 <br>
 
-## 12.3. The Cloud Composer Service Agent Account permissions
-![01-03-16](../01-images/01-03-16.png)
+## 11.3. The Cloud Composer Service Agent Account permissions
+![01-03-16](../00-images/01-03-16.png)
 <br>
 
-## 12.4. The various Google Managed Default Service Accounts
-![01-03-17](../01-images/01-03-17.png)
+## 11.4. The various Google Managed Default Service Accounts
+![01-03-17](../00-images/01-03-17.png)
 <br>
 <br>
 
-![01-03-18](../01-images/01-03-18.png)
+![01-03-18](../00-images/01-03-18.png)
 <br>
 
-
-## 13. Whats Next?
-
-This concludes the module. Next, you can run through the data analytics labs.
+<hr>
+This concludes the module. 
