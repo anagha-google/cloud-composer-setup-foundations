@@ -18,7 +18,7 @@ This is a community contribution.<br>
 | -- | :---    | :---| :---| 
 | 1 | Anagha Khanolkar | Primary Author | Data Analytics Specialist, Google Cloud |
 | 2 | Dwai Lahiri | Networking aspects | Professional Services, Google Cloud |
-| 3 | Jay O' Leary | Testing | Data Analytics Specialist, Google Cloud |
+| 3 | Jay O' Leary | Testing, User experience | Data Analytics Specialist, Google Cloud |
 
 
 ## 1.0. Foundational One-time Setup
@@ -48,3 +48,16 @@ This is a basic networking setup for kicking tires with public deployment of VPC
 
 ## 3.0. Advanced One-time Networking Setup (secure setup)
 
+This is a secure setup that covers shared VPC, VPC-SC, PSC, configuring DNS and more, for a realitsic and secure setup.<br>
+Section 1.0 above, is pre-requisite.
+
+| # | Module | Link |
+| -- | :---    | ---|
+| 1 | Enable requisite Google APIs | | 
+| 2 | Update organizational policies | |
+| 3 | Create a User Managed Service Account for Data Analytics | | 
+| 4 | Grant general IAM permissions | |
+| 5 | Cloud Composer specific permissions | |
+| 6 | Cloud Functions specific permissions | |
+| 7 | Cloud Dataflow specific permissions | |
+| 8 | Cloud Storage specific permissions | |
