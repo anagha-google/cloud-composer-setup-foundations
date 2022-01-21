@@ -1,25 +1,13 @@
 # GCP Provisioning Foundations for Data Analytics Endeavors
 
-### About the Repository
-This repository includes modules to walk through provisioning data analytics services and associated foundational services, in GCP, and in some cases, securing them. 
+## About the Repository
+This repository includes modules that walk through provisioning the foundational infrstracture and security requirements in GCP for Data Analytics projects, and in some cases, securing them. The repository also has a complementary repository that covers provisioning individual data services.
 
-### Motivation and Audience
-Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on intricacies of foundational setp, unblocking them and improving speed to productivity in their core competency
+## Motivation and Audience
+Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on intricacies of foundational setup, unblocking and improving speed to productivity in their core competency
 
-### Structure
-The repository contains modules that are deliberately detailed with sequential steps versus fully scripted, automated -> to provide an understanding of what is involved.
-
-
-### Credits
-This is a community contribution.<br>
-
-
-| # | Contributor | Contribution | About |
-| -- | :---    | :---| :---| 
-| 1 | Anagha Khanolkar | Primary Author | Data Analytics Specialist, Google Cloud |
-| 2 | Dwai Lahiri | Networking aspects | Professional Services, Google Cloud |
-| 3 | Jay O' Leary | Testing, User experience | Data Analytics Specialist, Google Cloud |
-
+## Structure
+The repository contains modules that are deliberately detailed with sequential steps (versus fully scripted, automated) to provide an understanding of what is involved.
 
 ## 1.0. Foundational One-time Setup
 
@@ -61,3 +49,15 @@ Section 1.0 above, is pre-requisite.
 | 6 | Cloud Functions specific permissions | |
 | 7 | Cloud Dataflow specific permissions | |
 | 8 | Cloud Storage specific permissions | |
+
+
+
+## Credits
+This is a community contribution. <br>
+
+
+| # | Contributor | Contribution | About |
+| -- | :---    | :---| :---| 
+| 1 | Anagha Khanolkar | Primary Author | Data Analytics Specialist, Google Cloud |
+| 2 | Dwai Lahiri | Networking aspects | Professional Services, Google Cloud |
+| 3 | Jay O' Leary | Testing, User experience | Data Analytics Specialist, Google Cloud |
