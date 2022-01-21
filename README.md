@@ -27,20 +27,23 @@ Table of contents:<br>
 
 | # | Module | Link |
 | -- | :---    | ---|
-| 1 | Create a GCP Folder | |
-| 2 | Create a GCP Project | |
-| 3 | Enable requisite Google APIs | | 
-| 4 | Update organizational policies | |
-| 5 | Create a User Managed Service Account for Data Analytics | | 
-| 6 | Grant general IAM permissions | |
-| 6 | Cloud Composer specific permissions | |
-| 8 | Cloud Functions specific permissions | |
-| 9 | Cloud Dataflow specific permissions | |
-| 10 | Cloud Storage specific permissions | |
+| 1 | Enable requisite Google APIs | | 
+| 2 | Update organizational policies | |
+| 3 | Create a User Managed Service Account for Data Analytics | | 
+| 4 | Grant general IAM permissions | |
+| 5 | Cloud Composer specific permissions | |
+| 6 | Cloud Functions specific permissions | |
+| 7 | Cloud Dataflow specific permissions | |
+| 8 | Cloud Storage specific permissions | |
 
 ## 2.0. Basic One-time Networking Setup in the Data Analytics Project
 
-01. Create a VPC, a subnet, implement firewall rules
+This is a basic networking setup for kicking tires with public deployment of VPC native data analytics services.
+
+
+| # | Module | Link |
+| -- | :---    | ---|
+| 1 | Create a VPC, a subnet, implement firewall rules | |
 
 
 ## 3.0. Advanced One-time Networking Setup (secure setup)
