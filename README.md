@@ -19,10 +19,12 @@ The repository contains modules that are deliberately detailed with sequential s
 | 2 | Update organizational policies | |
 | 3 | Create a User Managed Service Account for Data Analytics | | 
 | 4 | Grant general IAM permissions | |
-| 5 | Cloud Composer specific permissions | |
-| 6 | Cloud Functions specific permissions | |
-| 7 | Cloud Dataflow specific permissions | |
-| 8 | Cloud Storage specific permissions | |
+| 5 | Cloud Composer specific IAM permissions | |
+| 6 | Cloud Functions specific IAM permissions | |
+| 7 | Cloud Dataflow specific IAM permissions | |
+| 8 | Cloud Storage specific IAM permissions | |
+| . | ... | |
+| 20 | IAM permissions recap | |
 
 ### 2.0. Basic One-time Networking Setup in the Data Analytics Project
 
