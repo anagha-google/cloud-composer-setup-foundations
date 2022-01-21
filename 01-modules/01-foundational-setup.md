@@ -3,21 +3,23 @@
 This module covers the foundational one-site setup to start working on Data Analytics endeavors on GCP.
 
 In this module, we will cover the folowing-<br>
-[1. Pre-requisites]()<br>
-[3. Enable requisite Google APIs for Project Indra](01-general.md#3-enable-requisite-google-apis)<br>
-[4. Create a VPC, a subnet, firewall rules](01-general.md#4-create-a-vpc-a-subnet-firewall-rules)<br>
-[5. Implement organizational policies](01-general.md#5-implement-organizational-policies)<br>
-[6. Create a Service Account](01-general.md#6-create-a-service-account)<br>
-[7. General IAM Permissions](01-general.md#7-grant-iam-permissions)<br>
-[8. Cloud Composer Specific Permissions](01-general.md#8-permissions-specific-to-composer2)<br>
-[9. Cloud Functions Specific Permissions](01-general.md#9-permissions-specific-to-cloud-functions)<br>
-[10. Cloud Dataflow Specific Permissions](01-general.md#10-permissions-specific-to-cloud-dataflow)<br>
-[11. Cloud Storage Specific Permissions](01-general.md#11-permissions-specific-to-cloud-storage)<br>
-[12. IAM permissions Recap](01-general.md#12-permissions-recap)<br>
+[1. Pre-requisites](01-foundational-setup.md#1-pre-requisites)<br>
+[2. Variables for use in the module](01-foundational-setup.md#2-variables-for-use-in-the-module)<br>
+[3. Enable requisite Google APIs for Project Indra](01-foundational-setup.md#3-enable-requisite-google-apis)<br>
+[4. Update organizational policies](01-foundational-setup.md#4-update-organizational-policies)<br>
+[5. Create a User Managed Service Account (UMSA)](01-foundational-setup.md#5-create-a-user-managed-service-account-umsa)<br>
+[6. Grant IAM Permissions](01-foundational-setup.md#6-grant-iam-permissions)<br>
+[7. Permissions specific to Cloud Composer](01-foundational-setup.md#7-permissions-specific-to-cloud-composer)<br>
+[8. Permissions specific to Cloud Functions](01-foundational-setup.md#8-permissions-specific-to-cloud-functions)<br>
+[9. Permissions specific to Cloud Dataflow](01-foundational-setup.md#9-permissions-specific-to-cloud-dataflow)<br>
+[10. Permissions specific to Cloud Storage](01-foundational-setup.md#10-permissions-specific-to-cloud-storage)<br>
+...<br>
+[20. Permissions recap](01-foundational-setup.md#20-permissions-recap)<br>
+
 
 
 ## Duration
-~ 1 hour
+~ 1 hour+
 
 ## Dependencies
 None, but the rest of the modules are dependent on this module being successfully completed.
