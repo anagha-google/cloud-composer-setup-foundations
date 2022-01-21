@@ -25,8 +25,7 @@ None, but the rest of the labs are dependent on this module being successfully c
 
 ## 1. Pre-requisites 
 
-Create a GCP project inside the folder created.<br>
-You will need administrator privileges to the organization and owner privileges for the project.<br>
+Create a GCP project. You will need administrator privileges to the organization and owner privileges for the project for the rest of the modules.<br>
 <br>
 The author's project is called "e2e-demo-indra"<br>
 For the rest of the hands on lab, we will refer to the project as "e2e-demo-indra"<br>
