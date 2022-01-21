@@ -3,7 +3,7 @@
 This module covers the foundational one-site setup to start working on Data Analytics endeavors on GCP.
 
 In this module, we will cover the folowing-<br>
-[1. Pre-requisites]
+[1. Pre-requisites]()<br>
 [3. Enable requisite Google APIs for Project Indra](01-general.md#3-enable-requisite-google-apis)<br>
 [4. Create a VPC, a subnet, firewall rules](01-general.md#4-create-a-vpc-a-subnet-firewall-rules)<br>
 [5. Implement organizational policies](01-general.md#5-implement-organizational-policies)<br>
