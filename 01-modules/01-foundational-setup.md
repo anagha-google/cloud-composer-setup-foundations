@@ -20,7 +20,7 @@ In this module, we will cover the folowing-<br>
 ~ 1 hour
 
 ## Dependencies
-None, but the rest of the labs are dependent on this module being successfully completed.
+None, but the rest of the modules are dependent on this module being successfully completed.
 
 
 ## 1. Pre-requisites 
