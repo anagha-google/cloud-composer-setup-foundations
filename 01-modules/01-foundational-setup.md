@@ -37,7 +37,7 @@ PROJECT_NUMBER=914583619622
 PROJECT_ID=e2e-demo-indra
 ```
 
-![Dashboard](../01-images/00-00-dashboard.png)
+![Dashboard](../../01-images/00-00-dashboard.png)
 
 <hr style="border:12px solid gray"> </hr>
 <br>
