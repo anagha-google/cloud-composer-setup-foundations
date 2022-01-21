@@ -9,9 +9,9 @@ Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by e
 ## Structure
 The repository contains modules that are deliberately detailed with sequential steps (versus fully scripted, automated) to provide an understanding of what is involved.
 
-## 1.0. Foundational One-time Setup
+## Table of Contents
 
-Table of contents:<br>
+### 1.0. Foundational One-time Setup
 
 | # | Module | Link |
 | -- | :---    | ---|
@@ -24,7 +24,7 @@ Table of contents:<br>
 | 7 | Cloud Dataflow specific permissions | |
 | 8 | Cloud Storage specific permissions | |
 
-## 2.0. Basic One-time Networking Setup in the Data Analytics Project
+### 2.0. Basic One-time Networking Setup in the Data Analytics Project
 
 This is a basic networking setup for kicking tires with public deployment of VPC native data analytics services.
 
@@ -34,7 +34,7 @@ This is a basic networking setup for kicking tires with public deployment of VPC
 | 1 | Create a VPC, a subnet, implement firewall rules | |
 
 
-## 3.0. Advanced One-time Networking Setup (secure setup)
+### 3.0. Advanced One-time Networking Setup (secure setup)
 
 This is a secure setup that covers shared VPC, VPC-SC, PSC, configuring DNS and more, for a realitsic and secure setup.<br>
 Section 1.0 above, is pre-requisite.
