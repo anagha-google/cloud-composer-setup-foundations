@@ -1,10 +1,25 @@
 # GCP Provisioning Foundations
 
-This repository includes modules to walk through provisioning services in GCP and in some cases, securing them. This is particularly helpful for CEs to provision services in the *Argolis* environment.
+### About the Repository
+This repository includes modules to walk through provisioning data analytics services and associated foundational services, in GCP, and in some cases, securing them. 
 
-The repository is a community contribution, is deliberately detailed with sequential steps versus fully scripted, automated -> to provide an understanding of what is involved.
+### Motivation and Audience
+Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on intricacies of foundational setp, unblocking them and improving speed to productivity in their core competency
 
-Primary audience: Data Analytics CEs
+### Structure
+The repository contains modules that are deliberately detailed with sequential steps versus fully scripted, automated -> to provide an understanding of what is involved.
+
+
+### Credits
+This is a community contribution.<br>
+
+
+| # | Contributor | Contribution | About |
+| -- | :---    | :---| :---| 
+| 1 | Anagha Khanolkar | Primary Author | Data Analytics Specialist, Google Cloud |
+| 2 | Dwai Lahiri | Networking aspects | Professional Services, Google Cloud |
+| 3 | Jay O' Leary | Testing | Data Analytics Specialist, Google Cloud |
+
 
 ## 1.0. Foundational One-time Setup
 
