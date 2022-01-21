@@ -1,8 +1,9 @@
-# Prerequisites
+# About
+
+This module covers the foundational one-site setup to start working on Data Analytics endeavors on GCP.
 
 In this module, we will cover the folowing-<br>
-[1. Create a GCP Organization Folder](01-general.md#1-gcp-organization-folder)<br>
-[2. Create a GCP Project](01-general.md#2-gcp-project)<br>
+[1. Pre-requisites]
 [3. Enable requisite Google APIs for Project Indra](01-general.md#3-enable-requisite-google-apis)<br>
 [4. Create a VPC, a subnet, firewall rules](01-general.md#4-create-a-vpc-a-subnet-firewall-rules)<br>
 [5. Implement organizational policies](01-general.md#5-implement-organizational-policies)<br>
@@ -14,8 +15,6 @@ In this module, we will cover the folowing-<br>
 [11. Cloud Storage Specific Permissions](01-general.md#11-permissions-specific-to-cloud-storage)<br>
 [12. IAM permissions Recap](01-general.md#12-permissions-recap)<br>
 
-## Complexity Level
-Moderate
 
 ## Duration
 ~ 1 hour
@@ -24,22 +23,15 @@ Moderate
 None, but the rest of the labs are dependent on this module being successfully completed.
 
 
-## 1. GCP Organization Folder
+## 1. Pre-requisites 
 
-Follow the GCP documentation for setting up a GCP Organization folder in Cloud IAM. 
-The author's folder is called "kicking-tires".
-
-<hr style="border:12px solid gray"> </hr>
+Create a GCP project inside the folder created.<br>
+You will need administrator privileges to the organization and owner privileges for the project.<br>
 <br>
-
-
-## 2. GCP Project
-
-Create a GCP project inside the folder created.
-The author's project is called "e2e-demo-indra"
-For the rest of the hands on lab, we will refer to the project as "e2e-demo-indra"
-From the cloud console project dashboard, capture the project number.
-
+The author's project is called "e2e-demo-indra"<br>
+For the rest of the hands on lab, we will refer to the project as "e2e-demo-indra"<br>
+<br>
+From the cloud console project dashboard, capture the project number.<br>
 In Cloud Shell, lets create some variables we will use for the rest of the project-
 ```
 PROJECT_NUMBER=914583619622
@@ -51,7 +43,7 @@ PROJECT_ID=e2e-demo-indra
 <hr style="border:12px solid gray"> </hr>
 <br>
 
-## 3. Enable requisite Google APIs
+## 2. Enable requisite Google APIs
 
 Launch cloud shell, change scope to the project you created (if required), and run the below commands-
 
