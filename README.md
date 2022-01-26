@@ -1,7 +1,7 @@
-# GCP Provisioning Foundations for Data Analytics Endeavors
+# Cloud Composer 2 Provisioning Foundations for Data Analytics Endeavors
 
 ## About the Repository
-This repository includes hands-on-lab modules that cover provisioning the foundational infrstracture and security requirements in GCP for Data Analytics projects, and in some cases, securing them. The repository also has a complementary repository that covers provisioning individual data services.
+This repository includes hands-on-lab modules that cover provisioning the foundational infrstracture and security in GCP for Cloud Composer 2 based Data Analytics projects. 
 
 ## Motivation and Audience
 Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on intricacies of foundational setup, unblocking and improving speed to productivity in their core competency
