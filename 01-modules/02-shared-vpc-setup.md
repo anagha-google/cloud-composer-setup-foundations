@@ -55,11 +55,11 @@ CC2_SVCS_CIDR_BLK='10.67.0.0/16' # Composer pods, ensure sufficient, especially 
 GKE_CNTRL_PLN_CIDR_BLK='10.65.62.0/24' 
 CC2_CIDR_BLK='10.65.63.0/24' 
 CSQL_CIDR_BLK='10.65.64.0/24'
-
 ```
 
 <br>
 <hr>
+
 ## 3. Enable Google APIs in the shared VPC host project
 
 In cloud shell scoped to the shared VPC/host project, run the commands below-
