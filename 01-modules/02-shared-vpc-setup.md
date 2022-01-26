@@ -22,7 +22,8 @@ Sub-module dependencies: Successful completion of Module 2
 ## 1. Create a project for "Shared VPC" called e2e-demo-indra-shared
 
 Create a new project for the shared VPC.
-
+<br>
+<hr>
 
 ## 2. Variables for use in the sub-module
 
@@ -56,6 +57,9 @@ CC2_CIDR_BLK='10.65.63.0/24'
 CSQL_CIDR_BLK='10.65.64.0/24'
 
 ```
+
+<br>
+<hr>
 ## 3. Enable Google APIs in the shared VPC host project
 
 In cloud shell scoped to the shared VPC/host project, run the commands below-
@@ -64,6 +68,9 @@ In cloud shell scoped to the shared VPC/host project, run the commands below-
 gcloud services enable container.googleapis.com --project $SHARED_VPC_HOST_PROJECT_ID
 gcloud services enable orgpolicy.googleapis.com --project $SHARED_VPC_HOST_PROJECT_ID
 ```
+
+<br>
+<hr>
 
 ## 4. Grant IAM role to the admininstrator (or yourself), to create a "Shared VPC"
 
