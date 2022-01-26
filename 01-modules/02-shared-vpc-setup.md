@@ -4,7 +4,7 @@ This module covers creation of a Shared VPC, subnets, requisite organizational p
 
 Shared VPC enables organizations to establish budgeting and access control boundaries at the project level while allowing for secure and efficient communication using private IPs across those boundaries. In the Shared VPC configuration, Cloud Composer can invoke services hosted in other Google Cloud projects in the same organization without exposing services to the public internet.
 
-<br><br>
+<br>
 Shared VPC requires that you designate a host project to which networks and subnetworks belong and a service project, which is attached to the host project. When Cloud Composer participates in a Shared VPC, the Cloud Composer environment is in the service project.<br><br>
 
 To set up Shared VPC, you will need to pre-define the following IP ranges in the host project:
@@ -15,7 +15,8 @@ To set up Shared VPC, you will need to pre-define the following IP ranges in the
 - Secondary IP Ranges cannot overlap with any other secondary ranges in this VPC.
 And ensure that secondary ranges are large enough to accommodate the cluster's size and your environment scaling.<br><br>
 
-You can now dive right into the lab.
+[References](https://cloud.google.com/composer/docs/composer-2/configure-shared-vpc)
+<hr>
 
 **Dependencies**<br>
 Successful completion of Module 2.
