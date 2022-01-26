@@ -1,6 +1,6 @@
 # About
 
-This module covers the foundational one-site setup to start working on Data Analytics endeavors on GCP.
+This module covers the foundational one-site setup to start working on Cloud Composer 2 based Data Analytics endeavors on GCP.
 
 In this module, we will cover the folowing-<br>
 [1. Pre-requisites](01-foundational-setup.md#1-pre-requisites)<br>
