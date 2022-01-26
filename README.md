@@ -4,7 +4,7 @@
 This repository includes hands-on-lab modules that cover provisioning the foundational infrastructure and security in GCP for Cloud Composer 2 based Data Analytics projects. 
 
 ## Motivation and Audience
-Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on intricacies of foundational setup, unblocking and improving speed to productivity in their core competency
+Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on intricacies of foundational setup, unblocking and improving speed to productivity in their core competency. For the GCP Customer Engineer, the hands on labs cover provisioning in **Argolis**.
 
 ## Structure
 The repository contains modules that are deliberately detailed with sequential steps (versus fully scripted, automated) to provide an understanding of what is involved.
