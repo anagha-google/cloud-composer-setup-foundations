@@ -81,12 +81,18 @@ gcloud organizations add-iam-policy-binding $ORG_ID_NBR \
   --role="roles/compute.xpnAdmin"
 ```
 
+<br>
+<hr>
+
 ## 5. Enable shared VPC for the "Shared VPC" project
 
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
 gcloud compute shared-vpc enable $SHARED_VPC_HOST_PROJECT_ID
 ```
+
+<br>
+<hr>
 
 ## 6. Associate your data analytics project with the "Shared VPC" project
 
@@ -96,12 +102,17 @@ gcloud compute shared-vpc associated-projects add $DA_PROJECT_ID \
     --host-project $SHARED_VPC_HOST_PROJECT_ID
 ```
 
+<br>
+<hr>
+
 ## 7. Review IP range considerations for Cloud Composer 2
 
 A core requirement here is to ensure there is no CIDR range overlap between your ranges and the Google services
 <br>Review the documentation [here](
 https://cloud.google.com/composer/docs/composer-2/configure-private-ip#step_1_check_network_requirements)
 
+<br>
+<hr>
 
 ## 8. Create a VPC in the "shared VPC" project
 
@@ -113,6 +124,9 @@ gcloud compute networks create $SHARED_VPC_NETWORK_NM \
 --mtu=1460 \
 --bgp-routing-mode=regional
 ```
+
+<br>
+<hr>
 
 ## 9. Create subnet for secure Cloud Composer 2
 
@@ -166,7 +180,8 @@ In cloud shell scoped to the shared VPC/host project, run the below:
 ### 9.4 Other secondary IP ranges
 The other secondary IP ranges listed in the variables should not be created, but **reserved** for Cloud Composer 2 secure deployment lab sub-module and will be used at environment provisioning time.
 
-
+<br>
+<hr>
 
 ## 10. Apply organizational policies for the shared VPC host project
 
@@ -185,11 +200,13 @@ gcloud org-policies set-policy restrictVpcPeering.yaml
 
 rm restrictVpcPeering.yaml
 ```
+<br>
+<hr>
 
 ## 11. Create firewall rules
 
 
-#### 11.1. Allow egress from GKE Node IP range to any destination (0.0.0.0/0), TCP/UDP port 53
+### 11.1. Allow egress from GKE Node IP range to any destination (0.0.0.0/0), TCP/UDP port 53
 
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
@@ -202,7 +219,7 @@ gcloud compute firewall-rules create allow-snet-egress-to-any \
     --priority 1000 
 ```
 
-#### 11.2. Allow egress from GKE Node IP range to GKE Node IP range, all ports
+### 11.2. Allow egress from GKE Node IP range to GKE Node IP range, all ports
 
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
@@ -215,7 +232,7 @@ gcloud compute firewall-rules create allow-intra-gke-cluster-egress \
     --priority 1000 
 ```
 
-#### 11.3. Allow egress from GKE Node IP range to GKE Pods IP range, all ports
+### 11.3. Allow egress from GKE Node IP range to GKE Pods IP range, all ports
 
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
@@ -228,7 +245,7 @@ gcloud compute firewall-rules create allow-to-gke-pod-sipr-egress \
     --priority 1000 
 ```
 
-#### 11.4. Allow egress from GKE Node IP range to GKE Control Plane IP range, all ports
+### 11.4. Allow egress from GKE Node IP range to GKE Control Plane IP range, all ports
 
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
@@ -241,7 +258,7 @@ gcloud compute firewall-rules create allow-to-gke-ctrl-pln-sipr-egress \
     --priority 1000 
 ```
 
-#### 11.5. Allow ingress from GCP Health Checks 130.211.0.0/22, 35.191.0.0/16 to GKE Node IP range, TCP ports 80 and 443.
+### 11.5. Allow ingress from GCP Health Checks 130.211.0.0/22, 35.191.0.0/16 to GKE Node IP range, TCP ports 80 and 443.
 
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
@@ -254,7 +271,7 @@ gcloud compute firewall-rules create allow-gcp-health-chk-ingress \
     --priority 1000 
 ```
 
-#### 11.6. Allow egress from GKE Node IP range to GCP Health Checks 130.211.0.0/22, 35.191.0.0/16, TCP ports 80 and 443.
+### 11.6. Allow egress from GKE Node IP range to GCP Health Checks 130.211.0.0/22, 35.191.0.0/16, TCP ports 80 and 443.
 
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
@@ -267,7 +284,7 @@ gcloud compute firewall-rules create allow-to-gcp-health-chk-egress \
     --priority 1000 
 ```
 
-#### 11.7. Allow egress from GKE Node IP range to Cloud Composer network IP range, TCP ports 3306 and 3307.
+### 11.7. Allow egress from GKE Node IP range to Cloud Composer network IP range, TCP ports 3306 and 3307.
 
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
@@ -280,10 +297,13 @@ gcloud compute firewall-rules create allow-to-cc2-sipr-egress \
     --priority 1000 
 ```
 
-## 12. In host project, IAM permissions for service project's (e2e-demo-indra) service accounts
+<br>
+<hr>
+
+## 12. IAM permissions to host project for service project's (e2e-demo-indra) service accounts
 
 
-#### 12.1. Create Composer Agent Service Account in "Shared VPC" project
+### 12.1. Create Composer Agent Service Account in "Shared VPC" project
 
 
 In the host project, **if this is the first Cloud Composer environment**, provision the Composer Agent Service Account 
@@ -293,7 +313,7 @@ gcloud beta services identity create --service=composer.googleapis.com
 ```
 
 
-#### 12.2. IAM permissions related variables
+### 12.2. IAM permissions related variables
 
 In cloud shell scoped to the shared VPC/host project, run the below. <br>Each of these maps to a service account in the service project:
 ```
@@ -302,43 +322,43 @@ DA_PROJECT_CC2_GMSA=service-$DA_PROJECT_NUMBER@cloudcomposer-accounts.iam.gservi
 DA_GOOGLE_API_GMSA=$DA_PROJECT_NUMBER@cloudservices.gserviceaccount.com
 ```
 
-#### 12.3. Apply GKE default service account specific IAM permissions
+### 12.3. Apply GKE default service account specific IAM permissions
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 
-##### 12.3.1. Compute Network User role
+#### 12.3.1. Compute Network User role
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${DA_PROJECT_GKE_GMSA} \
     --role=roles/compute.networkUser 
 ```
 
-##### 12.3.2. Container Host Service Agent User role
+#### 12.3.2. Container Host Service Agent User role
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${DA_PROJECT_GKE_GMSA} \
     --role roles/container.hostServiceAgentUser
 ```
 
-#### 12.4. Cloud Composer 2 default service account specific
+### 12.4. Cloud Composer 2 default service account specific
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 
-##### 12.4.1. Compute Network User role
+#### 12.4.1. Compute Network User role
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${DA_PROJECT_CC2_GMSA} \
         --role=roles/compute.networkUser 
 ```  
 
-##### 12.4.2. Composer Shared VPC Agent role
+#### 12.4.2. Composer Shared VPC Agent role
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${DA_PROJECT_CC2_GMSA} \
         --role=roles/composer.sharedVpcAgent 
 ```  
  
-#### 12.5. Google APIs default service account specific
+### 12.5. Google APIs default service account specific
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 
 ```      
@@ -347,7 +367,7 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
         --role=roles/compute.networkUser 
 ```
 
-#### 12.6. User managed service account specific
+### 12.6. User managed service account specific
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
@@ -356,7 +376,7 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --role=roles/compute.networkUser 
 ```
 
-#### 12.7. Google Managed Cloud Dataflow service account specific
+### 12.7. Google Managed Cloud Dataflow service account specific
 
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
@@ -367,5 +387,6 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${CDF_GMSA} \
     --role=roles/compute.networkUser 
 ```
-
+<br>
+<hr>
 
