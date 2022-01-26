@@ -37,7 +37,6 @@ DA_PROJECT_ID=e2e-demo-indra #Data analytics project
 
 SHARED_VPC_HOST_PROJECT_ID=$DA_PROJECT_ID-shared #Shared VPC project
 
-PROJECT_LOCATION=us-central1
 LOCATION=us-central1
 
 ADMIN_UPN_FQN=admin@$ORG_ID #Replace with yours if its a different construct
@@ -47,7 +46,7 @@ DA_PROJECT_UMSA_FQN=$DA_PROJECT_UMSA@$DA_PROJECT_ID.iam.gserviceaccount.com
 SHARED_VPC_NETWORK_NM=indra-vpc-shared
 SHARED_VPC_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/global/networks/$SHARED_VPC_NETWORK_NM"
 SHARED_VPC_CC2_SNET_NM="indra-composer2-snet-shared"
-SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$PROJECT_LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
+SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
 
 SHARED_VPC_CC2_SNET_CIDR_BLK='10.65.61.0/24' # Number of GKE nodes and ILBs available 
 CC2_PODS_CIDR_BLK='10.66.0.0/16' # Composer pods, ensure sufficient, especially for autoscale
