@@ -19,18 +19,17 @@ If you need to start with a secure Cloud Composer 2 cluster, skip to section 2, 
 
 | # | Sub-Modules | 
 | -- | :--- |
-| 1 | Create a VPC, a subnet, implement firewall rules | 
+| 1 | Foundational setup - network, subnet, org policies, IAM permissions etc | 
 | 2 | Provision Cloud Composer 2 |
-| 3 | Deploy a Hello World DAG |
-| 4 | GCS Event Driven Orchestration of the Hello World DAG |
-| 5 | Pub/Sub Event Driven Orchestration of the Hello World DAG |
-| 6 | Time Event Driven Orchestration of the Hello World DAG |
-| 7 | A more realistic DAG with GCS, Cloud Dataflow and BigQuery |
+| 3 | Deploy and test a Hello World DAG |
+| 4 | Deploy and test GCS Event Driven Orchestration of the Hello World DAG |
+| 5 | Deploy and test Pub/Sub Event Driven Orchestration of the Hello World DAG |
+| 6 | Deploy and test Time Event Driven Orchestration of the Hello World DAG |
+| 7 | Deploy and test a more realistic DAG with GCS, Cloud Dataflow and BigQuery |
 
 
 
-
-### 2.0. Foundational One-time Setup Lab for a secure Cloud Composer 2 deployment
+### 2.0. Module 2: Foundational One-time Setup Lab for a secure Cloud Composer 2 deployment
 
 [Jump to lab module](01-modules/01-foundational-setup.md)
 
@@ -47,9 +46,17 @@ If you need to start with a secure Cloud Composer 2 cluster, skip to section 2, 
 
 
 
-### 3.0. Securing Cloud Composer 2 - iteration 1
+### 3.0. Module 3: Securing Cloud Composer 2 - iteration 1
 
-This hands on lab module includes creating 
+This module includes creating and using a shared VPC, subnet, firewall rules, private Cloud Composer 2 cluster, authorized networks, secured Airflow website, private Dataflow cluster, DNS entries, user managed service account for provisioning Cloud Composer 2, as the run tie account for DAGs, for Cloud functions that trigger DAGs based on GCS or Cloud Pub/Sub events, provisioning and configuring Cloud Router and Cloud NAT for downloading from PyPi/Maven/CRAN packages from the internet.
+
+| # | Module | Link |
+| -- | :---    | ---|
+| 1 | ..| | 
+
+### 4.0. Module 4: Securing Cloud Composer 2 - iteration 2
+
+This module adds VPC-SC and PSC to the setup in module 3.0.
 
 | # | Module | Link |
 | -- | :---    | ---|
