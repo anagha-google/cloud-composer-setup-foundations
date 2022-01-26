@@ -34,7 +34,7 @@ GKE_CNTRL_PLN_CIDR_BLK='10.65.62.0/24' # GKE master
 CC2_CIDR_BLK='10.65.63.0/24'  # Composer network
 CSQL_CIDR_BLK='10.65.64.0/24' # Cloud SQL (Composer metastore)
 
-OFFICE_CIDR=98.222.97.10/32 # Lab attendee's Public IP or your organization's office CIDR block for VPC-SC
+OFFICE_CIDR=98.222.97.10/32 # Lab attendee's Public IP or your organization's office CIDR block for Airflow UI access
 ```
 
 
