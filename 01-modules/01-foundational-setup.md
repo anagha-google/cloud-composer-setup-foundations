@@ -408,33 +408,4 @@ gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA
 <hr style="border:12px solid gray"> </hr>
 <br>
 
-
-## 20. Permissions recap
-
-Go to the Cloud Console and navigate to the IAM -> IAM & Admin and ensure you check the "Include Google Provided Role Grants". Screenshots of what you should expect are below.
-
-### 20.1. The lab attendee permissions
-![01-03-14](../00-images/01-03-14.png)
-<br>
-
-### 20.2. The UMSA permissions
-![01-03-14](../00-images/01-03-15.png)
-<br>
-
-### 20.3. The Cloud Composer Service Agent Account permissions
-![01-03-16](../00-images/01-03-16.png)
-<br>
-
-### 20.4. The various Google Managed Default Service Accounts
-![01-03-17](../00-images/01-03-17.png)
-<br>
-<br>
-
-![01-03-18](../00-images/01-03-18.png)
-<br>
-
-
-<hr style="border:12px solid gray"> </hr>
-<br>
-
 This concludes the module. 
