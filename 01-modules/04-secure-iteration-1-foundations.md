@@ -242,7 +242,7 @@ gcloud compute firewall-rules create allow-to-gke-pod-sipr-egress \
     --action allow \
     --direction egress \
     --rules ALL \
-    --destination-ranges $R1_PODS_CIDR_BLK \
+    --destination-ranges $CC2_PODS_CIDR_BLK \
     --priority 1000 
 ```
 
@@ -255,7 +255,7 @@ gcloud compute firewall-rules create allow-to-gke-ctrl-pln-sipr-egress \
     --action allow \
     --direction egress \
     --rules ALL \
-    --destination-ranges $R3_GKE_CNTRL_PLN_CIDR_BLK \
+    --destination-ranges $GKE_CNTRL_PLN_CIDR_BLK \
     --priority 1000 
 ```
 
@@ -293,7 +293,7 @@ gcloud compute firewall-rules create allow-to-cc2-sipr-egress \
     --network $SHARED_VPC_NETWORK_NM \
     --action allow \
     --direction egress \
-    --destination-ranges $R4_COMPOSER_NET_CIDR_BLK \
+    --destination-ranges $CC2_CIDR_BLK \
     --rules tcp:3306,tcp:3307 \
     --priority 1000 
 ```
