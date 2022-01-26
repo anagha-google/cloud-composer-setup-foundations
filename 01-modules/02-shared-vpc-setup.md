@@ -147,7 +147,7 @@ We defined the ranges earlier, in the variables section.<br>
 
 ```
 
-### 9.1. Create subnet with the first secondary IP range - for composer pods
+### 9.1. Create subnet 
 
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
