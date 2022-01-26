@@ -1,7 +1,7 @@
 # Cloud Composer 2 Provisioning Foundations for Data Analytics Endeavors
 
 ## About the Repository
-This repository includes hands-on-lab modules that cover provisioning the foundational infrstracture and security in GCP for Cloud Composer 2 based Data Analytics projects. 
+This repository includes hands-on-lab modules that cover provisioning the foundational infrastructure and security in GCP for Cloud Composer 2 based Data Analytics projects. 
 
 ## Motivation and Audience
 Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on intricacies of foundational setup, unblocking and improving speed to productivity in their core competency
@@ -14,7 +14,8 @@ The repository contains modules that are deliberately detailed with sequential s
 
 ### 1.0. Module 1: Public Cloud Composer 2 setup
 
-This module covers the below.
+This module covers the below. The module is standalone and is available in [here](https://github.com/anagha-google/composer2-basic-orchestration).<br>
+If you need to start with a secure Cloud Composer 2 cluster, skip to section 2, below.
 
 | # | Sub-Modules | 
 | -- | :--- |
@@ -25,6 +26,8 @@ This module covers the below.
 | 5 | Pub/Sub Event Driven Orchestration of the Hello World DAG |
 | 6 | Time Event Driven Orchestration of the Hello World DAG |
 | 7 | A more realistic DAG with GCS, Cloud Dataflow and BigQuery |
+
+
 
 
 ### 2.0. Foundational One-time Setup Lab for a secure Cloud Composer 2 deployment
