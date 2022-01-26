@@ -20,10 +20,9 @@ Read the
 
 ### Module 2: Public Cloud Composer 2 cluster setup
 
-This module includes the below sub-modules, is standalone and is available in a separate [repo](https://github.com/anagha-google/composer2-basic-orchestration).<br>
-This setup is recommended for kicking tires, simple demps, but is **not a secure setup**. It is recommended that you run through this module if you are new to Clooud Composer 2 and its provisioning, new to authoring, deploying DAGs, and triggering DAG execution in a event driven fashion. <br>
+This module includes the below sub-modules, is standalone and is available in a separate [repo](https://github.com/anagha-google/composer2-basic-orchestration). This setup is recommended for kicking tires, simple demos, but is **not a secure setup**. It is recommended that you run through this module if you are new to Cloud Composer 2 and its provisioning, new to authoring, deploying DAGs, and triggering DAG execution in a event driven fashion. <br>
 
-If you need to start with a secure Cloud Composer 2 cluster, skip to module 3, below. The same DAGs in module 1, are used across modules.
+If you need to start with a secure Cloud Composer 2 setup, jump to module 3, below. The same DAGs in module 1, are used across modules.
 
 | # | Sub-Modules | 
 | -- | :--- |
@@ -34,7 +33,6 @@ If you need to start with a secure Cloud Composer 2 cluster, skip to module 3, b
 | 5 | Deploy and test Pub/Sub Event Driven Orchestration of the Hello World DAG |
 | 6 | Deploy and test Time Event Driven Orchestration of the Hello World DAG |
 | 7 | Deploy and test a more realistic DAG with GCS, Cloud Dataflow and BigQuery |
-
 
 
 ### Module 3: Foundational One-time Setup Lab for a secure Cloud Composer 2 deployment
