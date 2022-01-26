@@ -72,118 +72,8 @@ gcloud services enable orgpolicy.googleapis.com --project $SHARED_VPC_HOST_PROJE
 <br>
 <hr>
 
-## 4. Grant IAM role to the admininstrator (or yourself), to create a "Shared VPC"
 
-In cloud shell scoped to the shared VPC/host project, run the below:
-```
-gcloud organizations add-iam-policy-binding $ORG_ID_NBR \
-  --member=user:$ADMIN_UPN_FQN \
-  --role="roles/compute.xpnAdmin"
-```
-
-<br>
-<hr>
-
-## 5. Enable shared VPC for the "Shared VPC" project
-
-In cloud shell scoped to the shared VPC/host project, run the below:
-```
-gcloud compute shared-vpc enable $SHARED_VPC_HOST_PROJECT_ID
-```
-
-<br>
-<hr>
-
-## 6. Associate your data analytics project with the "Shared VPC" project
-
-In cloud shell scoped to the shared VPC/host project, run the below:
-```
-gcloud compute shared-vpc associated-projects add $DA_PROJECT_ID \
-    --host-project $SHARED_VPC_HOST_PROJECT_ID
-```
-
-<br>
-<hr>
-
-## 7. Review IP range considerations for Cloud Composer 2
-
-A core requirement here is to ensure there is no CIDR range overlap between your ranges and the Google services
-<br>Review the documentation [here](
-https://cloud.google.com/composer/docs/composer-2/configure-private-ip#step_1_check_network_requirements)
-
-<br>
-<hr>
-
-## 8. Create a VPC in the "shared VPC" project
-
-In cloud shell scoped to the shared VPC/host project, run the below:
-```
-gcloud compute networks create $SHARED_VPC_NETWORK_NM \
---project=$SHARED_VPC_HOST_PROJECT_ID \
---subnet-mode=custom \
---mtu=1460 \
---bgp-routing-mode=regional
-```
-
-<br>
-<hr>
-
-## 9. Create subnet for secure Cloud Composer 2
-
-Per the docs as of Jan 25, 2022, these are considerations-
-```
-To create a Private IP environment, we need to have the following setup:<br>
-We need five secondary IP ranges for Composer 2-<br>
-- Secondary IP range for pods<br>
-- Secondary IP range for services<br>
-- GKE Control Plane IP range<br>
-- Cloud Composer network IP range<br>
-- Cloud SQL IP range<br>
-
-
-Note: Consult the default IP ranges table for the defaults used in each region
-https://cloud.google.com/composer/docs/composer-2/configure-private-ip#step_1_check_network_requirements
-We defined the ranges earlier, in the variables section.<br>
-
-```
-
-### 9.1. Create subnet 
-
-In cloud shell scoped to the shared VPC/host project, run the below:
-```
-gcloud compute networks subnets create $SHARED_VPC_CC2_SNET_NM \
- --network $SHARED_VPC_NETWORK_NM \
- --range $SHARED_VPC_CC2_SNET_CIDR_BLK \
- --region $PROJECT_LOCATION \
- --enable-private-ip-google-access \
- --project $SHARED_VPC_HOST_PROJECT_ID 
-```
-
-### 9.2. Update subnet to add a second  secondary IP range - for composer pods
-*As of the authoring of this guide (Jan 14, 2022), the secondary IP range name had to strictly be composer-pods.*<br>
-In cloud shell scoped to the shared VPC/host project, run the below:
-```
- gcloud compute networks subnets update $SHARED_VPC_CC2_SNET_NM \
- --region $PROJECT_LOCATION \
- --add-secondary-ranges composer-pods=$CC2_PODS_CIDR_BLK
-```
-
-### 9.3. Update subnet to add asecond  secondary IP range - for composer services
-*As of the authoring of this guide (Jan 14, 2022), the secondary IP range name had to strictly be composer-services*<br>
-In cloud shell scoped to the shared VPC/host project, run the below:
-```
- gcloud compute networks subnets update $SHARED_VPC_CC2_SNET_NM \
- --region $PROJECT_LOCATION \
- --add-secondary-ranges composer-services=$CC2_SVCS_CIDR_BLK
-```
-
-### 9.4 Other secondary IP ranges
-The other secondary IP ranges listed in the variables should not be created, but **reserved** for Cloud Composer 2 secure deployment lab sub-module and will be used at environment provisioning time.
-
-<br>
-<hr>
-
-## 10. Apply organizational policies for the shared VPC host project
+## 4. Apply organizational policies for the shared VPC host project
 
 *Ensure you are authorized to apply organization policies - have the org policy admin role.*<br>
 
@@ -202,6 +92,118 @@ rm restrictVpcPeering.yaml
 ```
 <br>
 <hr>
+
+## 5. Grant IAM role to the admininstrator (or yourself), to create a "Shared VPC"
+
+In cloud shell scoped to the shared VPC/host project, run the below:
+```
+gcloud organizations add-iam-policy-binding $ORG_ID_NBR \
+  --member=user:$ADMIN_UPN_FQN \
+  --role="roles/compute.xpnAdmin"
+```
+
+<br>
+<hr>
+
+## 6. Enable shared VPC for the "Shared VPC" project
+
+In cloud shell scoped to the shared VPC/host project, run the below:
+```
+gcloud compute shared-vpc enable $SHARED_VPC_HOST_PROJECT_ID
+```
+
+<br>
+<hr>
+
+## 7. Associate your data analytics project with the "Shared VPC" project
+
+In cloud shell scoped to the shared VPC/host project, run the below:
+```
+gcloud compute shared-vpc associated-projects add $DA_PROJECT_ID \
+    --host-project $SHARED_VPC_HOST_PROJECT_ID
+```
+
+<br>
+<hr>
+
+## 8. Review IP range considerations for Cloud Composer 2
+
+A core requirement here is to ensure there is no CIDR range overlap between your ranges and the Google services
+<br>Review the documentation [here](
+https://cloud.google.com/composer/docs/composer-2/configure-private-ip#step_1_check_network_requirements)
+
+<br>
+<hr>
+
+## 9. Create a VPC in the "shared VPC" project
+
+In cloud shell scoped to the shared VPC/host project, run the below:
+```
+gcloud compute networks create $SHARED_VPC_NETWORK_NM \
+--project=$SHARED_VPC_HOST_PROJECT_ID \
+--subnet-mode=custom \
+--mtu=1460 \
+--bgp-routing-mode=regional
+```
+
+<br>
+<hr>
+
+## 10. Create subnet for secure Cloud Composer 2
+
+Per the docs as of Jan 25, 2022, these are considerations-
+```
+To create a Private IP environment, we need to have the following setup:<br>
+We need five secondary IP ranges for Composer 2-<br>
+- Secondary IP range for pods<br>
+- Secondary IP range for services<br>
+- GKE Control Plane IP range<br>
+- Cloud Composer network IP range<br>
+- Cloud SQL IP range<br>
+
+
+Note: Consult the default IP ranges table for the defaults used in each region
+https://cloud.google.com/composer/docs/composer-2/configure-private-ip#step_1_check_network_requirements
+We defined the ranges earlier, in the variables section.<br>
+
+```
+
+### 10.1. Create subnet 
+
+In cloud shell scoped to the shared VPC/host project, run the below:
+```
+gcloud compute networks subnets create $SHARED_VPC_CC2_SNET_NM \
+ --network $SHARED_VPC_NETWORK_NM \
+ --range $SHARED_VPC_CC2_SNET_CIDR_BLK \
+ --region $PROJECT_LOCATION \
+ --enable-private-ip-google-access \
+ --project $SHARED_VPC_HOST_PROJECT_ID 
+```
+
+### 10.2. Update subnet to add a second  secondary IP range - for composer pods
+*As of the authoring of this guide (Jan 14, 2022), the secondary IP range name had to strictly be composer-pods.*<br>
+In cloud shell scoped to the shared VPC/host project, run the below:
+```
+ gcloud compute networks subnets update $SHARED_VPC_CC2_SNET_NM \
+ --region $PROJECT_LOCATION \
+ --add-secondary-ranges composer-pods=$CC2_PODS_CIDR_BLK
+```
+
+### 10.3. Update subnet to add asecond  secondary IP range - for composer services
+*As of the authoring of this guide (Jan 14, 2022), the secondary IP range name had to strictly be composer-services*<br>
+In cloud shell scoped to the shared VPC/host project, run the below:
+```
+ gcloud compute networks subnets update $SHARED_VPC_CC2_SNET_NM \
+ --region $PROJECT_LOCATION \
+ --add-secondary-ranges composer-services=$CC2_SVCS_CIDR_BLK
+```
+
+### 10.4 Other secondary IP ranges
+The other secondary IP ranges listed in the variables should not be created, but **reserved** for Cloud Composer 2 secure deployment lab sub-module and will be used at environment provisioning time.
+
+<br>
+<hr>
+
 
 ## 11. Create firewall rules
 
@@ -300,10 +302,13 @@ gcloud compute firewall-rules create allow-to-cc2-sipr-egress \
 <br>
 <hr>
 
-## 12. IAM permissions to host project for service project's (e2e-demo-indra) service accounts
 
 
-### 12.1. Create Composer Agent Service Account in "Shared VPC" project
+
+## 13. IAM permissions to host project for service project's (e2e-demo-indra) service accounts
+
+
+### 13.1. Create Composer Agent Service Account in "Shared VPC" project
 
 
 In the host project, **if this is the first Cloud Composer environment**, provision the Composer Agent Service Account 
@@ -313,7 +318,7 @@ gcloud beta services identity create --service=composer.googleapis.com
 ```
 
 
-### 12.2. IAM permissions related variables
+### 13.2. IAM permissions related variables
 
 In cloud shell scoped to the shared VPC/host project, run the below. <br>Each of these maps to a service account in the service project:
 ```
@@ -322,43 +327,43 @@ DA_PROJECT_CC2_GMSA=service-$DA_PROJECT_NUMBER@cloudcomposer-accounts.iam.gservi
 DA_GOOGLE_API_GMSA=$DA_PROJECT_NUMBER@cloudservices.gserviceaccount.com
 ```
 
-### 12.3. Apply GKE default service account specific IAM permissions
+### 13.3. Apply GKE default service account specific IAM permissions
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 
-#### 12.3.1. Compute Network User role
+#### 13.3.1. Compute Network User role
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${DA_PROJECT_GKE_GMSA} \
     --role=roles/compute.networkUser 
 ```
 
-#### 12.3.2. Container Host Service Agent User role
+#### 13.3.2. Container Host Service Agent User role
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${DA_PROJECT_GKE_GMSA} \
     --role roles/container.hostServiceAgentUser
 ```
 
-### 12.4. Cloud Composer 2 default service account specific
+### 13.4. Cloud Composer 2 default service account specific
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 
-#### 12.4.1. Compute Network User role
+#### 13.4.1. Compute Network User role
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${DA_PROJECT_CC2_GMSA} \
         --role=roles/compute.networkUser 
 ```  
 
-#### 12.4.2. Composer Shared VPC Agent role
+#### 13.4.2. Composer Shared VPC Agent role
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${DA_PROJECT_CC2_GMSA} \
         --role=roles/composer.sharedVpcAgent 
 ```  
  
-### 12.5. Google APIs default service account specific
+### 13.5. Google APIs default service account specific
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 
 ```      
@@ -367,7 +372,7 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
         --role=roles/compute.networkUser 
 ```
 
-### 12.6. User managed service account specific
+### 13.6. User managed service account specific
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
@@ -376,7 +381,7 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --role=roles/compute.networkUser 
 ```
 
-### 12.7. Google Managed Cloud Dataflow service account specific
+### 13.7. Google Managed Cloud Dataflow service account specific
 
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
