@@ -11,7 +11,23 @@ The repository contains modules that are deliberately detailed with sequential s
 
 ## Table of Contents
 
-### 1.0. Foundational One-time Setup Lab
+
+### 1.0. Module 1: Public Cloud Composer 2 setup
+
+This module covers the below.
+
+| # | Sub-Modules | 
+| -- | :--- |
+| 1 | Create a VPC, a subnet, implement firewall rules | 
+| 2 | Provision Cloud Composer 2 |
+| 3 | Deploy a Hello World DAG |
+| 4 | GCS Event Driven Orchestration of the Hello World DAG |
+| 5 | Pub/Sub Event Driven Orchestration of the Hello World DAG |
+| 6 | Time Event Driven Orchestration of the Hello World DAG |
+| 7 | A more realistic DAG with GCS, Cloud Dataflow and BigQuery |
+
+
+### 2.0. Foundational One-time Setup Lab for a secure Cloud Composer 2 deployment
 
 [Jump to lab module](01-modules/01-foundational-setup.md)
 
@@ -25,24 +41,12 @@ The repository contains modules that are deliberately detailed with sequential s
 | 6 | Cloud Functions specific IAM permissions | 
 | 7 | Cloud Dataflow specific IAM permissions | 
 | 8 | Cloud Storage specific IAM permissions | 
-| . | ... | 
-| 20 | IAM permissions recap | 
 
 
 
-### 2.0. Basic One-time Networking Setup in the Data Analytics Project
+### 3.0. Securing Cloud Composer 2 - iteration 1
 
-This is a basic networking setup for *kicking tires* with public deployment of VPC native data analytics services.
-
-| # | Module | 
-| -- | :---    |
-| 1 | Create a VPC, a subnet, implement firewall rules | 
-
-
-### 3.0. Advanced One-time Networking Setup (secure setup)
-
-This is a secure setup that covers security features such as shared VPC, VPC-SC, PSC, configuring DNS and more, for a realitsic and secure setup.<br>
-Section 1.0 above, is pre-requisite.
+This hands on lab module includes creating 
 
 | # | Module | Link |
 | -- | :---    | ---|
