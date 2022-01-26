@@ -434,7 +434,7 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
 <br>
 <hr>
 
-## 14. Configure for external package download
+## 14. Configure networking to allow external package download
 This is specific to opening up a private cluster for downloading from Maven/PyPi/CRAN for DAGs in Cloud Composer 2 and/or in Cloud Dataflow DAGs referenced within<br>
 
 ### 14.1. Cloud Router setup
