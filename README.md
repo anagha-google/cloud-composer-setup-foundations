@@ -37,7 +37,7 @@ If you need to start with a secure Cloud Composer 2 setup, jump to module 3, bel
 
 ### Module 3: Foundational One-time Setup Lab for a secure Cloud Composer 2 deployment
 
-[Jump to lab module](01-modules/01-foundational-setup.md)
+[Jump to lab module](01-modules/03-foundational-setup.md)
 
 | # | Sub-module | 
 | -- | :---    |
@@ -54,19 +54,19 @@ If you need to start with a secure Cloud Composer 2 setup, jump to module 3, bel
 
 ### Module 4: Secure Cloud Composer 2 setup - iteration 1
 
-This module includes creating and using a shared VPC, subnet, firewall rules, private Cloud Composer 2 cluster, authorized networks, secured Airflow website, private Dataflow cluster, DNS entries, user managed service account for provisioning Cloud Composer 2, as the run tie account for DAGs, for Cloud functions that trigger DAGs based on GCS or Cloud Pub/Sub events, provisioning and configuring Cloud Router and Cloud NAT for downloading from PyPi/Maven/CRAN packages from the internet.
+This module covers the following security features/components/layers-
 
-| # | Module | Link |
-| -- | :---    | ---|
-| 1 | ..| | 
+| # | Module | 
+| -- | :---    | 
+| 1 | ..|  
 
 ### Module 4: Secure Cloud Composer 2 setup - iteration 2
 
-This module adds VPC-SC and PSC to the setup in module 3.0.
+This module adds VPC-SC and PSC to the setup in module 4.
 
-| # | Module | Link |
-| -- | :---    | ---|
-| 1 | ..| | 
+| # | Module | 
+| -- | :---    | 
+| 1 | ..|  
 
 
 ## Credits
@@ -76,4 +76,4 @@ This is a community contribution. <br>
 | # | Contributor | Contribution | About |
 | -- | :---    | :---| :---| 
 | 1 | Anagha Khanolkar | Primary Author | Data Analytics Specialist, Google Cloud |
-| 2 | Jay O' Leary | Testing, User experience | Data Analytics Specialist, Google Cloud |
+| 2 | Jay O' Leary | Testing | Data Analytics Specialist, Google Cloud |
