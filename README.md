@@ -70,5 +70,4 @@ This is a community contribution. <br>
 | # | Contributor | Contribution | About |
 | -- | :---    | :---| :---| 
 | 1 | Anagha Khanolkar | Primary Author | Data Analytics Specialist, Google Cloud |
-| 2 | Dwai Lahiri | Networking aspects | Professional Services, Google Cloud |
-| 3 | Jay O' Leary | Testing, User experience | Data Analytics Specialist, Google Cloud |
+| 2 | Jay O' Leary | Testing, User experience | Data Analytics Specialist, Google Cloud |
