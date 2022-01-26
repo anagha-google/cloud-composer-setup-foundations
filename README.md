@@ -54,7 +54,7 @@ If you need to start with a secure Cloud Composer 2 cluster, skip to module 3, b
 
 
 
-### Module 3: Securing Cloud Composer 2 - iteration 1
+### Module 4: Secure Cloud Composer 2 setup - iteration 1
 
 This module includes creating and using a shared VPC, subnet, firewall rules, private Cloud Composer 2 cluster, authorized networks, secured Airflow website, private Dataflow cluster, DNS entries, user managed service account for provisioning Cloud Composer 2, as the run tie account for DAGs, for Cloud functions that trigger DAGs based on GCS or Cloud Pub/Sub events, provisioning and configuring Cloud Router and Cloud NAT for downloading from PyPi/Maven/CRAN packages from the internet.
 
@@ -62,7 +62,7 @@ This module includes creating and using a shared VPC, subnet, firewall rules, pr
 | -- | :---    | ---|
 | 1 | ..| | 
 
-### Module 4: Securing Cloud Composer 2 - iteration 2
+### Module 4: Secure Cloud Composer 2 setup - iteration 2
 
 This module adds VPC-SC and PSC to the setup in module 3.0.
 
