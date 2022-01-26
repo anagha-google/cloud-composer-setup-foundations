@@ -15,8 +15,8 @@ To set up Shared VPC, you will need to pre-define the following IP ranges in the
 - Secondary IP Ranges cannot overlap with any other secondary ranges in this VPC.
 And ensure that secondary ranges are large enough to accommodate the cluster's size and your environment scaling.<br><br>
 
-[References](https://cloud.google.com/composer/docs/composer-2/configure-shared-vpc)<br>
-Dependencies: Successful completion of Module 2
+[GCP Documentation for Cloud Composer 2 with Shared VPC](https://cloud.google.com/composer/docs/composer-2/configure-shared-vpc)<br>
+Sub-module dependencies: Successful completion of Module 2
 <hr>
 
 ## 1. Create a project for "Shared VPC" called e2e-demo-indra-shared
