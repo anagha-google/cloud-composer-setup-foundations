@@ -13,7 +13,7 @@ In Cloud shell scoped to the service project/data analytics project, e2e-demo-in
 ```
 DA_PROJECT_ID=e2e-demo-indra
 UMSA="indra-sa"
-UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
+UMSA_FQN=$UMSA@$DA_PROJECT_ID.iam.gserviceaccount.com
 ADMIN_FQ_UPN="admin@akhanolkar.altostrat.com"
 
 COMPOSER_ENV_NM=cc2-indra-secure
