@@ -14,8 +14,8 @@ The repository contains modules that are deliberately detailed with sequential s
 
 ### Module 1: Public Cloud Composer 2 setup
 
-This module covers the below. The module is standalone and is available in [here](https://github.com/anagha-google/composer2-basic-orchestration).<br>
-If you need to start with a secure Cloud Composer 2 cluster, skip to section 2, below.
+This module includes the below sub-modules, is standalone and is available in a separate [repo](https://github.com/anagha-google/composer2-basic-orchestration).<br>
+If you need to start with a secure Cloud Composer 2 cluster, skip to section 2, below. The same DAGs in module 1 are used across modules.
 
 | # | Sub-Modules | 
 | -- | :--- |
