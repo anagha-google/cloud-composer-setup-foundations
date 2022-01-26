@@ -13,10 +13,6 @@ In this module, we will cover the folowing-<br>
 [8. Permissions specific to Cloud Functions](01-foundational-setup.md#8-permissions-specific-to-cloud-functions)<br>
 [9. Permissions specific to Cloud Dataflow](01-foundational-setup.md#9-permissions-specific-to-cloud-dataflow)<br>
 [10. Permissions specific to Cloud Storage](01-foundational-setup.md#10-permissions-specific-to-cloud-storage)<br>
-...<br>
-[20. Permissions recap](01-foundational-setup.md#20-permissions-recap)<br>
-
-
 
 ## Duration
 ~ 1 hour+
