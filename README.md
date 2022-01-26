@@ -1,22 +1,27 @@
 # Cloud Composer 2 Provisioning Foundations for Data Analytics Endeavors
 
 ## About the Repository
-This repository includes hands-on-lab modules that cover provisioning the foundational infrastructure and security in GCP for Cloud Composer 2 based Data Analytics projects. 
-
-## Motivation and Audience
-Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on intricacies of foundational setup, unblocking and improving speed to productivity in their core competency. For the GCP Customer Engineer, the hands on labs cover provisioning in **Argolis**.
+This repository includes hands-on-lab modules that cover provisioning the foundational infrastructure and security in GCP for Cloud Composer 2 based Data Analytics projects. It does not cover authoring complex Apache Airflow DAGs and Airflow functionality.
 
 ## Structure
-The repository contains modules that are deliberately detailed with sequential steps (versus fully scripted, automated) to provide an understanding of what is involved.
+The repository contains modules that are deliberately detailed with sequential steps (versus fully scripted, automated) to provide an understanding of what is involved. We do plan to complement this lab with Terraform scripts for automated provisioning.
 
-## Prerequisites
-Read the 
-
+## Motivation and Audience
+Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on the intricacies of foundational setup, unblocking and improving speed to productivity in their core competency (analytics). For the GCP Customer Engineer, the hands on labs cover provisioning in **Argolis**. 
 
 ## Table of Contents
 
 ### Module 1: Walk through of Cloud Composer DAGs and associated code
 
+The DAGs are embarassigly basic to maintain focus on environment provisioning, stability and securing.
+
+| # | Sub-Modules | 
+| -- | :--- |
+| 1 | Git repo cloning | 
+| 2 | Walk through of a Hello World DAG |
+| 3 | Walk through of GCS Event Driven Orchestration of the Hello World DAG |
+| 4 | Walk through of Pub/Sub Event Driven Orchestration of the Hello World DAG |
+| 5 | Walk through of a slightly more realistic DAG with GCS, Cloud Dataflow and BigQuery |
 
 ### Module 2: Public Cloud Composer 2 cluster setup
 
@@ -60,7 +65,7 @@ This module covers the following security features/components/layers-
 | -- | :---    | 
 | 1 | ..|  
 
-### Module 4: Secure Cloud Composer 2 setup - iteration 2
+### Module 5: Secure Cloud Composer 2 setup - iteration 2
 
 This module adds VPC-SC and PSC to the setup in module 4.
 
