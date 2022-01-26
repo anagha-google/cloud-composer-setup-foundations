@@ -38,7 +38,7 @@ OFFICE_CIDR=98.222.97.10/32 # Lab attendee's Public IP or your organization's of
 ```
 
 
-## 3. Provision "private" Cloud Composer 2 with shared VPC & VPC-SC
+## 3. Provision "private" Cloud Composer 2 with shared VPC
 
 From cloud shell in your service project/data analytics project, run the command below-
 
