@@ -46,15 +46,16 @@ If you need to start with a secure Cloud Composer 2 setup, jump to module 3, bel
 
 | # | Sub-module | 
 | -- | :---    |
-| 1 | Enable requisite Google APIs |  
-| 2 | Update organizational policies | 
-| 3 | Create a User Managed Service Account for Data Analytics | 
-| 4 | Grant general IAM permissions | 
-| 5 | Cloud Composer specific IAM permissions | 
-| 6 | Cloud Functions specific IAM permissions | 
-| 7 | Cloud Dataflow specific IAM permissions | 
-| 8 | Cloud Storage specific IAM permissions | 
-
+| 1 | Create a (service) project for Data Analytics | 
+| 2 | Enable requisite Google APIs |  
+| 3 | Update organizational policies | 
+| 4 | Create a User Managed Service Account for Data Analytics | 
+| 5 | Grant general IAM permissions | 
+| 6 | Cloud Composer specific IAM permissions | 
+| 7 | Cloud Functions specific IAM permissions | 
+| 8 | Cloud Dataflow specific IAM permissions | 
+| 9 | Cloud Storage specific IAM permissions | 
+| 10 | BigQuery specific IAM permissions | 
 
 
 ### Module 4: Secure Cloud Composer 2 setup - iteration 1
