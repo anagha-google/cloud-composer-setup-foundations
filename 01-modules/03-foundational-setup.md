@@ -1,6 +1,6 @@
 # About
 
-This module covers the foundational one-site setup to start working on Cloud Composer 2 based Data Analytics endeavors on GCP.
+This module covers the foundational one-time setup to start working on Cloud Composer 2 based Data Analytics endeavors on GCP.
 
 In this module, we will cover the folowing-<br>
 [1. Pre-requisites](01-foundational-setup.md#1-pre-requisites)<br>
@@ -13,6 +13,7 @@ In this module, we will cover the folowing-<br>
 [8. Permissions specific to Cloud Functions](01-foundational-setup.md#8-permissions-specific-to-cloud-functions)<br>
 [9. Permissions specific to Cloud Dataflow](01-foundational-setup.md#9-permissions-specific-to-cloud-dataflow)<br>
 [10. Permissions specific to Cloud Storage](01-foundational-setup.md#10-permissions-specific-to-cloud-storage)<br>
+[11. Permissions specific to BigQuery](01-foundational-setup.md#11-permissions-specific-to-big-query)<br>
 
 ## Duration
 ~ 1 hour+
@@ -400,6 +401,20 @@ a) ObjectViewer
 gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN --role="roles/storage.objectViewer"
 ```
 
+
+## 11. Permissions specific to BigQuery
+
+### 11.1. Permissions for UMSA to interact with BigQuery
+
+```
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+--role="roles/bigquery.dataEditor"
+
+
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+--role="roles/bigquery.admin"
+
+```
 
 <hr style="border:12px solid gray"> </hr>
 <br>
