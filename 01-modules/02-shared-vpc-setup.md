@@ -302,7 +302,42 @@ gcloud compute firewall-rules create allow-to-cc2-sipr-egress \
 <br>
 <hr>
 
+## 12. Configure DNS - connectivity to *.pkg.dev
 
+In cloud shell scoped to the host project, run the below to cnfigure connectivity-
+
+### 12.1. Create a zone for pkg.dev
+```
+gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create pkg-dev --description="" \
+--dns-name="pkg.dev." \
+--visibility="private" \
+--networks=$SHARED_VPC_NETWORK_NM
+gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID \
+record-sets transaction start --zone="pkg-dev" 
+```
+
+### 12.2. Create a CNAME record
+
+```
+gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
+add pkg.dev. --name="*.pkg.dev." --ttl="300" --type="CNAME" --zone="pkg-dev" 
+
+gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
+execute --zone="pkg-dev"
+gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
+start --zone="pkg-dev" 
+
+```
+
+### 12.2. Create a A record
+
+```
+gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
+add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 --name="pkg.dev." --ttl="300" --type="A" --zone="pkg-dev" 
+
+gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
+execute --zone="pkg-dev"
+```
 
 
 ## 13. IAM permissions to host project for service project's (e2e-demo-indra) service accounts
