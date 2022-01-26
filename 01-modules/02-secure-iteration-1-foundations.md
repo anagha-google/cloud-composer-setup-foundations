@@ -174,7 +174,7 @@ In cloud shell scoped to the shared VPC/host project, run the below:
 gcloud compute networks subnets create $SHARED_VPC_CC2_SNET_NM \
  --network $SHARED_VPC_NETWORK_NM \
  --range $SHARED_VPC_CC2_SNET_CIDR_BLK \
- --region $PROJECT_LOCATION \
+ --region $LOCATION \
  --enable-private-ip-google-access \
  --project $SHARED_VPC_HOST_PROJECT_ID 
 ```
@@ -184,7 +184,7 @@ gcloud compute networks subnets create $SHARED_VPC_CC2_SNET_NM \
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
  gcloud compute networks subnets update $SHARED_VPC_CC2_SNET_NM \
- --region $PROJECT_LOCATION \
+ --region $LOCATION \
  --add-secondary-ranges composer-pods=$CC2_PODS_CIDR_BLK
 ```
 
@@ -193,7 +193,7 @@ In cloud shell scoped to the shared VPC/host project, run the below:
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
  gcloud compute networks subnets update $SHARED_VPC_CC2_SNET_NM \
- --region $PROJECT_LOCATION \
+ --region $LOCATION \
  --add-secondary-ranges composer-services=$CC2_SVCS_CIDR_BLK
 ```
 
