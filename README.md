@@ -9,13 +9,21 @@ Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by e
 ## Structure
 The repository contains modules that are deliberately detailed with sequential steps (versus fully scripted, automated) to provide an understanding of what is involved.
 
+## Prerequisites
+Read the 
+
+
 ## Table of Contents
 
+### Module 1: Walk through of Cloud Composer DAGs and associated code
 
-### Module 1: Public Cloud Composer 2 setup
+
+### Module 2: Public Cloud Composer 2 cluster setup
 
 This module includes the below sub-modules, is standalone and is available in a separate [repo](https://github.com/anagha-google/composer2-basic-orchestration).<br>
-If you need to start with a secure Cloud Composer 2 cluster, skip to section 2, below. The same DAGs in module 1 are used across modules.
+This setup is recommended for kicking tires, simple demps, but is **not a secure setup**. It is recommended that you run through this module if you are new to Clooud Composer 2 and its provisioning, new to authoring, deploying DAGs, and triggering DAG execution in a event driven fashion. <br>
+
+If you need to start with a secure Cloud Composer 2 cluster, skip to module 3, below. The same DAGs in module 1, are used across modules.
 
 | # | Sub-Modules | 
 | -- | :--- |
@@ -29,7 +37,7 @@ If you need to start with a secure Cloud Composer 2 cluster, skip to section 2, 
 
 
 
-### Module 2: Foundational One-time Setup Lab for a secure Cloud Composer 2 deployment
+### Module 3: Foundational One-time Setup Lab for a secure Cloud Composer 2 deployment
 
 [Jump to lab module](01-modules/01-foundational-setup.md)
 
