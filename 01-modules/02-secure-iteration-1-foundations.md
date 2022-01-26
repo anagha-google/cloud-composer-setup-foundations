@@ -342,9 +342,46 @@ execute --zone="pkg-dev"
 
 ## 13. IAM permissions to host project for service project's (e2e-demo-indra) service accounts
 
+### 13.1. Service project's Google APIs default service account specific IAM permissions
+In the host project, edit permissions for the Google APIs service account, SERVICE_PROJECT_NUMBER@cloudservices.gserviceaccount.com. For this account, add another role, compute.networkUser at the project level. This is a requirement for managed instance groups used with Shared VPC because this type of service account performs tasks such as instance creation.<br>
 
-### 13.1. Create Composer Agent Service Account in "Shared VPC" project
+In cloud shell scoped to the shared VPC/host project, run the below.<br>
 
+```
+DA_GOOGLE_API_GMSA=$DA_PROJECT_NUMBER@cloudservices.gserviceaccount.com
+
+gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
+    --member=serviceAccount:${DA_GOOGLE_API_GMSA} \
+        --role=roles/compute.networkUser 
+```
+
+### 13.2. Service project's GKE default service account specific IAM permissions
+
+In this step, we will grant IAM permissions in the host project, for the GKE defaukt Google Managed Service Account from service project.
+
+<br><br>
+In cloud shell scoped to the host/shared VPC project, run the below-
+```
+DA_PROJECT_GKE_GMSA=service-$DA_PROJECT_NUMBER@container-engine-robot.iam.gserviceaccount.com
+```
+
+In the host project, edit permissions for the GKE service accounts, service-SERVICE_PROJECT_NUMBER@container-engine-robot.iam.gserviceaccount.com.
+For the service account, add another role, **compute.networkUser**. Grant this role at the subnet level to allow a service account to set up the VPC peerings required by Cloud Composer. As an alternative, you can grant this role for the whole host project. In this case, the service project's GKE service account has permissions to use any subnet in the host project.
+```
+gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
+    --member=serviceAccount:${DA_PROJECT_GKE_GMSA} \
+    --role=roles/compute.networkUser 
+```
+
+In the host project, edit permissions for the GKE Service Account of the service project. For this account, add another role, **Host Service Agent User**.
+This allows the GKE Service Account of the service project to use the GKE Service Account of the host project to configure shared network resources.
+```
+gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
+    --member=serviceAccount:${DA_PROJECT_GKE_GMSA} \
+    --role roles/container.hostServiceAgentUser
+```
+
+### 13.3. Create Composer Agent Service Account in "Shared VPC" project
 
 In the host project, **if this is the first Cloud Composer environment**, provision the Composer Agent Service Account 
 
@@ -353,61 +390,29 @@ gcloud beta services identity create --service=composer.googleapis.com
 ```
 
 
-### 13.2. IAM permissions related variables
+### 13.4. IAM permissions in the host project for the service project's Cloud Composer 2 default service account 
 
-In cloud shell scoped to the shared VPC/host project, run the below. <br>Each of these maps to a service account in the service project:
+In cloud shell scoped to the shared VPC/host project, run the below. 
 ```
-DA_PROJECT_GKE_GMSA=service-$DA_PROJECT_NUMBER@container-engine-robot.iam.gserviceaccount.com
 DA_PROJECT_CC2_GMSA=service-$DA_PROJECT_NUMBER@cloudcomposer-accounts.iam.gserviceaccount.com
-DA_GOOGLE_API_GMSA=$DA_PROJECT_NUMBER@cloudservices.gserviceaccount.com
 ```
 
-### 13.3. Apply GKE default service account specific IAM permissions
-
-In cloud shell scoped to the shared VPC/host project, run the below.<br>
-
-#### 13.3.1. Compute Network User role
-```
-gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
-    --member=serviceAccount:${DA_PROJECT_GKE_GMSA} \
-    --role=roles/compute.networkUser 
-```
-
-#### 13.3.2. Container Host Service Agent User role
-```
-gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
-    --member=serviceAccount:${DA_PROJECT_GKE_GMSA} \
-    --role roles/container.hostServiceAgentUser
-```
-
-### 13.4. Cloud Composer 2 default service account specific
-
-In cloud shell scoped to the shared VPC/host project, run the below.<br>
-
-#### 13.4.1. Compute Network User role
+Grant **Compute Network User** role
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${DA_PROJECT_CC2_GMSA} \
         --role=roles/compute.networkUser 
 ```  
 
-#### 13.4.2. Composer Shared VPC Agent role
+Grant **Composer Shared VPC Agent** role
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${DA_PROJECT_CC2_GMSA} \
         --role=roles/composer.sharedVpcAgent 
 ```  
  
-### 13.5. Google APIs default service account specific
-In cloud shell scoped to the shared VPC/host project, run the below.<br>
 
-```      
-gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
-    --member=serviceAccount:${DA_GOOGLE_API_GMSA} \
-        --role=roles/compute.networkUser 
-```
-
-### 13.6. User managed service account specific
+### 13.5. IAM permissions in the host project for the service project's User Managed Service Account
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
@@ -416,8 +421,7 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --role=roles/compute.networkUser 
 ```
 
-### 13.7. Google Managed Cloud Dataflow service account specific
-
+### 13.6. IAM permissions in the host project for the service project's Google Managed Cloud Dataflow service account 
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
