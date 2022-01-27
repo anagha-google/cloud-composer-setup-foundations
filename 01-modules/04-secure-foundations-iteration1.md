@@ -68,6 +68,7 @@ In cloud shell scoped to the shared VPC/host project, run the commands below-
 ```
 gcloud services enable container.googleapis.com --project $SHARED_VPC_HOST_PROJECT_ID
 gcloud services enable orgpolicy.googleapis.com --project $SHARED_VPC_HOST_PROJECT_ID
+gcloud services enable dns.googleapis.com --project $SHARED_VPC_HOST_PROJECT_ID 
 ```
 
 <br>
