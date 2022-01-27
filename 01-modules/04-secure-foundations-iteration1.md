@@ -320,16 +320,8 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create pkg-d
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
-start --zone="pkg-dev" 
-```
-
-```
-gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
-add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 --name="pkg.dev." --ttl="300" --type="A" --zone="pkg-dev" 
-```
-
-```
-gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
+start --zone="pkg-dev" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
+add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 --name="pkg.dev." --ttl="300" --type="A" --zone="pkg-dev"  && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
 execute --zone="pkg-dev"
 ```
 
@@ -339,16 +331,8 @@ execute --zone="pkg-dev"
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID \
-record-sets transaction start --zone="pkg-dev" 
-```
-
-```
-gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
-add pkg.dev. --name="*.pkg.dev." --ttl="300" --type="CNAME" --zone="pkg-dev" 
-```
-
-```
-gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
+record-sets transaction start --zone="pkg-dev" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
+add pkg.dev. --name="*.pkg.dev." --ttl="300" --type="CNAME" --zone="pkg-dev" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
 execute --zone="pkg-dev"
 ```
 
