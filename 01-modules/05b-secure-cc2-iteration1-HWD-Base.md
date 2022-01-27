@@ -75,19 +75,19 @@ gcloud composer environments storage dags import \
 
 ### 2.6. Click on logs
 
-![01-21](../../00-images/01-21.png)
+![01-21](../00-images/01-21.png)
 
 <br><br>
 
 ### 2.7. Notice that there are run attempts, scroll on the attempt 1
 
-![01-22](../../00-images/01-22.png)
+![01-22](../00-images/01-22.png)
 
 <br><br>
 
 ### 2.8. The output with "Hello World"...
 
-![01-23](../../00-images/01-23.png)
+![01-23](../00-images/01-23.png)
 
 ## 3.0. What's next?
 
