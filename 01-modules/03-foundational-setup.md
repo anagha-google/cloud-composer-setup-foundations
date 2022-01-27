@@ -26,8 +26,8 @@ None, but the rest of the modules are dependent on this module being successfull
 
 Create a GCP project. You will need administrator privileges to the organization and owner privileges for the project for the rest of the modules.<br>
 <br>
-The author's service/data analytics project is called "cc2-svc-da-proj"<br>
-For the rest of the hands on lab, we will refer to the project as "cc2-svc-da-proj"<br>
+The author's service/data analytics project is called "zeus-svc-proj"<br>
+For the rest of the hands on lab, we will refer to the project as "zeus-svc-proj"<br>
 <br>
 From the cloud console project dashboard, capture the project number.<br>
 
@@ -40,9 +40,9 @@ From the cloud console project dashboard, capture the project number.<br>
 
 In Cloud Shell, lets create some variables we will use for the rest of the project-
 ```
-PROJECT_NUMBER=440915712748  # Replace with your project's
-PROJECT_ID=cc2-svc-da-proj  # Replace with your project's
-UMSA="indra-sa"
+SVC_PROJECT_NUMBER=187732393981  # Replace with your project's
+SVC_PROJECT_ID=zeus-svc-proj  # Replace with your project's
+UMSA="zeus-sa"
 UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
 ADMIN_FQ_UPN="admin@xxx.altostrat.com" # Replace with your Argolis UPN
 ```
@@ -83,17 +83,15 @@ gcloud services enable sqladmin.googleapis.com
 Applicable for Google Customer Engineers working in Argolis-
 
 a) Create variables for use further in the rest of project in cloud shell
-
-```
-PROJECT_ID=cc2-svc-da-proj # Replace with yours if different
-```
+<br>
+Refer section 2, above
 
 b) Relax require OS Login
 ```
 rm os_login.yaml
 
 cat > os_login.yaml << ENDOFFILE
-name: projects/${PROJECT_ID}/policies/compute.requireOsLogin
+name: projects/${SVC_PROJECT_ID}/policies/compute.requireOsLogin
 spec:
   rules:
   - enforce: false
@@ -111,7 +109,7 @@ c) Disable Serial Port Logging
 rm disableSerialPortLogging.yaml
 
 cat > disableSerialPortLogging.yaml << ENDOFFILE
-name: projects/${PROJECT_ID}/policies/compute.disableSerialPortLogging
+name: projects/${SVC_PROJECT_ID}/policies/compute.disableSerialPortLogging
 spec:
   rules:
   - enforce: false
@@ -130,7 +128,7 @@ d) Disable Shielded VM requirement
 shieldedVm.yaml 
 
 cat > shieldedVm.yaml << ENDOFFILE
-name: projects/$PROJECT_ID/policies/compute.requireShieldedVm
+name: projects/$SVC_PROJECT_ID/policies/compute.requireShieldedVm
 spec:
   rules:
   - enforce: false
@@ -148,7 +146,7 @@ e) Disable VM can IP forward requirement
 rm vmCanIpForward.yaml
 
 cat > vmCanIpForward.yaml << ENDOFFILE
-name: projects/$PROJECT_ID/policies/compute.vmCanIpForward
+name: projects/$SVC_PROJECT_ID/policies/compute.vmCanIpForward
 spec:
   rules:
   - allowAll: true
@@ -167,7 +165,7 @@ f) Enable VM external access
 rm vmExternalIpAccess.yaml
 
 cat > vmExternalIpAccess.yaml << ENDOFFILE
-name: projects/$PROJECT_ID/policies/compute.vmExternalIpAccess
+name: projects/$SVC_PROJECT_ID/policies/compute.vmExternalIpAccess
 spec:
   rules:
   - allowAll: true
@@ -185,7 +183,7 @@ g) Enable restrict VPC peering
 rm restrictVpcPeering.yaml
 
 cat > restrictVpcPeering.yaml << ENDOFFILE
-name: projects/$PROJECT_ID/policies/compute.restrictVpcPeering
+name: projects/$SVC_PROJECT_ID/policies/compute.restrictVpcPeering
 spec:
   rules:
   - allowAll: true
@@ -204,7 +202,7 @@ h) Configure ingress settings for Cloud Functions
 rm gcf-ingress-settings.yaml
 
 cat > gcf-ingress-settings.yaml << ENDOFFILE
-name: projects/$PROJECT_NUMBER/policies/cloudfunctions.allowedIngressSettings
+name: projects/$SVC_PROJECT_ID/policies/cloudfunctions.allowedIngressSettings
 spec:
   etag: CO2D6o4GEKDk1wU=
   rules:
@@ -221,7 +219,7 @@ i) Validation<br>
 To describe a particular constratint, run like the below describes the constraint for cloud function ingress setting for the author's project-
 ```
 gcloud org-policies describe \
-cloudfunctions.allowedIngressSettings --project=e2e-demo-indra
+cloudfunctions.allowedIngressSettings --project=$SVC_PROJECT_ID
 ```
 
 Author's output:
@@ -246,7 +244,7 @@ We will use this UMSA as the runtime service account in the Data Analytics hands
 
 ```
 gcloud iam service-accounts create ${UMSA} \
-    --description="User Managed Service Account for the Indra E2E Project" \
+    --description="User Managed Service Account for the Zeus Service Project" \
     --display-name=$UMSA 
 ```
 
@@ -265,7 +263,7 @@ gcloud iam service-accounts create ${UMSA} \
 #### 6.1.a. Service Account User role for UMSA
 
 ```
-gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --member=serviceAccount:${UMSA_FQN} \
     --role=roles/iam.serviceAccountUser   
 ```
@@ -275,7 +273,7 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
 #### 6.1.b. Service Account Token Creator role for UMSA
 
 ```
-gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --member=serviceAccount:${UMSA_FQN} \
     --role=roles/iam.serviceAccountTokenCreator  
 ```
@@ -301,7 +299,7 @@ gcloud iam service-accounts add-iam-policy-binding \
 ### 7.a. Cloud Composer Administrator role for UMSA
 
 ```
-gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --member=serviceAccount:${UMSA_FQN} \
     --role=roles/composer.admin
 ```
@@ -309,7 +307,7 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
 ### 7.b. Cloud Composer Worker role for UMSA
 
 ```
-gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --member=serviceAccount:${UMSA_FQN} \
     --role=roles/composer.worker
 ```
@@ -322,8 +320,8 @@ This service accounts gets auto-created in the project when the Google API for C
 ```
 CGMSAA_FQN=service-${PROJECT_NUMBER}@cloudcomposer-accounts.iam.gserviceaccount.com
 
-gcloud projects add-iam-policy-binding ${PROJECT_ID} \
-    --member=serviceAccount:${CGMSAA_FQN} \
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
+    --member=serviceAccount:${SVC_PROJECT_ID} \
     --role roles/composer.ServiceAgentV2Ext
 ```
 
@@ -331,7 +329,7 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
 ### 7.d. Permissions for operator to be able to change configuration of Composer 2 environment and such
 
 ```
-gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --member=user:${ADMIN_FQ_UPN} \
     --role roles/composer.admin
 
@@ -341,7 +339,7 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
 
 
 ```
-gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --member=user:${ADMIN_FQ_UPN} \
     --role roles/composer.environmentAndStorageObjectViewer
 ```
@@ -358,13 +356,13 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
 ### 8.1.a. Permission for UMSA to operate as a GCF service agent
 
 ```
-gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/cloudfunctions.serviceAgent
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/cloudfunctions.serviceAgent
 ```
 
 ### 8.1.b. Permission for UMSA to operate as a GCF admin
 
 ```
-gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/cloudfunctions.admin
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/cloudfunctions.admin
 ```
 
 
@@ -379,12 +377,12 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UM
 
 a) Dataflow worker
 ```
-gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/dataflow.worker
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/dataflow.worker
 ```
 
 b) To Dataflow developer
 ```
-gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/dataflow.worker
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/dataflow.worker
 ``` 
 
 
@@ -398,7 +396,7 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=serviceAccount:$UM
 
 a) ObjectViewer
 ```
-gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN --role="roles/storage.objectViewer"
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN --role="roles/storage.objectViewer"
 ```
 
 
@@ -407,11 +405,11 @@ gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA
 ### 11.1. Permissions for UMSA to interact with BigQuery
 
 ```
-gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
 --role="roles/bigquery.dataEditor"
 
 
-gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
 --role="roles/bigquery.admin"
 
 ```
