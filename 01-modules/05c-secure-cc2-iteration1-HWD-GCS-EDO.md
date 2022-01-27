@@ -113,7 +113,21 @@ sed -i '' "s|DAG_ID_TO_BE_REPLACED|$DAG_ID|g" main.py
 cat main.py
 ```
 
-You should see the actual Airflow URI and the DAG ID
+You should see the actual Airflow URI and the DAG ID replaced in the code
+
+```
+def trigger_dag_gcf(data, context=None):
+    """
+    ....
+    web_server_url = (
+        'https://3e84aaa5d80148a1afc5f41d7177bd49-dot-us-central1.composer.googleusercontent.com'
+    )
+    # Replace with the ID of the DAG that you want to run.
+    dag_id = 'hello_world_dag'
+
+    ...
+```
+
 
 ## 7.0. Deploy the Google Cloud Function (GCF) to run as UMSA
 
@@ -134,15 +148,15 @@ gcloud functions deploy cc2_hello_world_gcs_trigger_fn \
 
 a) In the cloud console, navigate to Cloud Functions-
 
-![01-02-01](../../00-images/01-02-01.png)
+![01-02-01](../00-images/01-02-01.png)
 <br><br><br>
 
 b) Click on the deployed function
-![01-02-02](../../00-images/01-02-02.png)
+![01-02-02](../00-images/01-02-02.png)
 <br><br><br>
 
 c) Review the various tabs
-![01-02-03](../../00-images/01-02-03.png)
+![01-02-03](../00-images/01-02-03.png)
 
 
 ## 8.0.Test the function from cloud shell
@@ -158,11 +172,11 @@ rm dummy.txt
 
 Go to the Cloud Function Logs, in the cloud console and check for errors..
 
-![01-02-04](../../00-images/01-02-04.png)
+![01-02-04](../00-images/01-02-04.png)
 <br>
 
 And then go to Airflow web UI and click on the DAG node, and look at the logs...
-![01-02-05](../../01-images/01-02-05.png)
+![01-02-05](../01-images/01-02-05.png)
 <br>
 
 <hr>
