@@ -120,7 +120,7 @@ def trigger_dag_gcf(data, context=None):
     """
     ....
     web_server_url = (
-        'https://3e84aaa5d80148a1afc5f41d7177bd49-dot-us-central1.composer.googleusercontent.com'
+        'https://3e84aaa5xxxx5f41d7177bd49-dot-us-central1.composer.googleusercontent.com'
     )
     # Replace with the ID of the DAG that you want to run.
     dag_id = 'hello_world_dag'
