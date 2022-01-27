@@ -46,6 +46,10 @@ AIRFLOW_URI=`gcloud composer environments describe $COMPOSER_ENV_NM \
 Validate:
 ```
 echo $AIRFLOW_URI
+```
+
+The author's result-
+```
 https://e2XXXXXXX09e8bf9-dot-us-central1.composer.googleusercontent.com
 ```
 
