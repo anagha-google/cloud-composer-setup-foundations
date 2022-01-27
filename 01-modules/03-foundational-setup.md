@@ -40,7 +40,7 @@ From the cloud console project dashboard, capture the project number.<br>
 
 In Cloud Shell, lets create some variables we will use for the rest of the project-
 ```
-PROJECT_NUMBER=914583619622  # Replace with your project's
+PROJECT_NUMBER=440915712748  # Replace with your project's
 PROJECT_ID=cc2-svc-da-proj  # Replace with your project's
 UMSA="indra-sa"
 UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
