@@ -43,51 +43,51 @@ gcloud composer environments storage dags import \
 
 
 ### 2.1. Notice the new DG deployed show up in the DAG listing. Also, look at the "Run" button.
-![01-16](../../02-images/01-16.png)
+![01-16](../../00-images/01-16.png)
 
 
 <br><br>
 
 ### 2.2. Trigger the DAG as shown below
 
-![01-17](../../02-images/01-17.png)
+![01-17](../../00-images/01-17.png)
 
 <br><br>
 
 ### 2.3. Notice the run show up with a light green cricle on the run number
 
-![01-18](../../02-images/01-18.png)
+![01-18](../../00-images/01-18.png)
 
 <br><br>
 
 ### 2.4. Switch to "Graph" view
 
-![01-19](../../02-images/01-19.png)
+![01-19](../../00-images/01-19.png)
 
 <br><br>
 
 ### 2.5. Click on the node "print_dag_run_conf"
 
 
-![01-20](../../02-images/01-20.png)
+![01-20](../../00-images/01-20.png)
 
 <br><br>
 
 ### 2.6. Click on logs
 
-![01-21](../../02-images/01-21.png)
+![01-21](../../00-images/01-21.png)
 
 <br><br>
 
 ### 2.7. Notice that there are run attempts, scroll on the attempt 1
 
-![01-22](../../02-images/01-22.png)
+![01-22](../../00-images/01-22.png)
 
 <br><br>
 
 ### 2.8. The output with "Hello World"...
 
-![01-23](../../02-images/01-23.png)
+![01-23](../../00-images/01-23.png)
 
 ## 3.0. What's next?
 
