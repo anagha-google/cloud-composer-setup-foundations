@@ -316,12 +316,14 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create pkg-d
 --networks=$SHARED_VPC_NETWORK_NM
 ```
 
+
+### 12.2. Create a CNAME record
+
+
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID \
 record-sets transaction start --zone="pkg-dev" 
 ```
-
-### 12.2. Create a CNAME record
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
@@ -333,12 +335,14 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
 execute --zone="pkg-dev"
 ```
 
+
+
+### 12.2. Create a A record
+
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
 start --zone="pkg-dev" 
 ```
-
-### 12.2. Create a A record
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
