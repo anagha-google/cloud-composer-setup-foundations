@@ -204,7 +204,6 @@ rm gcf-ingress-settings.yaml
 cat > gcf-ingress-settings.yaml << ENDOFFILE
 name: projects/$SVC_PROJECT_ID/policies/cloudfunctions.allowedIngressSettings
 spec:
-  etag: CO2D6o4GEKDk1wU=
   rules:
   - allowAll: true
 ENDOFFILE
