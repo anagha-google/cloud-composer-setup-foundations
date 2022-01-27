@@ -85,7 +85,7 @@ Applicable for Google Customer Engineers working in Argolis-
 a) Create variables for use further in the rest of project in cloud shell
 
 ```
-PROJECT_ID=e2e-demo-indra # Replace with yours if different
+PROJECT_ID=cc2-svc-da-proj # Replace with yours if different
 ```
 
 b) Relax require OS Login
