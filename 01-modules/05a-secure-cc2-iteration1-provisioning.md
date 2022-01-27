@@ -24,7 +24,7 @@ LOCATION=us-central1
 SHARED_VPC_HOST_PROJECT_ID=zeus-host-proj        #Shared VPC project - replace with yours
 SHARED_VPC_HOST_PROJECT_NUMBER=322087561681        #Shared VPC project - replace with yours
 
-SHARED_VPC_NETWORK_NM=indra-vpc-shared
+SHARED_VPC_NETWORK_NM=zeus-shared-vpc
 SHARED_VPC_NETWORK_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/global/networks/$SHARED_VPC_NETWORK_NM"
 SHARED_VPC_CC2_SNET_NM="indra-composer2-snet-shared"
 SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
