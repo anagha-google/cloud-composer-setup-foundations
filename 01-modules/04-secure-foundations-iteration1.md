@@ -19,7 +19,7 @@ And ensure that secondary ranges are large enough to accommodate the cluster's s
 Sub-module dependencies: Successful completion of Module 2
 <hr>
 
-## 1. Create a project for "Shared VPC" called e2e-demo-indra-shared
+## 1. Create a project for "Shared VPC" called zeus-host-proj 
 
 Create a new project for the shared VPC.
 <br>
@@ -32,20 +32,22 @@ In cloud shell scoped to the shared VPC/host project, paste the following variab
 ORG_ID=akhanolkar.altostrat.com #Replace with yours
 ORG_ID_NBR=236589261571 #Replace with yours
 
-DA_PROJECT_NUMBER=914583619622
-DA_PROJECT_ID=e2e-demo-indra #Data analytics project
+SVC_PROJECT_NUMBER=187732393981 #Replace with yours
+SVC_PROJECT_ID=zeus-svc-proj #Data analytics service project
 
-SHARED_VPC_HOST_PROJECT_ID=$DA_PROJECT_ID-shared #Shared VPC project
+SHARED_VPC_HOST_PROJECT_ID=zeus-host-proj        #Shared VPC project - replace with yours
+SHARED_VPC_HOST_PROJECT_NUMBER=322087561681        #Shared VPC project - replace with yours
+
 
 LOCATION=us-central1
 
 ADMIN_UPN_FQN=admin@$ORG_ID #Replace with yours if its a different construct
-DA_PROJECT_UMSA="indra-sa"
-DA_PROJECT_UMSA_FQN=$DA_PROJECT_UMSA@$DA_PROJECT_ID.iam.gserviceaccount.com
+SVC_PROJECT_UMSA="zeus-sa"
+SVC_PROJECT_UMSA_FQN=$SVC_PROJECT_UMSA@$DA_PROJECT_ID.iam.gserviceaccount.com
 
-SHARED_VPC_NETWORK_NM=indra-vpc-shared
+SHARED_VPC_NETWORK_NM=zeus-shared-vpc
 SHARED_VPC_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/global/networks/$SHARED_VPC_NETWORK_NM"
-SHARED_VPC_CC2_SNET_NM="indra-composer2-snet-shared"
+SHARED_VPC_CC2_SNET_NM="zeus-shared-cc2-snet"
 SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
 
 SHARED_VPC_CC2_SNET_CIDR_BLK='10.65.61.0/24' # Number of GKE nodes and ILBs available 
@@ -356,10 +358,10 @@ In the host project, edit permissions for the Google APIs service account, SERVI
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 
 ```
-DA_GOOGLE_API_GMSA=$DA_PROJECT_NUMBER@cloudservices.gserviceaccount.com
+SVC_PROJECT_GOOGLE_API_GMSA=$DA_PROJECT_NUMBER@cloudservices.gserviceaccount.com
 
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
-    --member=serviceAccount:${DA_GOOGLE_API_GMSA} \
+    --member=serviceAccount:${SVC_PROJECT_GOOGLE_API_GMSA} \
         --role=roles/compute.networkUser 
 ```
 
@@ -370,14 +372,14 @@ In this step, we will grant IAM permissions in the host project, for the GKE def
 <br><br>
 In cloud shell scoped to the host/shared VPC project, run the below-
 ```
-DA_PROJECT_GKE_GMSA=service-$DA_PROJECT_NUMBER@container-engine-robot.iam.gserviceaccount.com
+SVC_PROJECT_GKE_GMSA=service-$SVC_PROJECT_NUMBER@container-engine-robot.iam.gserviceaccount.com
 ```
 
 In the host project, edit permissions for the GKE service accounts, service-SERVICE_PROJECT_NUMBER@container-engine-robot.iam.gserviceaccount.com.
 For the service account, add another role, **compute.networkUser**. Grant this role at the subnet level to allow a service account to set up the VPC peerings required by Cloud Composer. As an alternative, you can grant this role for the whole host project. In this case, the service project's GKE service account has permissions to use any subnet in the host project.
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
-    --member=serviceAccount:${DA_PROJECT_GKE_GMSA} \
+    --member=serviceAccount:${SVC_PROJECT_GKE_GMSA} \
     --role=roles/compute.networkUser 
 ```
 
@@ -385,7 +387,7 @@ In the host project, edit permissions for the GKE Service Account of the service
 This allows the GKE Service Account of the service project to use the GKE Service Account of the host project to configure shared network resources.
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
-    --member=serviceAccount:${DA_PROJECT_GKE_GMSA} \
+    --member=serviceAccount:${SVC_PROJECT_GKE_GMSA} \
     --role roles/container.hostServiceAgentUser
 ```
 
@@ -402,20 +404,20 @@ gcloud beta services identity create --service=composer.googleapis.com
 
 In cloud shell scoped to the shared VPC/host project, run the below. 
 ```
-DA_PROJECT_CC2_GMSA=service-$DA_PROJECT_NUMBER@cloudcomposer-accounts.iam.gserviceaccount.com
+SVC_PROJECT_CC2_GMSA=service-$SVC_PROJECT_NUMBER@cloudcomposer-accounts.iam.gserviceaccount.com
 ```
 
 Grant **Compute Network User** role
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
-    --member=serviceAccount:${DA_PROJECT_CC2_GMSA} \
+    --member=serviceAccount:${SVC_PROJECT_CC2_GMSA} \
         --role=roles/compute.networkUser 
 ```  
 
 Grant **Composer Shared VPC Agent** role
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
-    --member=serviceAccount:${DA_PROJECT_CC2_GMSA} \
+    --member=serviceAccount:${SVC_PROJECT_CC2_GMSA} \
         --role=roles/composer.sharedVpcAgent 
 ```  
  
@@ -425,7 +427,7 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
-    --member=serviceAccount:${DA_PROJECT_UMSA_FQN} \
+    --member=serviceAccount:${SVC_PROJECT_UMSA_FQN} \
     --role=roles/compute.networkUser 
 ```
 
@@ -433,10 +435,10 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
-CDF_GMSA=service-$DA_PROJECT_NUMBER@dataflow-service-producer-prod.iam.gserviceaccount.com
+SVC_PROJECT_CDF_GMSA=service-$SVC_PROJECT_NUMBER@dataflow-service-producer-prod.iam.gserviceaccount.com
 
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
-    --member=serviceAccount:${CDF_GMSA} \
+    --member=serviceAccount:${SVC_PROJECT_CDF_GMSA} \
     --role=roles/compute.networkUser 
 ```
 <br>
@@ -450,7 +452,7 @@ This is specific to opening up a private cluster for downloading from Maven/PyPi
 Docs: https://cloud.google.com/network-connectivity/docs/router/how-to/creating-routers<br>
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
-gcloud compute routers create indra-router-shared \
+gcloud compute routers create zeus-router-shared \
     --project=$SHARED_VPC_HOST_PROJECT_ID \
     --network=$SHARED_VPC_NETWORK_NM \
     --asn=65000 \
@@ -461,8 +463,8 @@ gcloud compute routers create indra-router-shared \
 Docs: https://cloud.google.com/nat/docs/gke-example#create-nat<br>
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
-gcloud compute routers nats create indra-nat-shared \
-    --router=indra-router-shared \
+gcloud compute routers nats create zeus-nat-shared \
+    --router=zeus-router-shared \
     --auto-allocate-nat-external-ips \
     --nat-all-subnet-ip-ranges \
     --enable-logging \
