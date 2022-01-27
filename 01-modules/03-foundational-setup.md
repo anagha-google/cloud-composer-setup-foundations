@@ -26,8 +26,8 @@ None, but the rest of the modules are dependent on this module being successfull
 
 Create a GCP project. You will need administrator privileges to the organization and owner privileges for the project for the rest of the modules.<br>
 <br>
-The author's project is called "e2e-demo-indra"<br>
-For the rest of the hands on lab, we will refer to the project as "e2e-demo-indra"<br>
+The author's service/data analytics project is called "cc2-svc-da-proj"<br>
+For the rest of the hands on lab, we will refer to the project as "cc2-svc-da-proj"<br>
 <br>
 From the cloud console project dashboard, capture the project number.<br>
 
@@ -41,7 +41,7 @@ From the cloud console project dashboard, capture the project number.<br>
 In Cloud Shell, lets create some variables we will use for the rest of the project-
 ```
 PROJECT_NUMBER=914583619622  # Replace with your project's
-PROJECT_ID=e2e-demo-indra  # Replace with your project's
+PROJECT_ID=cc2-svc-da-proj  # Replace with your project's
 UMSA="indra-sa"
 UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
 ADMIN_FQ_UPN="admin@xxx.altostrat.com" # Replace with your Argolis UPN
