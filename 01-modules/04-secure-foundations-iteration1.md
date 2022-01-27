@@ -43,7 +43,7 @@ LOCATION=us-central1
 
 ADMIN_UPN_FQN=admin@$ORG_ID #Replace with yours if its a different construct
 SVC_PROJECT_UMSA="zeus-sa"
-SVC_PROJECT_UMSA_FQN=$SVC_PROJECT_UMSA@$DA_PROJECT_ID.iam.gserviceaccount.com
+SVC_PROJECT_UMSA_FQN=$SVC_PROJECT_UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 
 SHARED_VPC_NETWORK_NM=zeus-shared-vpc
 SHARED_VPC_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/global/networks/$SHARED_VPC_NETWORK_NM"
@@ -120,7 +120,7 @@ gcloud compute shared-vpc enable $SHARED_VPC_HOST_PROJECT_ID
 
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
-gcloud compute shared-vpc associated-projects add $DA_PROJECT_ID \
+gcloud compute shared-vpc associated-projects add $SVC_PROJECT_ID \
     --host-project $SHARED_VPC_HOST_PROJECT_ID
 ```
 
@@ -358,7 +358,7 @@ In the host project, edit permissions for the Google APIs service account, SERVI
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 
 ```
-SVC_PROJECT_GOOGLE_API_GMSA=$DA_PROJECT_NUMBER@cloudservices.gserviceaccount.com
+SVC_PROJECT_GOOGLE_API_GMSA=$SVC_PROJECT_NUMBER@cloudservices.gserviceaccount.com
 
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${SVC_PROJECT_GOOGLE_API_GMSA} \
