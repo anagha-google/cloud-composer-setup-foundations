@@ -11,22 +11,23 @@ Completion of the prior module.
 
 In Cloud shell scoped to the service project/data analytics project, e2e-demo-indra in the author's case, declare the below-
 ```
-DA_PROJECT_ID=e2e-demo-indra
-UMSA="indra-sa"
-UMSA_FQN=$UMSA@$DA_PROJECT_ID.iam.gserviceaccount.com
+SVC_PROJECT_NUMBER=187732393981 #Replace with yours
+SVC_PROJECT_ID=zeus-svc-proj #Data analytics service project
+
+UMSA="zeus-sa"
+UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 ADMIN_FQ_UPN="admin@akhanolkar.altostrat.com"
 
-COMPOSER_ENV_NM=cc2-indra-secure
+COMPOSER_ENV_NM=cc2-zeus-secure
 LOCATION=us-central1
 
-DA_PROJECT_NUMBER=914583619622
-DA_PROJECT_ID=e2e-demo-indra
-SHARED_VPC_PROJECT_ID=$DA_PROJECT_ID"-shared"
+SHARED_VPC_HOST_PROJECT_ID=zeus-host-proj        #Shared VPC project - replace with yours
+SHARED_VPC_HOST_PROJECT_NUMBER=322087561681        #Shared VPC project - replace with yours
 
 SHARED_VPC_NETWORK_NM=indra-vpc-shared
-SHARED_VPC_NETWORK_FQN="projects/$SHARED_VPC_PROJECT_ID/global/networks/$SHARED_VPC_NETWORK_NM"
+SHARED_VPC_NETWORK_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/global/networks/$SHARED_VPC_NETWORK_NM"
 SHARED_VPC_CC2_SNET_NM="indra-composer2-snet-shared"
-SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_PROJECT_ID/regions/$LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
+SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
 SHARED_VPC_CC2_SNET_CIDR_BLK='10.65.61.0/24'
 CC2_PODS_CIDR_BLK='10.66.0.0/16' # Composer pods, ensure sufficient, for scale
 CC2_SVCS_CIDR_BLK='10.67.0.0/16' # Composer services, ensure sufficient, for scale
@@ -59,5 +60,3 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
     --web-server-allow-ip ip_range=${OFFICE_CIDR},description="Office CIDR"   
 ```
 
-### References:
-Securing Airflow Web UI: https://cloud.google.com/composer/docs/composer-2/create-environments#web-server-access<br>
