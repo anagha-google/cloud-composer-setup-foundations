@@ -19,20 +19,23 @@ All the prior modules.
 
 ## 1. Deploy the DAG to a secure Cloud Composer 2
 
-Navigate to the scripts directory cloned in cloud shell-
+a) Navigate to the scripts directory cloned in cloud shell-
 ```
 cd ~/e2e-demo-indra/03-Cloud-Composer2/01-hello-world-dag/00-scripts/1-dag-base/
 ```
 
-Run the below command to deploy the DAG
-
+b) Declare variables-
 ```
 PROJECT_ID=e2e-demo-indra 
 UMSA="indra-sa"
 UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
 COMPOSER_ENV_NM=cc2-indra-secure
 LOCATION=us-central1
+```
 
+c) Run the below command to deploy the DAG
+
+```
 gcloud composer environments storage dags import \
 --environment $COMPOSER_ENV_NM  --location $LOCATION \
 --source hello-world-dag.py  \
