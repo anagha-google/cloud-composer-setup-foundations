@@ -320,7 +320,7 @@ This service accounts gets auto-created in the project when the Google API for C
 CGMSAA_FQN=service-${SVC_PROJECT_NUMBER}@cloudcomposer-accounts.iam.gserviceaccount.com
 
 gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
-    --member=serviceAccount:${SVC_PROJECT_ID} \
+    --member=serviceAccount:${UMSA_FQN} \
     --role roles/composer.ServiceAgentV2Ext
 ```
 
