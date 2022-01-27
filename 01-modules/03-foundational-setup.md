@@ -43,7 +43,7 @@ In Cloud Shell, lets create some variables we will use for the rest of the proje
 SVC_PROJECT_NUMBER=187732393981  # Replace with your project's
 SVC_PROJECT_ID=zeus-svc-proj  # Replace with your project's
 UMSA="zeus-sa"
-UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
+UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 ADMIN_FQ_UPN="admin@xxx.altostrat.com" # Replace with your Argolis UPN
 ```
 
