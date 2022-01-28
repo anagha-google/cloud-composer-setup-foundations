@@ -50,6 +50,8 @@ SHARED_VPC_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/global/networks/$SHARED_VPC
 SHARED_VPC_CC2_SNET_NM="zeus-shared-cc2-snet"
 SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
 
+SHARED_VPC_CONNECTOR_NM=zeus-shared-vpc-cnctr
+
 SHARED_VPC_CC2_SNET_CIDR_BLK='10.65.61.0/24' # Number of GKE nodes and ILBs available 
 CC2_PODS_CIDR_BLK='10.66.0.0/16' # Composer pods, ensure sufficient, especially for autoscale
 CC2_SVCS_CIDR_BLK='10.67.0.0/16' # Composer pods, ensure sufficient, especially for autoscale
@@ -173,7 +175,7 @@ We defined the ranges earlier, in the variables section.<br>
 
 ```
 
-### 10.1. Create subnet 
+### 10.1. Create subnet for CC2
 
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
@@ -209,8 +211,23 @@ The other secondary IP ranges listed in the variables should not be created, but
 <br>
 <hr>
 
+## 11. Secure VPC Access Connector related
 
+### 11.1. Create a subnet
+In cloud shell scoped to the shared VPC/host project, run the below:
+```
+gcloud compute networks subnets create $SHARED_VPC_CONNECTOR_NM \
+ --network $SHARED_VPC_NETWORK_NM \
+ --range 10.70.0.0/28 \
+ --region $LOCATION \
+ --enable-private-ip-google-access \
+ --project $SHARED_VPC_HOST_PROJECT_ID 
+```
 
+Describe
+```
+
+```
 
 ## 11. Create firewall rules
 
