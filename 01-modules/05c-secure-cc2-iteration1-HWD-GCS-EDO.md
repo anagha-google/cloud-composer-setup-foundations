@@ -21,12 +21,12 @@ From cloud shell, run the commands below-
 
 a) The variables
 ```
-PROJECT_ID=e2e-demo-indra
-UMSA="indra-sa"
-UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
-COMPOSER_ENV_NM=cc2-indra-secure
+SVC_PROJECT_ID=zeus-svc-proj
+UMSA="zeus-sa"
+UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
+COMPOSER_ENV_NM=cc2-zeus-secure
 LOCATION=us-central1
-GCF_TRIGGER_BUCKET_FQN=gs://cc2-hello-world-trigger-bucket
+GCF_TRIGGER_BUCKET_FQN=gs://cc2-hw-trigger-bucket
 DAG_ID=hello_world_dag
 ```
 
