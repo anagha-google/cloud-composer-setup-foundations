@@ -417,27 +417,6 @@ gcloud compute firewall-rules create vpc-connector-requests \
 <hr>
 
 
-## 12. Create the Serverless VPC Access Connector
-
-```
-gcloud compute networks vpc-access connectors create zeus-vpc-cnnctr \
---region $LOCATION \
---subnet $SHARED_VPC_CONNECTOR_SNET_NM \
---subnet-project $SHARED_VPC_HOST_PROJECT_ID \
---min-instances 2 \
---max-instances 3 \
---machine-type e2-micro
-```
-
-Validate-
-```
-gcloud compute networks vpc-access connectors describe zeus-vpc-cnnctr \
---region $LOCATION
-```
-
-
-
-
 ## 12. Configure DNS - connectivity to *.pkg.dev
 
 In cloud shell scoped to the host project, run the below to cnfigure connectivity-
@@ -567,10 +546,31 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
 <br>
 <hr>
 
-## 14. Configure networking to allow external package download
+## 14. Create the Serverless VPC Access Connector
+
+```
+gcloud compute networks vpc-access connectors create zeus-vpc-cnnctr \
+--region $LOCATION \
+--subnet $SHARED_VPC_CONNECTOR_SNET_NM \
+--subnet-project $SHARED_VPC_HOST_PROJECT_ID \
+--min-instances 2 \
+--max-instances 3 \
+--machine-type e2-micro
+```
+
+Validate-
+```
+gcloud compute networks vpc-access connectors describe zeus-vpc-cnnctr \
+--region $LOCATION
+```
+
+<br>
+<hr>
+
+## 15. Configure networking to allow external package download
 This is specific to opening up a private cluster for downloading from Maven/PyPi/CRAN for DAGs in Cloud Composer 2 and/or in Cloud Dataflow DAGs referenced within<br>
 
-### 14.1. Cloud Router setup
+### 15.1. Cloud Router setup
 
 Docs: https://cloud.google.com/network-connectivity/docs/router/how-to/creating-routers<br>
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
@@ -582,7 +582,7 @@ gcloud compute routers create zeus-router-shared \
     --region=$LOCATION
 ```
     
-### 14.2. Cloud NAT setup
+### 15.2. Cloud NAT setup
 Docs: https://cloud.google.com/nat/docs/gke-example#create-nat<br>
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
