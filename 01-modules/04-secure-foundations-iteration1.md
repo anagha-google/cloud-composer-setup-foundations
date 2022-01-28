@@ -174,7 +174,7 @@ gcloud compute networks create $SHARED_VPC_NETWORK_NM \
 <br>
 <hr>
 
-## 10. Create subnet for secure Cloud Composer 2
+## 10. Create subnets for secure Cloud Composer 2 & for a shared VPC Access Connector
 
 Per the docs as of Jan 25, 2022, these are considerations-
 ```
@@ -205,7 +205,7 @@ gcloud compute networks subnets create $SHARED_VPC_CC2_SNET_NM \
  --project $SHARED_VPC_HOST_PROJECT_ID 
 ```
 
-### 10.2. Update subnet to add a second  secondary IP range - for composer pods
+### 10.2. Update CC2 subnet to add a second  secondary IP range - for composer pods
 *As of the authoring of this guide (Jan 14, 2022), the secondary IP range name had to strictly be composer-pods.*<br>
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
@@ -214,7 +214,7 @@ In cloud shell scoped to the shared VPC/host project, run the below:
  --add-secondary-ranges composer-pods=$CC2_PODS_CIDR_BLK
 ```
 
-### 10.3. Update subnet to add asecond  secondary IP range - for composer services
+### 10.3. Update CC2 subnet to add asecond  secondary IP range - for composer services
 *As of the authoring of this guide (Jan 14, 2022), the secondary IP range name had to strictly be composer-services*<br>
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
@@ -223,15 +223,13 @@ In cloud shell scoped to the shared VPC/host project, run the below:
  --add-secondary-ranges composer-services=$CC2_SVCS_CIDR_BLK
 ```
 
-### 10.4 Other secondary IP ranges
+### 10.4 Other CC2 related secondary IP ranges
 The other secondary IP ranges listed in the variables should not be created, but **reserved** for Cloud Composer 2 secure deployment lab sub-module and will be used at environment provisioning time.
 
 <br>
 <hr>
 
-## 11. Secure VPC Access Connector related
-
-### 11.1. Create a subnet
+### 10.5. Create a subnet for the shared VPC access connector
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
 gcloud compute networks subnets create $SHARED_VPC_CONNECTOR_SNET_NM \
@@ -266,18 +264,6 @@ purpose: PRIVATE
 region: https://www.googleapis.com/compute/v1/projects/zeus-host-proj/regions/us-central1
 selfLink: https://www.googleapis.com/compute/v1/projects/zeus-host-proj/regions/us-central1/subnetworks/zeus-vpc-cnctr-snet
 stackType: IPV4_ONLY
-```
-
-### 11.2. Create the Shared VPC Access Connector
-
-```
-gcloud compute networks vpc-access connectors create zeus-vpc-cnnctr \
---region $LOCATION \
---subnet $SHARED_VPC_CONNECTOR_SNET_NM \
---subnet-project $SHARED_VPC_HOST_PROJECT_ID \
---min-instances 2 \
---max-instances 3 \
---machine-type e2-micro
 ```
 
 ## 11. Create firewall rules
@@ -373,8 +359,11 @@ gcloud compute firewall-rules create allow-to-cc2-sipr-egress \
     --rules tcp:3306,tcp:3307 \
     --priority 1000 
 ```
+
 ### 11.8. Allow yourself access
 
+
+In cloud shell scoped to the shared VPC/host project, run the below:
 ```
 gcloud compute firewall-rules create allow-all-to-office-cidr \
 --direction=INGRESS \
@@ -385,8 +374,69 @@ gcloud compute firewall-rules create allow-all-to-office-cidr \
 --source-ranges=$OFFICE_CIDR
 ```
 
+### 11.9. Serverless VPC Access Connector related firewall rules
+
+In cloud shell scoped to the shared VPC/host project, run the below.<br>
+The following three commands are the rules to allow requests from serverless environments (Cloud Functions, Cloud Run etc) to reach all VPC Connectors in the network:
+
+
+```
+gcloud compute firewall-rules create serverless-to-vpc-connector \
+--allow tcp:667,udp:665-666,icmp \
+--source-ranges 107.178.230.64/26,35.199.224.0/19 \
+--direction=INGRESS \
+--target-tags vpc-connector \
+--network=$SHARED_VPC_NETWORK_NM
+
+gcloud compute firewall-rules create vpc-connector-to-serverless \
+--allow tcp:667,udp:665-666,icmp \
+--destination-ranges 107.178.230.64/26,35.199.224.0/19 \
+--direction=EGRESS \
+--target-tags vpc-connector \
+--network=$SHARED_VPC_NETWORK_NM
+
+gcloud compute firewall-rules create vpc-connector-health-checks \
+--allow tcp:667 \
+--source-ranges 130.211.0.0/22,35.191.0.0/16,108.170.220.0/23 \
+--direction=INGRESS \
+--target-tags vpc-connector \
+--network=$SHARED_VPC_NETWORK_NM
+
+```
+
+Next, create an ingress rule on your VPC network to allow requests from connectors:
+```
+gcloud compute firewall-rules create vpc-connector-requests \
+--allow tcp,udp,icmp \
+--direction=INGRESS \
+--source-tags vpc-connector \
+--network=$SHARED_VPC_NETWORK_NM
+```
+
 <br>
 <hr>
+
+
+## 12. Create the Serverless VPC Access Connector
+
+```
+gcloud compute networks vpc-access connectors create zeus-vpc-cnnctr \
+--region $LOCATION \
+--subnet $SHARED_VPC_CONNECTOR_SNET_NM \
+--subnet-project $SHARED_VPC_HOST_PROJECT_ID \
+--min-instances 2 \
+--max-instances 3 \
+--machine-type e2-micro
+```
+
+Validate-
+```
+gcloud compute networks vpc-access connectors describe zeus-vpc-cnnctr \
+--region $LOCATION
+```
+
+
+
 
 ## 12. Configure DNS - connectivity to *.pkg.dev
 
