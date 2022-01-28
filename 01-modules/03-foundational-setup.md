@@ -14,6 +14,7 @@ In this module, we will cover the folowing-<br>
 [9. Permissions specific to Cloud Dataflow](03-foundational-setup.md#9-permissions-specific-to-cloud-dataflow)<br>
 [10. Permissions specific to Cloud Storage](03-foundational-setup.md#10-permissions-specific-to-cloud-storage)<br>
 [11. Permissions specific to BigQuery](03-foundational-setup.md#11-permissions-specific-to-bigquery)<br>
+[12. Permissions specific to Cloud Composer 2 infrastructure](03-foundational-setup.md#12-permissions-specific-to-google-managed-default-service-accounts)<br>
 
 
 ## Duration
