@@ -570,7 +570,7 @@ gcloud compute networks vpc-access connectors create zeus-vpc-cnnctr \
 --subnet-project $SHARED_VPC_HOST_PROJECT_ID \
 --min-instances 2 \
 --max-instances 3 \
---machine-type e2-micro
+--machine-type f1-micro
 ```
 
 Validate-
