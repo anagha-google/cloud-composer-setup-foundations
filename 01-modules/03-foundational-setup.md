@@ -317,7 +317,7 @@ This account is visible in IAM on Cloud Console only when the "Include Google Pr
 This service accounts gets auto-created in the project when the Google API for Composer is enabled.
 
 ```
-CGMSAA_FQN=service-${SVC_PROJECT_NUMBER}@cloudcomposer-accounts.iam.gserviceaccount.com
+SVC_PROJECT_CGMSAA_FQN=service-${SVC_PROJECT_NUMBER}@cloudcomposer-accounts.iam.gserviceaccount.com
 
 gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --member=serviceAccount:${UMSA_FQN} \
