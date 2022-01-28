@@ -56,6 +56,8 @@ CC2_SVCS_CIDR_BLK='10.67.0.0/16' # Composer pods, ensure sufficient, especially 
 GKE_CNTRL_PLN_CIDR_BLK='10.65.62.0/24' 
 CC2_CIDR_BLK='10.65.63.0/24' 
 CSQL_CIDR_BLK='10.65.64.0/24'
+
+OFFICE_CIDR=98.222.97.10/32 # Replace with your CIDR
 ```
 
 <br>
@@ -300,6 +302,17 @@ gcloud compute firewall-rules create allow-to-cc2-sipr-egress \
     --rules tcp:3306,tcp:3307 \
     --priority 1000 
 ```
+### 11.8. Allow yourself access
+
+```
+gcloud compute firewall-rules create allow-all-to-office-cidr \
+--direction=INGRESS \
+--priority=1000 \
+--network=$SHARED_VPC_NETWORK_NM \
+--action=ALLOW \
+--rules=all \
+--source-ranges=$OFFICE_CIDR
+```
 
 <br>
 <hr>
@@ -335,9 +348,6 @@ record-sets transaction start --zone="pkg-dev" && gcloud beta dns --project=$SHA
 add pkg.dev. --name="*.pkg.dev." --ttl="300" --type="CNAME" --zone="pkg-dev" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
 execute --zone="pkg-dev"
 ```
-
-
-
 
 
 ## 13. IAM permissions to host project for service project's (e2e-demo-indra) service accounts
