@@ -441,6 +441,8 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${SVC_PROJECT_CDF_GMSA} \
     --role=roles/compute.networkUser 
 ```
+
+
 <br>
 <hr>
 
