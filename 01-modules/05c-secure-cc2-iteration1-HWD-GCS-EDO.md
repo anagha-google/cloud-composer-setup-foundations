@@ -32,7 +32,7 @@ DAG_ID=hello_world_dag
 
 b) Create a bucket
 ```
-gsutil mb -p $PROJECT_ID -c STANDARD -l $LOCATION -b on $GCF_TRIGGER_BUCKET_FQN
+gsutil mb -p $SVC_PROJECT_ID -c STANDARD -l $LOCATION -b on $GCF_TRIGGER_BUCKET_FQN
 ```
 
 ## 2.0. Get the Airflow Web URL
@@ -137,7 +137,7 @@ Takes approximately 2 minutes.
 USE_EXPERIMENTAL_API='False'
 
 
-gcloud functions deploy cc2_hello_world_gcs_trigger_fn \
+gcloud functions deploy cc2_hw_gcs_trigger_fn \
 --entry-point trigger_dag_gcf \
 --trigger-resource $GCF_TRIGGER_BUCKET_FQN \
 --trigger-event google.storage.object.finalize \
