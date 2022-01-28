@@ -50,7 +50,7 @@ SHARED_VPC_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/global/networks/$SHARED_VPC
 SHARED_VPC_CC2_SNET_NM="zeus-shared-cc2-snet"
 SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
 
-SHARED_VPC_CONNECTOR_NM=zeus-shared-vpc-cnctr
+SHARED_VPC_CONNECTOR_NM=zeus-vpc-cnctr-snet
 
 SHARED_VPC_CC2_SNET_CIDR_BLK='10.65.61.0/24' # Number of GKE nodes and ILBs available 
 CC2_PODS_CIDR_BLK='10.66.0.0/16' # Composer pods, ensure sufficient, especially for autoscale
