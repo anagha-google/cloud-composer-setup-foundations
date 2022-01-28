@@ -343,6 +343,14 @@ gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --role roles/composer.environmentAndStorageObjectViewer
 ```
 
+### 7.f. Permissions for default compute engine service account to pull images from Container Registry 
+
+```
+SVC_PROJECT_DEFAULT_GCE_GMSA=$SVC_PROJECT_NUMBER-compute@developer.gserviceaccount.com
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
+    --member=user:${SVC_PROJECT_DEFAULT_GCE_GMSA} \
+    --role roles/editor
+```
 
 <hr style="border:12px solid gray"> </hr>
 <br>
