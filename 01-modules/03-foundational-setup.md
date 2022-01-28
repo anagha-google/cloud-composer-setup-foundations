@@ -15,6 +15,7 @@ In this module, we will cover the folowing-<br>
 [10. Permissions specific to Cloud Storage](03-foundational-setup.md#10-permissions-specific-to-cloud-storage)<br>
 [11. Permissions specific to BigQuery](03-foundational-setup.md#11-permissions-specific-to-bigquery)<br>
 
+
 ## Duration
 ~ 1 hour+
 
@@ -418,6 +419,18 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 
 gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
 --role="roles/bigquery.admin"
+
+```
+
+## 12. Permissions specific to Google Managed Default Service Accounts
+
+### 12.1. Permissions for GCE Default GMSA to interact download from container registry
+
+```
+SVC_PROJECT_GCE_DEFAULT_GMSA=$SVC_PROJECT_NUMBER-compute@developer.gserviceaccount.com
+
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$SVC_PROJECT_GCE_DEFAULT_GMSA \
+--role="roles/editor"
 
 ```
 
