@@ -50,7 +50,7 @@ SHARED_VPC_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/global/networks/$SHARED_VPC
 SHARED_VPC_CC2_SNET_NM="zeus-shared-cc2-snet"
 SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
 
-SHARED_VPC_CONNECTOR_NM=zeus-vpc-cnctr-snet
+SHARED_VPC_CONNECTOR_SNET_NM=zeus-vpc-cnctr-snet
 
 SHARED_VPC_CC2_SNET_CIDR_BLK='10.65.61.0/24' # Number of GKE nodes and ILBs available 
 CC2_PODS_CIDR_BLK='10.66.0.0/16' # Composer pods, ensure sufficient, especially for autoscale
@@ -216,7 +216,7 @@ The other secondary IP ranges listed in the variables should not be created, but
 ### 11.1. Create a subnet
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
-gcloud compute networks subnets create $SHARED_VPC_CONNECTOR_NM \
+gcloud compute networks subnets create $SHARED_VPC_CONNECTOR_SNET_NM \
  --network $SHARED_VPC_NETWORK_NM \
  --range 10.70.0.0/28 \
  --region $LOCATION \
@@ -224,9 +224,42 @@ gcloud compute networks subnets create $SHARED_VPC_CONNECTOR_NM \
  --project $SHARED_VPC_HOST_PROJECT_ID 
 ```
 
-Describe
+Describe and ensure private
+```
+gcloud compute networks subnets describe $SHARED_VPC_CONNECTOR_SNET_NM
 ```
 
+Author's output-
+```
+gcloud compute networks subnets describe $SHARED_VPC_CONNECTOR_SNET_NM
+Did you mean region [us-central1] for subnetwork: [zeus-vpc-cnctr-snet] (Y/n)?  y
+
+creationTimestamp: '2022-01-28T14:56:32.860-08:00'
+fingerprint: gaWbylk4EZs=
+gatewayAddress: 10.70.0.1
+id: '1454704618911681103'
+ipCidrRange: 10.70.0.0/28
+kind: compute#subnetwork
+name: zeus-vpc-cnctr-snet
+network: https://www.googleapis.com/compute/v1/projects/zeus-host-proj/global/networks/zeus-shared-vpc
+privateIpGoogleAccess: true
+privateIpv6GoogleAccess: DISABLE_GOOGLE_ACCESS
+purpose: PRIVATE
+region: https://www.googleapis.com/compute/v1/projects/zeus-host-proj/regions/us-central1
+selfLink: https://www.googleapis.com/compute/v1/projects/zeus-host-proj/regions/us-central1/subnetworks/zeus-vpc-cnctr-snet
+stackType: IPV4_ONLY
+```
+
+### 11.2. Create the Shared VPC Access Connector
+
+```
+gcloud compute networks vpc-access connectors create zeus-vpc-cnnctr \
+--region $LOCATION \
+--subnet $SHARED_VPC_CONNECTOR_SNET_NM \
+--subnet-project $SHARED_VPC_HOST_PROJECT_ID \
+--min-instances 2 \
+--max-instances 4 \
+--machine-type e2-micro
 ```
 
 ## 11. Create firewall rules
