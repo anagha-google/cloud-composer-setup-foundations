@@ -72,6 +72,7 @@ gcloud services enable pubsub.googleapis.com
 gcloud services enable dataflow.googleapis.com
 gcloud services enable dns.googleapis.com
 gcloud services enable sqladmin.googleapis.com
+gcloud services enable vpcaccess.googleapis.com 
 ```
 
 
