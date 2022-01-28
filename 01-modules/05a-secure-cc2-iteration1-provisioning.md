@@ -36,6 +36,8 @@ CC2_CIDR_BLK='10.65.63.0/24'  # Composer network
 CSQL_CIDR_BLK='10.65.64.0/24' # Cloud SQL (Composer metastore)
 
 OFFICE_CIDR=98.222.97.10/32 # Lab attendee's Public IP or your organization's office CIDR block for Airflow UI access
+
+CC2_IMAGE_VERSION=composer-2.0.2-airflow-2.1.4  #composer-2.0.0-airflow-2.1.4
 ```
 
 
@@ -45,7 +47,7 @@ From cloud shell in your service project/data analytics project, run the command
 
 ```
 gcloud beta composer environments create $COMPOSER_ENV_NM \
-    --image-version "composer-2.0.0-airflow-2.1.4" \
+    --image-version $CC2_IMAGE_VERSION \
     --labels env=demo,purpose=secure-cc2-demo \
     --location $LOCATION \
     --enable-private-environment \
@@ -59,8 +61,6 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
     --service-account $UMSA_FQN \
     --enable-master-authorized-networks \
     --master-authorized-networks ${OFFICE_CIDR} \
-    --web-server-allow-all
-    
-    #--web-server-allow-ip ip_range=${OFFICE_CIDR},description="Office CIDR"   
+    --web-server-allow-ip ip_range=${OFFICE_CIDR},description="Office CIDR"   
 ```
 
