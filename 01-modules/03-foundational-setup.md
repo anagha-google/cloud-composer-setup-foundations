@@ -286,6 +286,11 @@ gcloud iam service-accounts add-iam-policy-binding \
     ${UMSA_FQN} \
     --member="user:${ADMIN_FQ_UPN}" \
     --role="roles/iam.serviceAccountUser"
+    
+gcloud iam service-accounts add-iam-policy-binding \
+    ${UMSA_FQN} \
+    --member="user:${ADMIN_FQ_UPN}" \
+    --role="roles/iam.serviceAccountTokenCreator"
 ```
 
 ![UMSA-6](../00-images/00-06-UMSA-ActAs.png)
