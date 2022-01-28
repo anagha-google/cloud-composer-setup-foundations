@@ -58,9 +58,9 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
     --cloud-sql-ipv4-cidr $CSQL_CIDR_BLK \
     --service-account $UMSA_FQN \
     --enable-master-authorized-networks \
-    --master-authorized-networks ${OFFICE_CIDR} 
+    --master-authorized-networks ${OFFICE_CIDR} \
+    --web-server-allow-all
     
-    \
-    --web-server-allow-ip ip_range=${OFFICE_CIDR},description="Office CIDR"   
+    #--web-server-allow-ip ip_range=${OFFICE_CIDR},description="Office CIDR"   
 ```
 
