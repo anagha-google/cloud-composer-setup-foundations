@@ -542,6 +542,21 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --role=roles/compute.networkUser 
 ```
 
+### 13.7. Serverless VPC Access Connector related IAM permissions
+
+For each service project that will use VPC Connectors, a Shared VPC Admin must grant the Compute Network User role (compute.networkUser) in the host project to the service project cloudservices and vpcaccess service accounts.
+
+In cloud shell scoped to the shared VPC/host project, run the below.<br>
+```
+gcloud projects add-iam-policy-binding $SHARED_VPC_HOST_PROJECT_ID \
+--role "roles/compute.networkUser" \
+--member "serviceAccount:service-$SVC_PROJECT_NUMBER@gcp-sa-vpcaccess.iam.gserviceaccount.com"
+
+
+gcloud projects add-iam-policy-binding $SHARED_VPC_HOST_PROJECT_ID \
+--role "roles/compute.networkUser" \
+--member "serviceAccount:$SVC_PROJECT_NUMBER@cloudservices.gserviceaccount.com"
+```
 
 <br>
 <hr>
