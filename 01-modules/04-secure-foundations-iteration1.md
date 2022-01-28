@@ -97,6 +97,24 @@ gcloud org-policies set-policy restrictVpcPeering.yaml
 
 rm restrictVpcPeering.yaml
 ```
+
+
+```
+rm vmCanIpForward.yaml
+
+cat > vmCanIpForward.yaml << ENDOFFILE
+name: projects/$SHARED_VPC_HOST_PROJECT_ID/policies/compute.vmCanIpForward
+spec:
+  rules:
+  - allowAll: true
+ENDOFFILE
+
+gcloud org-policies set-policy vmCanIpForward.yaml
+
+rm vmCanIpForward.yaml
+
+```
+
 <br>
 <hr>
 
