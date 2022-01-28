@@ -26,10 +26,10 @@ cd ~/e2e-demo-indra/03-Cloud-Composer2/01-hello-world-dag/00-scripts/1-dag-base/
 
 b) Declare variables-
 ```
-PROJECT_ID=e2e-demo-indra 
-UMSA="indra-sa"
+PROJECT_ID=zeus-svc-proj 
+UMSA="zeus-sa"
 UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
-COMPOSER_ENV_NM=cc2-indra-secure
+COMPOSER_ENV_NM=cc2-zeus-secure
 LOCATION=us-central1
 ```
 
