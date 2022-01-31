@@ -22,6 +22,7 @@ From cloud shell, run the commands below-
 a) The variables
 ```
 SVC_PROJECT_ID=zeus-svc-proj
+SHARED_VPC_HOST_PROJECT_ID=zeus-host-proj 
 UMSA="zeus-sa"
 UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 COMPOSER_ENV_NM=cc2-zeus-secure
@@ -143,6 +144,7 @@ gcloud functions deploy cc2_hw_gcs_trigger_fn \
 --trigger-event google.storage.object.finalize \
 --runtime python39   \
 --set-env-vars USE_EXPERIMENTAL_API=${USE_EXPERIMENTAL_API} \
+--vpc-connector projects/$SHARED_VPC_HOST_PROJECT_ID/locations/$LOCATION/connectors/zeus-gcf-vpc-cnnctr \
 --service-account=${UMSA_FQN}
 ```
 
