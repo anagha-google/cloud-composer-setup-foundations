@@ -616,6 +616,8 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
 
 For each service project that will use VPC Connectors, a Shared VPC Admin must grant the Compute Network User role (compute.networkUser) in the host project to the service project cloudservices and vpcaccess service accounts.
 
+#### 13.7.1. Permissions to be granted in the host project
+
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
 gcloud projects add-iam-policy-binding $SHARED_VPC_HOST_PROJECT_ID \
@@ -635,11 +637,26 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
   --role=roles/compute.securityAdmin
 ```
 
-Grant access to the UMSA to access the connector
+The service accounts involved in VCP connector access require permissions
 ```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID}  \
 --member serviceAccount:${SVC_PROJECT_UMSA_FQN} \
 --role roles/vpcaccess.user
+```
+
+#### 13.7.2. Permissions to be granted in the service project
+
+The service accounts involved in VCP connector access require permissions
+```
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID}  \
+--member serviceAccount:${SVC_PROJECT_UMSA_FQN} \
+--role roles/vpcaccess.user
+```
+
+```
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
+--member=serviceAccount:service-${SVC_PROJECT_NUMBER}@gcf-admin-robot.iam.gserviceaccount.com \
+--role=roles/vpcaccess.user
 ```
 
 <br>
