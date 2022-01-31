@@ -391,6 +391,11 @@ gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} --member=serviceAccount
 gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/cloudfunctions.admin
 ```
 
+### 8.1.c. Permission for UMSA to operate as a GCF Developer
+
+```
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/cloudfunctions.developer
+```
 
 <hr style="border:12px solid gray"> </hr>
 <br>
