@@ -560,7 +560,7 @@ gcloud projects add-iam-policy-binding $SHARED_VPC_HOST_PROJECT_ID \
 
 The individual deploying the connector needs compute security admin role in the host project-
 ```
-gcloud organizations add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
+gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
   --member=user:$ADMIN_UPN_FQN \
   --role=roles/compute.securityAdmin
 ```
