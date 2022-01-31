@@ -135,15 +135,11 @@ def trigger_dag_gcf(data, context=None):
 Takes approximately 2 minutes.
 
 ```
-USE_EXPERIMENTAL_API='False'
-
-
 gcloud functions deploy cc2_hw_gcs_trigger_fn \
 --entry-point trigger_dag_gcf \
 --trigger-resource $GCF_TRIGGER_BUCKET_FQN \
 --trigger-event google.storage.object.finalize \
 --runtime python39   \
---set-env-vars USE_EXPERIMENTAL_API=${USE_EXPERIMENTAL_API} \
 --vpc-connector projects/$SHARED_VPC_HOST_PROJECT_ID/locations/$LOCATION/connectors/zeus-gcf-vpc-cnnctr \
 --service-account=${UMSA_FQN}
 ```
