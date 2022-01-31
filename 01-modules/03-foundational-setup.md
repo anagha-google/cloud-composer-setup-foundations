@@ -360,6 +360,15 @@ gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --role roles/editor
 ```
 
+### 7.g. 
+
+```
+gcloud iam service-accounts add-iam-policy-binding \
+  ${SVC_PROJECT_ID}@appspot.gserviceaccount.com \
+  --member="serviceAccount:${UMSA_FQN}" \
+  --role="roles/iam.serviceAccountUser"
+```
+
 <hr style="border:12px solid gray"> </hr>
 <br>
 
