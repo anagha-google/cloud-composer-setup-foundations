@@ -635,6 +635,13 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
   --role=roles/compute.securityAdmin
 ```
 
+Grant access to the UMSA to access the connector
+```
+gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID}  \
+--member serviceAccount:${SVC_PROJECT_UMSA_FQN} \
+--role roles/vpcaccess.user
+```
+
 <br>
 <hr>
 
