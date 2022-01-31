@@ -649,7 +649,7 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID}  \
 
 Docs: https://cloud.google.com/compute/docs/images/restricting-image-access<br>
 
-In cloud shell scoped to the shared VPC/host project, run the below.<br>
+In cloud shell scoped to the shared VPC/host project, run the below-<br>
 ```
 gcloud compute networks vpc-access connectors create zeus-gcf-vpc-cnnctr \
 --region $LOCATION \
@@ -658,28 +658,6 @@ gcloud compute networks vpc-access connectors create zeus-gcf-vpc-cnnctr \
 --min-instances 2 \
 --max-instances 3 \
 --machine-type f1-micro
-```
-
-Validate-
-```
-gcloud compute networks vpc-access connectors describe zeus-vpc-cnnctr \
---region $LOCATION
-```
-
-Author's output -
-```
-cloud compute networks vpc-access connectors describe zeus-vpc-cnnctr \
-> --region $LOCATION
-machineType: f1-micro
-maxInstances: 3
-maxThroughput: 300
-minInstances: 2
-minThroughput: 200
-name: projects/zeus-host-proj/locations/us-central1/connectors/zeus-vpc-cnnctr
-state: READY
-subnet:
-  name: zeus-vpc-cnctr-snet
-  projectId: zeus-host-proj
 ```
 
 <br>
