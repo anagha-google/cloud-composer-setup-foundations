@@ -563,6 +563,14 @@ gcloud projects add-iam-policy-binding $SHARED_VPC_HOST_PROJECT_ID \
 
 ## 14. Create the Serverless VPC Access Connector
 
+1. You need to have the permissions to provision the connector-
+```
+
+roles/compute.securityAdmin
+```
+
+
+2. Provision the connector
 ```
 gcloud compute networks vpc-access connectors create zeus-vpc-cnnctr \
 --region $LOCATION \
