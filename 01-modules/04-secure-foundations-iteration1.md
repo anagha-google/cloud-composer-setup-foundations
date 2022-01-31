@@ -85,6 +85,8 @@ gcloud services enable vpcaccess.googleapis.com --project $SHARED_VPC_HOST_PROJE
 *Ensure you are authorized to apply organization policies - have the org policy admin role.*<br>
 
 In cloud shell scoped to the shared VPC/host project, run the below:
+
+a) Restricted VPC peering related
 ```
 cat > restrictVpcPeering.yaml << ENDOFFILE
 name: projects/$SHARED_VPC_HOST_PROJECT_ID/policies/compute.restrictVpcPeering
@@ -98,7 +100,7 @@ gcloud org-policies set-policy restrictVpcPeering.yaml
 rm restrictVpcPeering.yaml
 ```
 
-
+b) IP forwarding related
 ```
 rm vmCanIpForward.yaml
 
@@ -114,6 +116,53 @@ gcloud org-policies set-policy vmCanIpForward.yaml
 rm vmCanIpForward.yaml
 
 ```
+
+c) Relax require OS Login
+
+rm os_login.yaml
+
+cat > os_login.yaml << ENDOFFILE
+name: projects/${SHARED_VPC_HOST_PROJECT_ID}/policies/compute.requireOsLogin
+spec:
+  rules:
+  - enforce: false
+ENDOFFILE
+
+gcloud org-policies set-policy os_login.yaml 
+
+rm os_login.yaml
+
+d) Disable Serial Port Logging
+
+
+rm disableSerialPortLogging.yaml
+
+cat > disableSerialPortLogging.yaml << ENDOFFILE
+name: projects/${SHARED_VPC_HOST_PROJECT_ID}/policies/compute.disableSerialPortLogging
+spec:
+  rules:
+  - enforce: false
+ENDOFFILE
+
+gcloud org-policies set-policy disableSerialPortLogging.yaml 
+
+rm disableSerialPortLogging.yaml
+
+e) Disable Shielded VM requirement
+
+
+shieldedVm.yaml 
+
+cat > shieldedVm.yaml << ENDOFFILE
+name: projects/$SHARED_VPC_HOST_PROJECT_ID/policies/compute.requireShieldedVm
+spec:
+  rules:
+  - enforce: false
+ENDOFFILE
+
+gcloud org-policies set-policy shieldedVm.yaml 
+
+rm shieldedVm.yaml 
 
 <br>
 <hr>
