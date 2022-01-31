@@ -659,6 +659,22 @@ gcloud compute networks vpc-access connectors describe zeus-vpc-cnnctr \
 --region $LOCATION
 ```
 
+Author's output -
+```
+cloud compute networks vpc-access connectors describe zeus-vpc-cnnctr \
+> --region $LOCATION
+machineType: f1-micro
+maxInstances: 3
+maxThroughput: 300
+minInstances: 2
+minThroughput: 200
+name: projects/zeus-host-proj/locations/us-central1/connectors/zeus-vpc-cnnctr
+state: READY
+subnet:
+  name: zeus-vpc-cnctr-snet
+  projectId: zeus-host-proj
+```
+
 <br>
 <hr>
 
