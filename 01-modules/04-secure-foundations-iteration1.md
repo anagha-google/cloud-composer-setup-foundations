@@ -118,7 +118,7 @@ rm vmCanIpForward.yaml
 ```
 
 c) Relax require OS Login
-
+```
 rm os_login.yaml
 
 cat > os_login.yaml << ENDOFFILE
@@ -131,10 +131,11 @@ ENDOFFILE
 gcloud org-policies set-policy os_login.yaml 
 
 rm os_login.yaml
+```
 
 d) Disable Serial Port Logging
 
-
+```
 rm disableSerialPortLogging.yaml
 
 cat > disableSerialPortLogging.yaml << ENDOFFILE
@@ -147,10 +148,11 @@ ENDOFFILE
 gcloud org-policies set-policy disableSerialPortLogging.yaml 
 
 rm disableSerialPortLogging.yaml
+```
 
 e) Disable Shielded VM requirement
 
-
+```
 shieldedVm.yaml 
 
 cat > shieldedVm.yaml << ENDOFFILE
@@ -163,6 +165,7 @@ ENDOFFILE
 gcloud org-policies set-policy shieldedVm.yaml 
 
 rm shieldedVm.yaml 
+```
 
 <br>
 <hr>
