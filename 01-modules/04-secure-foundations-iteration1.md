@@ -640,6 +640,8 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
 
 ## 14. Create the Serverless VPC Access Connector
 
+Docs: https://cloud.google.com/compute/docs/images/restricting-image-access<br>
+
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
 gcloud compute networks vpc-access connectors create zeus-vpc-cnnctr \
