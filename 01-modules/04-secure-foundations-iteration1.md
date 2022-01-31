@@ -167,6 +167,12 @@ gcloud org-policies set-policy shieldedVm.yaml
 rm shieldedVm.yaml 
 ```
 
+f) Add the project that sources the Serverless VPC connector image as trusted
+
+```
+gcloud resource-manager org-policies allow compute.trustedImageProjects  --project=$SHARED_VPC_HOST_PROJECT_ID "projects/322087561681/zones/us-central1-b/instances/aet-uscentral1-zeus--vpc--cnnctr-7lgv"
+```
+
 <br>
 <hr>
 
