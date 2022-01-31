@@ -651,7 +651,7 @@ Docs: https://cloud.google.com/compute/docs/images/restricting-image-access<br>
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
-gcloud compute networks vpc-access connectors create zeus-vpc-cnnctr \
+gcloud compute networks vpc-access connectors create zeus-gcf-vpc-cnnctr \
 --region $LOCATION \
 --subnet $SHARED_VPC_CONNECTOR_SNET_NM \
 --subnet-project $SHARED_VPC_HOST_PROJECT_ID \
