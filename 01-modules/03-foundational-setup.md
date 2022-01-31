@@ -360,7 +360,9 @@ gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --role roles/editor
 ```
 
-### 7.g. 
+### 7.g. Permissiosn for UMSA to act as GCF service agent account
+
+Docs: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/functions.html
 
 ```
 gcloud iam service-accounts add-iam-policy-binding \
