@@ -558,19 +558,19 @@ gcloud projects add-iam-policy-binding $SHARED_VPC_HOST_PROJECT_ID \
 --member "serviceAccount:$SVC_PROJECT_NUMBER@cloudservices.gserviceaccount.com"
 ```
 
+The individual deploying the connector needs compute security admin role in the host project-
+```
+gcloud organizations add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
+  --member=user:$ADMIN_UPN_FQN \
+  --role=roles/compute.securityAdmin
+```
+
 <br>
 <hr>
 
 ## 14. Create the Serverless VPC Access Connector
 
-1. You need to have the permissions to provision the connector-
-```
-
-roles/compute.securityAdmin
-```
-
-
-2. Provision the connector
+In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
 gcloud compute networks vpc-access connectors create zeus-vpc-cnnctr \
 --region $LOCATION \
