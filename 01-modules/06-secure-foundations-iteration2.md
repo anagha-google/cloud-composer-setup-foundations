@@ -133,7 +133,7 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create googl
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="googleapis" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID \
-record-sets transaction add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 --name="restricted.googleapis.com." --ttl="300" --type="A" --zone="googleapis" && && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="googleapis"
+record-sets transaction add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 --name="restricted.googleapis.com." --ttl="300" --type="A" --zone="googleapis" &&  gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="googleapis"
 
 ```
 
