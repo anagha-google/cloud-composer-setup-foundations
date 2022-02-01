@@ -125,12 +125,12 @@ gcloud functions deploy cc2_hw_pubsub_trigger_fn \
 
 a) In the cloud console, navigate to Cloud Functions-
 
-![01-02-13](../../01-images/01-02-13.png)
+![01-02-13](../00-images/01-02-13.png)
 <br><br><br>
 
 b) Gp back to the Cloud Pub/Sub UI and notice that the deployment of the Pub/Sub topic triggered GCF created a Pub/Sub subscription
 
-![01-02-14](../../01-images/01-02-14.png)
+![01-02-14](../00-images/01-02-14.png)
 <br><br><br>
 
 
@@ -144,15 +144,15 @@ gcloud pubsub topics publish $PUB_SUB_TRIGGER_TOPIC --message "$CURRENT_TIME"
 
 Go to the Cloud Function Logs, in the cloud console and check for errors..
 
-![01-02-15](../../01-images/01-02-15.png)
+![01-02-15](../00-images/01-02-15.png)
 <br>
 
 And then go to Airflow web UI and click on the DAG node, and look at the logs...
-![01-02-16](../../01-images/01-02-16.png)
+![01-02-16](../00-images/01-02-16.png)
 <br>
 
 Publish multiple messages to the Pub/Sub topic and explore DAG runs in the Airflow UI...
-![01-02-17](../../01-images/01-02-17.png)
+![01-02-17](../00-images/01-02-17.png)
 <br>
 
 ## 9.0. Lets do a quick review of permissions for the major identities in scope for this demo
@@ -160,19 +160,19 @@ Publish multiple messages to the Pub/Sub topic and explore DAG runs in the Airfl
 Go to the Cloud Console and navigate to the IAM -> IAM & Admin and ensure you check the "Include Google Provided Role Grants". Screenshots of what you should expect are below. 
 
 ## 9.0.1. The lab attendee permissions
-![01-02-06](../../01-images/01-02-06.png)
+![01-02-06](../00-images/01-02-06.png)
 <br>
 
 ## 9.0.2. The UMSA permissions
-![01-02-07](../../01-images/01-02-07.png)
+![01-02-07](../00-images/01-02-07.png)
 <br>
 
 ## 9.0.3. The Cloud Composer Service Agent Account permissions
-![01-02-08](../../01-images/01-02-08.png)
+![01-02-08](../00-images/01-02-08.png)
 <br>
 
 ## 9.0.4. The various Google Managed Default Service Accounts
-![01-02-09](../../01-images/01-02-09.png)
+![01-02-09](../00-images/01-02-09.png)
 <br>
 
 
