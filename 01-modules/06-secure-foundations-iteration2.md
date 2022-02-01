@@ -187,3 +187,17 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction st
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="composer-cloud-google" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add composer.cloud.google.com. --name="*.composer.cloud.google.com." --ttl="300" --type="CNAME" --zone="composer-cloud-google" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="composer-cloud-google"
 
 ```
+
+## 6.0 Configure incremental firewall rules in the host project
+
+```
+#1. To connect to restricted Google APIs
+
+gcloud compute --project=$SHARED_VPC_HOST_PROJECT_ID firewall-rules create allow-gke-egress-rgapis \
+--direction=EGRESS \
+--priority=1000 \
+--network=$SHARED_VPC_NETWORK_NM \
+--action=ALLOW \
+--rules=tcp:443 \
+--destination-ranges=199.36.153.4/30
+```
