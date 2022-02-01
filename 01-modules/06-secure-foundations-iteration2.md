@@ -103,11 +103,7 @@ gcloud access-context-manager levels create UPN_SPN_ACCESS_LVL \
 ```
 
 
-## 5. Create a VPC-SC perimeter around an existing set of services 
-
-
-
-## 6. Create DNS entries from the host project 
+## 5. Create DNS entries from the host project 
 
 https://cloud.google.com/composer/docs/composer-2/configure-vpc-sc#connectivity_to_the_restrictedgoogleapiscom_endpoint
 ```
@@ -123,8 +119,8 @@ DNS *.composer.cloud.google.com should resolve to 199.36.153.4/30 similarly to t
 ```
 
 
-### 6.1. DNS entries googleapis.com
-#### 6.1.a Create zone
+### 5.1. DNS entries googleapis.com
+#### 5.1.a Create zone
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create googleapis --description="" \
@@ -135,7 +131,7 @@ gcloud beta dns --project=e2e-demo-indra-shared \
 record-sets transaction start --zone="googleapis" 
 ```
 
-#### 6.1.b Create A record
+#### 5.1.b Create A record
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="googleapis" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID \
@@ -143,7 +139,7 @@ record-sets transaction add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 
 
 ```
 
-#### 6.1.c Create CNAME record
+#### 5.1.c Create CNAME record
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="googleapis" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add restricted.googleapis.com. --name="*.googleapis.com." --ttl="300" --type="CNAME" --zone="googleapis" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="googleapis"
@@ -151,8 +147,8 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction st
 ```
 
 
-### 6.2. DNS entries gcr.io
-#### 6.2.a Create zone
+### 5.2. DNS entries gcr.io
+#### 5.2.a Create zone
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create gcr-io --description="" \
@@ -161,33 +157,33 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create gcr-i
 --networks=$SHARED_VPC_NETWORK_NM
 ```
 
-#### 6.2.b Create A record
+#### 5.2.b Create A record
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="gcr-io" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 --name="gcr.io." --ttl="300" --type="A" --zone="gcr-io" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="gcr-io"
 ```
 
-#### 6.2.c Create CNAME record
+#### 5.2.c Create CNAME record
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="gcr-io" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add gcr.io. --name="*.gcr.io." --ttl="300" --type="CNAME" --zone="gcr-io" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="gcr-io"
 
 ```
 
-### 6.3. DNS entries composer.cloud.google.com
-#### 6.3.a Create zone
+### 5.3. DNS entries composer.cloud.google.com
+#### 5.3.a Create zone
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create composer-cloud-google --description="" --dns-name="composer.cloud.google.com." --visibility="private" --networks=$SHARED_VPC_NETWORK_NM
 ```
 
-#### 6.3.b Create A record
+#### 5.3.b Create A record
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="composer-cloud-google" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 --name="composer.cloud.google.com." --ttl="300" --type="A" --zone="composer-cloud-google" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="composer-cloud-google"
 ```
 
-#### 6.3.c Create CNAME record
+#### 5.3.c Create CNAME record
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="composer-cloud-google" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add composer.cloud.google.com. --name="*.composer.cloud.google.com." --ttl="300" --type="CNAME" --zone="composer-cloud-google" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="composer-cloud-google"
