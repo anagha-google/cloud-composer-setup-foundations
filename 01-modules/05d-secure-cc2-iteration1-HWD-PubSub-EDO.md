@@ -32,15 +32,15 @@ gcloud pubsub topics create $PUBSUB_TRIGGER_TOPIC
 c) Check the Cloud Console UI and browse through the various tabs and configuration<br>
 
 Navigate to Cloud Pub/Sub UI<br>
-![01-02-10](../../01-images/01-02-10.png)
+![01-02-10](../00-images/01-02-10.png)
 <br><br><br>
 
 Review the Pub/Sub topic listing
-![01-02-11](../../01-images/01-02-11.png)
+![01-02-11](../00-images/01-02-11.png)
 <br><br><br>
 
 Browse through the Pub/Sub topic UI
-![01-02-12](../../01-images/01-02-12.png)
+![01-02-12](../00-images/01-02-12.png)
 <br><br><br>
 
 ## 2.0. Get the Airflow Web URL
