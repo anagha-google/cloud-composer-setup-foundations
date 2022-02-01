@@ -336,7 +336,7 @@ use_public_ips_in_dataflow $USE_PUBLIC_IPS_IN_DATAFLOW
 ```
 
 
-![01-03-06](../../01-images/01-03-06.png)
+![01-03-06](../00-images/01-03-06.png)
 <br>
 
 ## 8. Deploy the DAG to Cloud Composer 2
