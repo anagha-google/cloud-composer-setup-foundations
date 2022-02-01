@@ -1,0 +1,455 @@
+# About
+
+This module covers creating an ultra basic DAG that reads a CSV file from GCS, transforms it and loads it into BigQuery from Cloud Dataflow.<br>
+It is based off of a [sample in the GCP documentation](https://cloud.google.com/composer/docs/how-to/using/using-dataflow-template-operator), with some enhancements such as BYO VPC subnet, use a service account etc.
+
+### Prerequisites
+Successful completion of prior modules.
+
+## 1. Review the DAG script
+
+a) From cloud shell, navigate to the directory where the script is located
+```
+cd ~/e2e-demo-indra/03-Cloud-Composer2/02-ultra-basic-gcs-cdf-bq-dag/00-scripts/1-dag-base/
+```
+
+b) Review the DAG Python script "ultra_basic_gcs_cdf_bq_dag.py" available [here](../02-ultra-basic-gcs-cdf-bq-dag/00-scripts/1-dag-base/ultra_basic_gcs_cdf_bq_dag.py)
+<br>
+
+It reads files from GCS, maps/transforms and loads the data into BigQuery, via Cloud Dataflow.
+It uses a Dataflow template available in Cloud storage for the same.
+This template accepts parameters for the transformation function, source and sink paths and such.
+
+## 2. Variables for the lab
+
+In cloud shell, lets define variables to use
+
+```
+PROJECT_NUMBER=914583619622
+PROJECT_ID=e2e-demo-indra
+
+COMPOSER_ENV_NM=cc2-indra-secure
+LOCATION=us-central1
+DATAFLOW_SUBNET="https://www.googleapis.com/compute/v1/projects/$PROJECT_ID-shared/regions/$LOCATION/subnetworks/indra-composer2-snet-shared"
+
+SRC_FILE_STAGING_BUCKET_PATH=gs://cc2-mvp-dag-src
+BQ_DATASET_NM=average_weather_ds
+BQ_TABLE_NM=average_weather
+
+UMSA="indra-sa"
+UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
+USE_PUBLIC_IPS_IN_DATAFLOW="false"
+```
+
+## 3. Create a BigQuery dataset and table
+
+From cloud shell, run the commands below.
+
+### 3.1. Create the dataset
+```
+bq --location=$LOCATION mk \
+--dataset \
+$PROJECT_ID:$BQ_DATASET_NM
+```
+
+![01-03-00](../00-images/01-03-00.png)
+<br><br>
+
+![01-03-01](../00-images/01-03-01.png)
+<br>
+
+### 3.2. Create the table
+```
+bq mk \
+--table \
+$PROJECT_ID:$BQ_DATASET_NM.$BQ_TABLE_NM \
+location:GEOGRAPHY,average_temperature:INTEGER,month:STRING,inches_of_rain:NUMERIC,is_current:BOOLEAN,latest_measurement:DATE
+```
+
+![01-03-02](../00-images/01-03-02.png)
+<br><br>
+
+![01-03-03](../00-images/01-03-03.png)
+<br>
+
+
+### 3.3. Grant IAM permissions for the user managed service account to BigQuery
+
+Grant BQ data editor role
+```
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+--role="roles/bigquery.dataEditor"
+```
+
+Grant BQ admin role (sounds excessive, but is the only way it works)
+```
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+--role="roles/bigquery.admin"
+```
+
+![01-03-03b](../00-images/01-03-03b.png)
+<br>
+
+## 4. Create a GCS bucket, stage the source files, and grant IAM permissions 
+
+### 4.1. Create the bucket from cloud shell
+```
+gsutil mb -c standard -p $SVC_PROJECT_ID -l $LOCATION $SRC_FILE_STAGING_BUCKET_PATH
+```
+
+
+![01-03-04](../00-images/01-03-04.png)
+<br>
+
+### 4.2. Review the files, and understand their purpose
+
+1) Navigate to the local directory in the Git repo cloned, in cloud shell-
+```
+cd ~/e2e-demo-indra/03-Cloud-Composer2/02-ultra-basic-gcs-cdf-bq-dag/00-source-files/
+```
+2) Review data file - inputFile.txt
+```
+POINT(40.7128 74.006),45,'July',2,true,2020-02-16
+POINT(41.8781 87.6298),23,'October',13,false,2015-02-13
+POINT(48.8566 2.3522),80,'December',8,true,2022-01-10
+POINT(6.5244 3.3792),15,'March',14,true,2021-01-01
+```
+
+3) Review the schema file - jsonSchema.json<br>
+
+The data above does not make sense without a schema; Lets review the schema file needed for Cloud dataflow, to read, parse, map, transform and load to BigQuery
+```
+{
+    "BigQuery Schema": [
+    {
+        "name": "location",
+        "type": "GEOGRAPHY",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "average_temperature",
+        "type": "INTEGER",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "month",
+        "type": "STRING",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "inches_of_rain",
+        "type": "NUMERIC"
+    },
+    {
+        "name": "is_current",
+        "type": "BOOLEAN"
+    },
+    {
+        "name": "latest_measurement",
+        "type": "DATE"
+    }]
+}
+```
+5) Review the JSON transform function - transformCSVtoJSON.js<br>
+
+This function just splits the data in the file, into an object, and finally returns it as a JSON string-
+```
+function transformCSVtoJSON(line) {
+var values = line.split(',');
+
+var obj = new Object();
+obj.location = values[0];
+obj.average_temperature = values[1];
+obj.month = values[2];
+obj.inches_of_rain = values[3];
+obj.is_current = values[4];
+obj.latest_measurement = values[5];
+
+var jsonString = JSON.stringify(obj);
+
+return jsonString;
+}
+```
+
+
+### 4.3. Copy the source files to the staging bucket
+```
+
+cd ~/e2e-demo-indra/03-Cloud-Composer2/02-ultra-basic-gcs-cdf-bq-dag/00-source-files
+gsutil cp jsonSchema.json $SRC_FILE_STAGING_BUCKET_PATH
+gsutil cp transformCSVtoJSON.js $SRC_FILE_STAGING_BUCKET_PATH
+gsutil cp inputFile.txt $SRC_FILE_STAGING_BUCKET_PATH
+```
+
+![01-03-05](../00-images/01-03-05.png)
+<br>
+
+### 4.4. Grant IAM permissions 
+The UMSA will execute the Composer pipeline that uses a Dataflow template that reads from GCS, as the user managed service account (UMSA).
+So, we will need to grant the UMSA the permissions to access the bucket.
+```
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+--role="roles/storage.objectViewer"
+```
+
+![01-03-03c](../00-images/01-03-03c.png)
+<br>
+
+## 5. Cloud Dataflow specific permissions
+
+The Composer DAG launches Cloud Dataflow which uses a Dataflow template - therefore no code walk through of Dataflow job.<br> 
+We will run Composer as the UMSA.<br> 
+Therefore, we will need to grant the **UMSA**, the requisite permissions.<br>
+
+1) Dataflow developer role
+```
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+--role="roles/dataflow.developer"
+```
+
+2) Dataflow worker role
+```
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+--role="roles/dataflow.worker"
+```
+
+![01-03-03a](../00-images/01-03-03a.png)
+<br>
+
+## 6. BigQuery specific permissions
+
+The Cloud Dataflow template persis to BigQuery and we will run the DAG as the UMSA. Therefore, we will need to grant the **UMSA**, the requisite permissions.<br>
+
+1) BigQuery admin role
+```
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+--role="roles/bigquery.admin"
+```
+
+2) BigQuery data editor role
+```
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+--role="roles/bigquery.dataEditor"
+```
+
+## 7. Configure Composer Environment Variables
+The DAG expects some environment variables.<br>
+Lets set the same.<br>
+
+
+### 7.1. If VPC-SC is NOT implemented
+To allow yourself to talk to Cloud Composer from gcloud, lets capture the non-static IP granted to cloud shell and allow it access-
+```
+MY_CLOUD_SHELL_IP=$(dig +short myip.opendns.com @resolver1.opendns.com)
+
+gcloud container clusters describe us-central1-cc2-indra-secur-d7e9469b-gke --format "flattened(masterAuthorizedNetworksConfig.cidrBlocks[])" --region us-central1
+
+gcloud container clusters update us-central1-cc2-indra-secur-d7e9469b-gke \
+    --enable-master-authorized-networks \
+    --master-authorized-networks ${MY_CLOUD_SHELL_IP}/32 \
+    --region us-central1
+```
+
+### 7.2. If VPC-SC is implemented, run from the machine allowed into the perimeter
+
+Get the current authorized networks-
+```
+gcloud container clusters describe us-central1-cc2-indra-secur-817151ff-gke \
+    --format "flattened(masterAuthorizedNetworksConfig.cidrBlocks[])" --region us-central1
+```
+
+Be sure to add to the list, not replace; The IP address below is the author's
+```
+gcloud container clusters update us-central1-cc2-indra-secur-817151ff-gke \
+    --enable-master-authorized-networks \
+    --master-authorized-networks 98.222.97.10/32 \
+    --region us-central1
+```
+
+### 7.3. Create environment variables
+
+1) Project ID
+```
+gcloud composer environments run $COMPOSER_ENV_NM \
+  --location $LOCATION \
+  variables set -- \
+  project_id $PROJECT_ID
+```
+
+2) GCS bucket path for source files
+```
+gcloud beta composer environments run $COMPOSER_ENV_NM \
+--location $LOCATION \
+variables set -- \
+source_file_bucket_path $SRC_FILE_STAGING_BUCKET_PATH
+```
+
+3) Subnet to deploy Dataflow into
+```
+gcloud beta composer environments run $COMPOSER_ENV_NM \
+--location $LOCATION \
+variables set -- \
+dataflow_subnet $DATAFLOW_SUBNET
+```
+
+4) max_active_runs_per_dag
+```
+gcloud beta composer environments run $COMPOSER_ENV_NM \
+--location $LOCATION \
+variables set -- \
+max_active_runs_per_dag 1
+```
+
+5) BigQuery dataset name
+```
+gcloud beta composer environments run $COMPOSER_ENV_NM \
+--location $LOCATION \
+variables set -- \
+bq_ds $BQ_DATASET_NM
+```
+
+6) BigQuery table name
+```
+gcloud beta composer environments run $COMPOSER_ENV_NM \
+--location $LOCATION \
+variables set -- \
+bq_tbl_nm $BQ_TABLE_NM
+```
+
+7) User Managed Service Account (UMSA) Fully Qualified Name (FQN)
+```
+gcloud beta composer environments run $COMPOSER_ENV_NM \
+--location $LOCATION \
+variables set -- \
+umsa_fqn $UMSA_FQN
+```
+
+8) Boolean to indicate whether to have Dataflow be public/private IP based
+```
+gcloud beta composer environments run $COMPOSER_ENV_NM \
+--location $LOCATION \
+variables set -- \
+use_public_ips_in_dataflow $USE_PUBLIC_IPS_IN_DATAFLOW
+```
+
+
+![01-03-06](../../01-images/01-03-06.png)
+<br>
+
+## 8. Deploy the DAG to Cloud Composer 2
+
+Run the below command to deploy the DAG
+
+```
+PROJECT_ID=e2e-demo-indra
+UMSA="indra-sa"
+UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
+COMPOSER_ENV_NM=cc2-indra-secure
+LOCATION=us-central1
+```
+
+```
+cd ~/e2e-demo-indra/03-Cloud-Composer2/02-ultra-basic-gcs-cdf-bq-dag/00-scripts/1-dag-base/
+```
+
+```
+gcloud composer environments storage dags import \
+--environment $COMPOSER_ENV_NM  --location $LOCATION \
+--source ultra_basic_gcs_cdf_bq_dag.py \
+--impersonate-service-account $UMSA_FQN
+```
+
+Review the deployment in the Cloud Console, in Cloud Storage.
+![01-03-07](../../01-images/01-03-07.png)
+<br>
+
+
+
+## 9. Switch to the Cloud Composer Aiflow Web UI and view the DAG execution and check results
+
+Switch to Airflow UI, you should see the new DAG executing
+![01-03-08](../00-images/01-03-08.png)
+<br>
+
+
+## 10. Switch to the Cloud Dataflow UI and view the pipeline execution 
+
+Switch to the Cloud Console, and navigate to Cloud Dataflow-
+![01-03-13](../00-images/01-03-13.png)
+<br>
+
+
+Notice that the Dataflow job has started
+![01-03-09](../00-images/01-03-09.png)
+<br>
+
+Explore the DAG
+![01-03-10](../00-images/01-03-10.png)
+<br>
+
+Explore the DAG execution logs
+![01-03-11](../00-images/01-03-11.png)
+<br>
+
+
+
+## 11. Switch to the BigQuery UI and view the results
+
+Switch to BigQuery in the Cloud Console and run the query-
+```
+select * from `e2e-demo-indra.average_weather_ds.average_weather`
+```
+
+You should see the following results-
+
+
+Explore the DAG execution logs
+![01-03-12](../00-images/01-03-12.png)
+<br>
+
+## 12. Recap of IAM permissions
+Our goal was to use a service account to execute the pipeline. This means that the Google managed default service accounts should not have excessive/unnecessary permissions, same with the lab attendee/administrator.<br>
+
+Go to IAM and review the permissions.<br>
+The author's permissions from IAM on Cloud Console are pasted below.<br>
+
+### 12.1. Author's permissions
+
+![01-03-14](../00-images/01-03-14.png)
+<br>
+
+
+### 12.2. UMSA's permissions
+
+![01-03-15](../00-images/01-03-15.png)
+<br>
+
+### 12.3. Cloud Composer Service Agent Account permissions
+
+![01-03-16](../00-images/01-03-16.png)
+<br>
+
+
+### 12.4. All other Google Managed Service Account permissions
+
+Should just be defaults-
+
+![01-03-17](../00-images/01-03-17.png)
+<br>
+
+and finally...
+
+![01-03-18](../00-images/01-03-18.png)
+<br>
+
+
+## 13. Want a challenge?
+
+1) Add some data into inputFile.txt that has "null" for some columns
+2) Edit the transformation Javascript function to set defaults to load into BigQuery
+
+## 14. What's next?
+
+Event-driven orchestration samples..
+1. GCS bucket event driven orchestration of the same DAG
+2. Pub/Sub message event driven orchestration of the same DAG
