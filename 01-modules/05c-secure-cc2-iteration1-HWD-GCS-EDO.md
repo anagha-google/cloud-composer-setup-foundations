@@ -174,7 +174,7 @@ Go to the Cloud Function Logs, in the cloud console and check for errors..
 <br>
 
 And then go to Airflow web UI and click on the DAG node, and look at the logs...
-![01-02-05](../01-images/01-02-05.png)
+![01-02-05](../00-images/01-02-05.png)
 <br>
 
 <hr>
