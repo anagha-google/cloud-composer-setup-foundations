@@ -239,35 +239,31 @@ The DAG expects some environment variables.<br>
 Lets set the same.<br>
 
 
-### 7.1. If VPC-SC is NOT implemented
-To allow yourself to talk to Cloud Composer from gcloud, lets capture the non-static IP granted to cloud shell and allow it access-
+### 7.1. Private Cloud Composer 2 Specific
+To allow yourself to access a secure Cloud Composer cluster from gcloud, lets capture the non-static IP granted to cloud shell and add it to the authorized networks-
+
+a) Your Cloud Shell IP address-
 ```
 MY_CLOUD_SHELL_IP=$(dig +short myip.opendns.com @resolver1.opendns.com)
+```
 
-gcloud container clusters describe us-central1-cc2-indra-secur-d7e9469b-gke --format "flattened(masterAuthorizedNetworksConfig.cidrBlocks[])" --region us-central1
+b) The Cloud Composer GKE cluster
+```
+CC2_GKE_CLUSTER=`gcloud container clusters list | grep NAME | cut -d":" -f2 | sed 's/^ *//g'`
+```
 
-gcloud container clusters update us-central1-cc2-indra-secur-d7e9469b-gke \
+c) Existing authorized networks
+```
+EXISTING_CIDR=`gcloud container clusters describe $CC2_GKE_CLUSTER --format "flattened(masterAuthorizedNetworksConfig.cidrBlocks[])" --region us-central1 | cut -d":" -f2 | sed 's/^ *//g'`
+```
+
+d) Update authorized networks to include your cloud shell IP address
+```
+gcloud container clusters update $CC2_GKE_CLUSTER \
     --enable-master-authorized-networks \
-    --master-authorized-networks ${MY_CLOUD_SHELL_IP}/32 \
-    --region us-central1
+    --master-authorized-networks ${EXISTING_CIDR},${MY_CLOUD_SHELL_IP}/32 \
+    --region $LOCATION
 ```
-
-### 7.2. If VPC-SC is implemented, run from the machine allowed into the perimeter
-
-Get the current authorized networks-
-```
-gcloud container clusters describe us-central1-cc2-indra-secur-817151ff-gke \
-    --format "flattened(masterAuthorizedNetworksConfig.cidrBlocks[])" --region us-central1
-```
-
-Be sure to add to the list, not replace; The IP address below is the author's
-```
-gcloud container clusters update us-central1-cc2-indra-secur-817151ff-gke \
-    --enable-master-authorized-networks \
-    --master-authorized-networks 98.222.97.10/32 \
-    --region us-central1
-```
-
 ### 7.3. Create environment variables
 
 1) Project ID
