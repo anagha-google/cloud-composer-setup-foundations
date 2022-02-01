@@ -355,7 +355,7 @@ gcloud composer environments storage dags import \
 ```
 
 Review the deployment in the Cloud Console, in Cloud Storage.
-![01-03-07](../../01-images/01-03-07.png)
+![01-03-07](../00-images/01-03-07.png)
 <br>
 
 
