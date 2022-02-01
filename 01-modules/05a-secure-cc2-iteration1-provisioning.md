@@ -36,6 +36,7 @@ CC2_CIDR_BLK='10.65.63.0/24'  # Composer network
 CSQL_CIDR_BLK='10.65.64.0/24' # Cloud SQL (Composer metastore)
 
 OFFICE_CIDR=98.222.97.10/32 # Lab attendee's Public IP or your organization's office CIDR block for Airflow UI access
+SERVERLESS_VPC_ACCESS_CONNECTOR_CIDR='10.70.0.0/28' # For event driven orchestration (GCF) to work
 
 CC2_IMAGE_VERSION=composer-2.0.2-airflow-2.1.4  #composer-2.0.0-airflow-2.1.4
 ```
@@ -61,6 +62,7 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
     --service-account $UMSA_FQN \
     --enable-master-authorized-networks \
     --master-authorized-networks ${OFFICE_CIDR} \
-    --web-server-allow-ip ip_range=${OFFICE_CIDR},description="Office CIDR"   
+    --web-server-allow-ip ip_range=${OFFICE_CIDR},description="Office CIDR" \
+    --web-server-allow-ip ip_range=${SERVERLESS_VPC_ACCESS_CONNECTOR_CIDR},description="Serverless VPC Connector subnet"
 ```
 
