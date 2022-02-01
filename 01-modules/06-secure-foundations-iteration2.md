@@ -60,9 +60,29 @@ b) Grab its identifier -
 ACM_POLICY_NUMBER=`gcloud access-context-manager policies list --organization $ORG_ID_NUMBER | grep NAME | cut -d':' -f2 | sed 's/^ *//g'`
 ```
 
-## 4. Create an access level for the operator and the Cloud Build GMSA in the host project
+## 4. Create an access levels for VPC-SC in the host project
+
+### 4.1. Create access level for the office CIDR
+
+```
+cat > ip_access_conditions.yaml << ENDOFFILE
+- ipSubnetworks:
+  - $OFFICE_CIDR
+ENDOFFILE
+```
+
+```
+gcloud access-context-manager levels create OFFICE_CIDR_ACCESS_LVL \
+   --title OFFICE_CIDR_ACCESS_LVL \
+   --basic-level-spec ip_access_conditions.yaml \
+   --combine-function=OR \
+   --policy=$ACM_POLICY_NUMBER
+```
+
+### 4.2. Create access level for the operator and the Cloud Build GMSA 
 
 Both the UPN and the service project Cloud Build Google Managed Service Account will need access to the perimeter. Configure the same.
+
 
 ```
 SVC_PROJECT_CLOUD_BUILD_GMSA_FQN=$SVC_PROJECT_NUMBER@cloudbuild.gserviceaccount.com
@@ -81,6 +101,7 @@ gcloud access-context-manager levels create UPN_SPN_ACCESS_LVL \
    --combine-function=OR \
    --policy=$ACM_POLICY_NUMBER
 ```
+
 
 ## 5. Create a VPC-SC perimeter around an existing set of services 
 
