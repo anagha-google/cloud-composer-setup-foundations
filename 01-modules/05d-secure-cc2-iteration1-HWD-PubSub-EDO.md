@@ -140,7 +140,7 @@ b) Gp back to the Cloud Pub/Sub UI and notice that the deployment of the Pub/Sub
 
 ```
 CURRENT_TIME=`date -d "-6 hours"`
-gcloud pubsub topics publish $PUB_SUB_TRIGGER_TOPIC --message "$CURRENT_TIME"
+gcloud pubsub topics publish $PUBSUB_TRIGGER_TOPIC --message "$CURRENT_TIME"
 ```
 
 Go to the Cloud Function Logs, in the cloud console and check for errors..
