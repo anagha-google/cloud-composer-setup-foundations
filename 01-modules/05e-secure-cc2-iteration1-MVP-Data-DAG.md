@@ -292,7 +292,7 @@ source_file_bucket_path $SRC_FILE_STAGING_BUCKET_PATH
 gcloud beta composer environments run $COMPOSER_ENV_NM \
 --location $LOCATION \
 variables set -- \
-dataflow_subnet $DATAFLOW_SUBNET
+dataflow_subnet $DATAFLOW_SUBNET_FQN
 ```
 
 4) max_active_runs_per_dag
