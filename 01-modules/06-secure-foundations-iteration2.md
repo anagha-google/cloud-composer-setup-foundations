@@ -127,8 +127,6 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create googl
 --dns-name="googleapis.com." \
 --visibility="private" \
 --networks=$SHARED_VPC_NETWORK_NM
-gcloud beta dns --project=e2e-demo-indra-shared \
-record-sets transaction start --zone="googleapis" 
 ```
 
 #### 5.1.b Create A record
