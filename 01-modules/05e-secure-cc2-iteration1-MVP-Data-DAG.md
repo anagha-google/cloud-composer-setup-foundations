@@ -25,20 +25,22 @@ This template accepts parameters for the transformation function, source and sin
 In cloud shell, lets define variables to use
 
 ```
-PROJECT_NUMBER=914583619622
-PROJECT_ID=e2e-demo-indra
+SVC_PROJECT_ID=zeus-svc-proj
+SHARED_VPC_HOST_PROJECT_ID=zeus-host-proj
 
-COMPOSER_ENV_NM=cc2-indra-secure
+UMSA="zeus-sa"
+UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
+
+COMPOSER_ENV_NM=cc2-zeus-secure
 LOCATION=us-central1
-DATAFLOW_SUBNET="https://www.googleapis.com/compute/v1/projects/$PROJECT_ID-shared/regions/$LOCATION/subnetworks/indra-composer2-snet-shared"
+
+USE_PUBLIC_IPS_IN_DATAFLOW="false"
+DATAFLOW_SUBNET_FQN="https://www.googleapis.com/compute/v1/projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/zeus-shared-cc2-snet"
 
 SRC_FILE_STAGING_BUCKET_PATH=gs://cc2-mvp-dag-src
 BQ_DATASET_NM=average_weather_ds
 BQ_TABLE_NM=average_weather
 
-UMSA="indra-sa"
-UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
-USE_PUBLIC_IPS_IN_DATAFLOW="false"
 ```
 
 ## 3. Create a BigQuery dataset and table
@@ -188,7 +190,7 @@ gsutil cp inputFile.txt $SRC_FILE_STAGING_BUCKET_PATH
 The UMSA will execute the Composer pipeline that uses a Dataflow template that reads from GCS, as the user managed service account (UMSA).
 So, we will need to grant the UMSA the permissions to access the bucket.
 ```
-gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
 --role="roles/storage.objectViewer"
 ```
 
@@ -203,13 +205,13 @@ Therefore, we will need to grant the **UMSA**, the requisite permissions.<br>
 
 1) Dataflow developer role
 ```
-gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
 --role="roles/dataflow.developer"
 ```
 
 2) Dataflow worker role
 ```
-gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
 --role="roles/dataflow.worker"
 ```
 
@@ -222,13 +224,13 @@ The Cloud Dataflow template persis to BigQuery and we will run the DAG as the UM
 
 1) BigQuery admin role
 ```
-gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
 --role="roles/bigquery.admin"
 ```
 
 2) BigQuery data editor role
 ```
-gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
 --role="roles/bigquery.dataEditor"
 ```
 
@@ -273,7 +275,7 @@ gcloud container clusters update us-central1-cc2-indra-secur-817151ff-gke \
 gcloud composer environments run $COMPOSER_ENV_NM \
   --location $LOCATION \
   variables set -- \
-  project_id $PROJECT_ID
+  project_id $SVC_PROJECT_ID
 ```
 
 2) GCS bucket path for source files
@@ -341,14 +343,6 @@ use_public_ips_in_dataflow $USE_PUBLIC_IPS_IN_DATAFLOW
 Run the below command to deploy the DAG
 
 ```
-PROJECT_ID=e2e-demo-indra
-UMSA="indra-sa"
-UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
-COMPOSER_ENV_NM=cc2-indra-secure
-LOCATION=us-central1
-```
-
-```
 cd ~/e2e-demo-indra/03-Cloud-Composer2/02-ultra-basic-gcs-cdf-bq-dag/00-scripts/1-dag-base/
 ```
 
@@ -397,7 +391,7 @@ Explore the DAG execution logs
 
 Switch to BigQuery in the Cloud Console and run the query-
 ```
-select * from `e2e-demo-indra.average_weather_ds.average_weather`
+select * from `average_weather_ds.average_weather`
 ```
 
 You should see the following results-
@@ -407,49 +401,10 @@ Explore the DAG execution logs
 ![01-03-12](../00-images/01-03-12.png)
 <br>
 
-## 12. Recap of IAM permissions
-Our goal was to use a service account to execute the pipeline. This means that the Google managed default service accounts should not have excessive/unnecessary permissions, same with the lab attendee/administrator.<br>
-
-Go to IAM and review the permissions.<br>
-The author's permissions from IAM on Cloud Console are pasted below.<br>
-
-### 12.1. Author's permissions
-
-![01-03-14](../00-images/01-03-14.png)
-<br>
-
-
-### 12.2. UMSA's permissions
-
-![01-03-15](../00-images/01-03-15.png)
-<br>
-
-### 12.3. Cloud Composer Service Agent Account permissions
-
-![01-03-16](../00-images/01-03-16.png)
-<br>
-
-
-### 12.4. All other Google Managed Service Account permissions
-
-Should just be defaults-
-
-![01-03-17](../00-images/01-03-17.png)
-<br>
-
-and finally...
-
-![01-03-18](../00-images/01-03-18.png)
-<br>
-
 
 ## 13. Want a challenge?
 
 1) Add some data into inputFile.txt that has "null" for some columns
 2) Edit the transformation Javascript function to set defaults to load into BigQuery
-
-## 14. What's next?
-
-Event-driven orchestration samples..
-1. GCS bucket event driven orchestration of the same DAG
-2. Pub/Sub message event driven orchestration of the same DAG
+3) Configure event driven orchestration of th DAG with a Cloud Storage event 
+4) Configure event driven orchestration of th DAG with a Cloud Pub/Sub event 
