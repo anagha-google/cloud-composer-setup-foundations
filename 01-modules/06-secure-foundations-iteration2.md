@@ -30,6 +30,8 @@ SHARED_VPC_CONNECTOR_SNET_NM=zeus-vpc-cnctr-snet
 SHARED_VPC_CONNECTOR_SNET_CIDR=10.70.0.0/28
 
 OFFICE_CIDR=98.222.97.10/32 # Replace with your CIDR
+
+VPC_SC_SERVICES_SCOPE="bigquery.googleapis.com,dataflow.googleapis.com,cloudfunctions.googleapis.com,pubsub.googleapis.com,sqladmin.googleapis.com,storage.googleapis.com,compute.googleapis.com, container.googleapis.com,containerregistry.googleapis.com,monitoring.googleapis.com,composer.googleapis.com,artifactregistry.googleapis.com"
 ```
 
 ## 1. Enable APIs in both service and host projects
@@ -214,7 +216,7 @@ gcloud compute --project=$SHARED_VPC_HOST_PROJECT_ID firewall-rules create allow
 rm zeus-perimeter-ingress-policies.yaml
 
 cat > zeus-perimeter-ingress-policies.yaml << ENDOFFILE
-ingressPolicies: 
+
   - 
     ingressFrom: 
       identities: 
@@ -256,7 +258,7 @@ ENDOFFILE
 rm zeus-perimeter-egress-policies.yaml
 
 cat > zeus-perimeter-egress-policies.yaml << ENDOFFILE
-egressPolicies: 
+
   - 
     egressFrom: 
       identityType: ANY_SERVICE_ACCOUNT
@@ -296,3 +298,15 @@ gcloud access-context-manager perimeters create xyz_perimeter \
 --perimeter-egress-policies=zeus-perimeter-egress-policies.yaml \
 --policy=$ACM_POLICY_NUMBER
 ```
+
+
+gcloud access-context-manager perimeters create xyz_perimeter \
+--title=xyz_perimeter \
+--perimeter-type="regular" \
+--resources=projects/$SVC_PROJECT_NUMBER,projects/$SHARED_VPC_HOST_PROJECT_NUMBER \
+--access-levels=accessPolicies/$ACM_POLICY_NUMBER/accessLevels/UPN_SPN_ACCESS_LVL,accessPolicies/$ACM_POLICY_NUMBER/accessLevels/OFFICE_CIDR_ACCESS_LVL \
+--restricted-services=$VPC_SC_SERVICES_SCOPE \
+--vpc-allowed-services=$VPC_SC_SERVICES_SCOPE \
+--ingress-policies=zeus-perimeter-ingress-policies.yaml \
+--egress-policies=zeus-perimeter-egress-policies.yaml \
+--policy=$ACM_POLICY_NUMBER
