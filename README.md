@@ -28,20 +28,9 @@ The DAGs are embarassigly basic to maintain focus on environment provisioning, s
 
 This module includes the below sub-modules, is standalone and is available in a separate [repo](https://github.com/anagha-google/composer2-basic-orchestration). This setup is recommended for kicking tires, simple demos, but is **not a secure setup**. It is recommended that you run through this module if you are new to Cloud Composer 2 and its provisioning, new to authoring, deploying DAGs, and triggering DAG execution in a event driven fashion. <br>
 
-If you need to start with a secure Cloud Composer 2 setup, jump to module 3, below. The same DAGs in module 1, are used across modules.
+If you need to start with a secure Cloud Composer 2 setup, jump to module 1, below. The same DAGs in section 1, are used across modules.
 
-| # | Sub-Modules | 
-| -- | :--- |
-| 1 | Foundational setup - network, subnet, org policies, IAM permissions etc | 
-| 2 | Provision Cloud Composer 2 |
-| 3 | Deploy and test a Hello World DAG |
-| 4 | Deploy and test GCS Event Driven Orchestration of the Hello World DAG |
-| 5 | Deploy and test Pub/Sub Event Driven Orchestration of the Hello World DAG |
-| 6 | Deploy and test Time Event Driven Orchestration of the Hello World DAG |
-| 7 | Deploy and test a more realistic DAG with GCS, Cloud Dataflow and BigQuery |
-
-
-### Hands on Lab Module 1: Foundational One-time Setup Lab for a secure Cloud Composer 2 deployment
+### Module 1: Foundational One-time Setup Lab for a secure Cloud Composer 2 deployment
 
 [Jump to lab module](01-modules/03-foundational-setup.md)
 
@@ -59,7 +48,7 @@ If you need to start with a secure Cloud Composer 2 setup, jump to module 3, bel
 | 10 | BigQuery specific IAM permissions | 
 
 
-### Hands on Lab Module 2: Secure Cloud Composer setup - iteration 1
+### Module 2: Secure Cloud Composer setup - iteration 1
 
 This module covers the following security features/components/layers-
 
@@ -67,7 +56,7 @@ This module covers the following security features/components/layers-
 | -- | :---    | 
 | 1 | ..|  
 
-### Hands on Lab Module 3: Secure Cloud Composer setup - iteration 2
+### Module 3: Secure Cloud Composer setup - iteration 2
 
 This module covers provisioning a secure Cloud Composer environment and testing scheduled as well as event driven orchestration of a "Hello World" DAG, followed by a minimum viable data pipeline/DAG.
 
@@ -75,7 +64,7 @@ This module covers provisioning a secure Cloud Composer environment and testing 
 | -- | :---    | 
 | 1 | ..|  
 
-### Hands on Lab Module 4: Secure Cloud Composer setup - iteration 2
+### Module 4: Secure Cloud Composer setup - iteration 2
 
 This module adds VPC Service Controls (VPC-SC) to the setup in module 3.
 
@@ -84,7 +73,7 @@ This module adds VPC Service Controls (VPC-SC) to the setup in module 3.
 | 1 | ..| 
 
 
-### Hands on Lab Module 5: Secure Cloud Composer 2 setup - iteration 3
+### Module 5: Secure Cloud Composer 2 setup - iteration 3
 
 This module adds Private Service Connect (PSC) to the setup in module 4.
 
