@@ -12,7 +12,13 @@ The repository contains modules that are deliberately detailed with sequential s
 
 ## Table of Contents
 
-### Section 1: Walk through of Cloud Composer DAGs and associated code
+### Section 1: Public Cloud Composer 2 cluster setup
+
+This module includes the below sub-modules, is standalone and is available in a separate [repo](https://github.com/anagha-google/composer2-basic-orchestration). This setup is recommended for kicking tires, simple demos, but is **not a secure setup**. It is recommended that you run through this module if you are new to Cloud Composer 2 and its provisioning, new to authoring, deploying DAGs, and triggering DAG execution in a event driven fashion. <br>
+
+If you need to start with a secure Cloud Composer 2 setup, jump to section 2, below. The same DAGs in section 2, are used across public/private Cloud Composer provisioning modules.
+
+### Section 2: Walk through of Cloud Composer DAGs and associated code
 
 The DAGs are deliberately embarassigly basic to maintain focus on environment provisioning->securing->testing.
 
@@ -24,11 +30,6 @@ The DAGs are deliberately embarassigly basic to maintain focus on environment pr
 | 4 | Walk through of Pub/Sub Event Driven Orchestration of the Hello World DAG |
 | 5 | Walk through of a slightly more realistic DAG with GCS, Cloud Dataflow and BigQuery |
 
-### Section 2: Public Cloud Composer 2 cluster setup
-
-This module includes the below sub-modules, is standalone and is available in a separate [repo](https://github.com/anagha-google/composer2-basic-orchestration). This setup is recommended for kicking tires, simple demos, but is **not a secure setup**. It is recommended that you run through this module if you are new to Cloud Composer 2 and its provisioning, new to authoring, deploying DAGs, and triggering DAG execution in a event driven fashion. <br>
-
-If you need to start with a secure Cloud Composer 2 setup, jump to module 1, below. The same DAGs in section 1, are used across modules.
 
 ### Module 1: Foundational One-time Setup Lab for a secure Cloud Composer 2 deployment
 
