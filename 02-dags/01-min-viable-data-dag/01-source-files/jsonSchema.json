@@ -1,0 +1,30 @@
+{
+    "BigQuery Schema": [
+    {
+        "name": "location",
+        "type": "GEOGRAPHY",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "average_temperature",
+        "type": "INTEGER",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "month",
+        "type": "STRING",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "inches_of_rain",
+        "type": "NUMERIC"
+    },
+    {
+        "name": "is_current",
+        "type": "BOOLEAN"
+    },
+    {
+        "name": "latest_measurement",
+        "type": "DATE"
+    }]
+}
