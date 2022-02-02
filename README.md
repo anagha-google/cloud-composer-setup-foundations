@@ -14,7 +14,7 @@ The repository contains modules that are deliberately detailed with sequential s
 
 ### Section 1: Public Cloud Composer 2 cluster setup
 
-This module includes the below sub-modules, is standalone and is available in a separate [repo](https://github.com/anagha-google/composer2-basic-orchestration). This setup is recommended for kicking tires, simple demos, but is **not a secure setup**. It is recommended that you run through this module if you are new to Cloud Composer 2 and its provisioning, new to authoring, deploying DAGs, and triggering DAG execution in a event driven fashion. <br>
+This module is available in a separate [repo](https://github.com/anagha-google/composer2-basic-orchestration). This setup is recommended for kicking tires, simple demos, but is **not a secure setup**. It is recommended that you run through this module if you are new to Cloud Composer 2 and its provisioning, new to authoring, deploying DAGs, and triggering DAG execution in a event driven fashion. <br>
 
 If you need to start with a secure Cloud Composer 2 setup, jump to section 2, below. The same DAGs in section 2, are used across public/private Cloud Composer provisioning modules.
 
