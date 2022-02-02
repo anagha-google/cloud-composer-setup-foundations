@@ -14,7 +14,7 @@ The repository contains modules that are deliberately detailed with sequential s
 
 ### Section 1: Walk through of Cloud Composer DAGs and associated code
 
-The DAGs are embarassigly basic to maintain focus on environment provisioning, stability and securing.
+The DAGs are deliberately embarassigly basic to maintain focus on environment provisioning->securing->testing.
 
 | # | Sub-Modules | 
 | -- | :--- |
