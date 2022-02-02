@@ -27,8 +27,7 @@ SHARED_VPC_CC2_SNET_NM="zeus-shared-cc2-snet"
 SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
 
 SHARED_VPC_CONNECTOR_SNET_NM=zeus-vpc-cnctr-snet
-
-SHARED_VPC_CC2_SNET_CIDR_BLK='10.65.61.0/24' # Number of GKE nodes and ILBs available 
+SHARED_VPC_CONNECTOR_SNET_CIDR=10.70.0.0/28
 
 OFFICE_CIDR=98.222.97.10/32 # Replace with your CIDR
 ```
@@ -37,6 +36,7 @@ OFFICE_CIDR=98.222.97.10/32 # Replace with your CIDR
 
 ```
 gcloud services enable accesscontextmanager.googleapis.com
+gcloud services enable cloudresourcemanager.googleapis.com
 ```
 
 ## 2. IAM permissions to operate with Access Context Manager in host project
@@ -62,7 +62,7 @@ ACM_POLICY_NUMBER=`gcloud access-context-manager policies list --organization $O
 
 ## 4. Create an access levels for VPC-SC in the host project
 
-### 4.1. Create access level for the office CIDR
+### 4.1. Create access level for the office CIDR & VPC Access Connector Subnet
 
 ```
 cat > ip_access_conditions.yaml << ENDOFFILE
