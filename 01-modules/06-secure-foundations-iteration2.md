@@ -287,21 +287,8 @@ ENDOFFILE
 ### 7.0.3. Create perimeter
 
 ```
-gcloud access-context-manager perimeters create xyz_perimeter \
---perimeter-title=xyz_perimeter \
---perimeter-type="regular" \
---perimeter-resources=projects/$SVC_PROJECT_NUMBER,projects/$SHARED_VPC_HOST_PROJECT_NUMBER \
---perimeter-access-levels=accessPolicies/$ACM_POLICY_NUMBER/accessLevels/UPN_SPN_ACCESS_LVL,accessPolicies/$ACM_POLICY_NUMBER/accessLevels/OFFICE_CIDR_ACCESS_LVL \
---perimeter-restricted-services="bigquery.googleapis.com,dataflow.googleapis.com,cloudfunctions.googleapis.com,pubsub.googleapis.com,sqladmin.googleapis.com,storage.googleapis.com,compute.googleapis.com, container.googleapis.com,containerregistry.googleapis.com,monitoring.googleapis.com,composer.googleapis.com,artifactregistry.googleapis.com" \
---perimeter-vpc-allowed-services={} \
---perimeter-ingress-policies=zeus-perimeter-ingress-policies.yaml \
---perimeter-egress-policies=zeus-perimeter-egress-policies.yaml \
---policy=$ACM_POLICY_NUMBER
-```
-
-
-gcloud access-context-manager perimeters create xyz_perimeter \
---title=xyz_perimeter \
+gcloud access-context-manager perimeters create zeus_perimeter \
+--title=zeus_perimeter \
 --perimeter-type="regular" \
 --resources=projects/$SVC_PROJECT_NUMBER,projects/$SHARED_VPC_HOST_PROJECT_NUMBER \
 --access-levels=accessPolicies/$ACM_POLICY_NUMBER/accessLevels/UPN_SPN_ACCESS_LVL,accessPolicies/$ACM_POLICY_NUMBER/accessLevels/OFFICE_CIDR_ACCESS_LVL \
@@ -310,3 +297,4 @@ gcloud access-context-manager perimeters create xyz_perimeter \
 --ingress-policies=zeus-perimeter-ingress-policies.yaml \
 --egress-policies=zeus-perimeter-egress-policies.yaml \
 --policy=$ACM_POLICY_NUMBER
+```
