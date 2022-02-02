@@ -208,35 +208,76 @@ gcloud compute --project=$SHARED_VPC_HOST_PROJECT_ID firewall-rules create allow
 
 ## 7.0. Create the VPC-SC
 
-## 7.0.1. Create policies file for ingress 
+### 7.0.1. Create policies file for ingress 
 
 ```
 rm zeus-perimeter-ingress-policies.yaml
 
 cat > zeus-perimeter-ingress-policies.yaml << ENDOFFILE
-- ingressFrom:
-    identities:
-    - user:$$ADMIN_UPN_FQN
-    sources:
-    - accessLevel: accessPolicies/$ACM_POLICY_NUMBER/accessLevels/UPN_SPN_ACCESS_LVL
-    - accessLevel: accessPolicies/$ACM_POLICY_NUMBER/accessLevels/OFFICE_CIDR_ACCESS_LVL
-  ingressTo:
-    operations:
-    - serviceName: '*'
-    resources:
-    - projects/$SHARED_VPC_HOST_PROJECT_NUMBER
-    - projects/$SVC_PROJECT_NUMBER
-- ingressFrom:
-    identities:
-    - serviceAccount:$SVC_PROJECT_UMSA_FQN
-    sources:
-    - accessLevel: accessPolicies/$ACM_POLICY_NUMBER/accessLevels/UPN_SPN_ACCESS_LVL
-    - accessLevel: accessPolicies/$ACM_POLICY_NUMBER/accessLevels/OFFICE_CIDR_ACCESS_LVL
-  ingressTo:
-    operations:
-    - serviceName: '*'
-    resources:
-    - projects/$SHARED_VPC_HOST_PROJECT_NUMBER
-    - projects/$SVC_PROJECT_NUMBER
+ingressPolicies: 
+  - 
+    ingressFrom: 
+      identities: 
+        - "user:$ADMIN_UPN_FQN"
+      sources: 
+        - 
+          accessLevel: accessPolicies/$ACM_POLICY_NUMBER/accessLevels/UPN_SPN_ACCESS_LVL
+        - 
+          accessLevel: accessPolicies/$ACM_POLICY_NUMBER/accessLevels/OFFICE_CIDR_ACCESS_LVL
+    ingressTo: 
+      operations: 
+        - 
+          serviceName: "*"
+      resources: 
+        - projects/$SHARED_VPC_HOST_PROJECT_NUMBER
+        - projects/$SVC_PROJECT_NUMBER
+  - 
+    ingressFrom: 
+      identities: 
+        - "serviceAccount:$SVC_PROJECT_UMSA_FQN"
+      sources: 
+        - 
+          accessLevel: accessPolicies/$ACM_POLICY_NUMBER/accessLevels/UPN_SPN_ACCESS_LVL
+        - 
+          accessLevel: accessPolicies/$ACM_POLICY_NUMBER/accessLevels/OFFICE_CIDR_ACCESS_LVL
+    ingressTo: 
+      operations: 
+        - 
+          serviceName: "*"
+      resources: 
+        - projects/$SHARED_VPC_HOST_PROJECT_NUMBER
+        - projects/$SVC_PROJECT_NUMBER
+ENDOFFILE
+```
+
+### 7.0.2. Create policies file for egress 
+
+```
+rm zeus-perimeter-egress-policies.yaml
+
+cat > zeus-perimeter-egress-policies.yaml << ENDOFFILE
+egressPolicies: 
+  - 
+    egressFrom: 
+      identityType: ANY_SERVICE_ACCOUNT
+    egressTo: 
+      operations: 
+        - 
+          serviceName: "*"
+      resources: 
+        - projects/$SHARED_VPC_HOST_PROJECT_NUMBER
+        - projects/$SVC_PROJECT_NUMBER
+  - 
+    egressFrom: 
+      identities: 
+        - "user:$ADMIN_UPN_FQN"
+    egressTo: 
+      operations: 
+        - 
+          serviceName: "*"
+      resources: 
+        - projects/$SHARED_VPC_HOST_PROJECT_NUMBER
+        - projects/$SVC_PROJECT_NUMBER
+
 ENDOFFILE
 ```
