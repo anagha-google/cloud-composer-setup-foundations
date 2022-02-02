@@ -12,7 +12,7 @@ The repository contains modules that are deliberately detailed with sequential s
 
 ## Table of Contents
 
-### Section 1: Public Cloud Composer 2 cluster setup
+### Section 1: Public Cloud Composer cluster setup
 
 This module is available in a separate [repo](https://github.com/anagha-google/composer2-basic-orchestration). This setup is recommended for kicking tires, simple demos, but is **not a secure setup**. It is recommended that you run through this module if you are new to Cloud Composer 2 and its provisioning, new to authoring, deploying DAGs, and triggering DAG execution in a event driven fashion. <br>
 
