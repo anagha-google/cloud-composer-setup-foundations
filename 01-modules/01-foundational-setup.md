@@ -447,7 +447,7 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 
 ## 12. Permissions specific to Google Managed Default Service Accounts
 
-### 12.1. Permissions for GCE Default GMSA to interact download from container registry
+### 12.1. Permissions for GCE Default GMSA to interact/download from container registry
 
 ```
 SVC_PROJECT_GCE_DEFAULT_GMSA=$SVC_PROJECT_NUMBER-compute@developer.gserviceaccount.com
