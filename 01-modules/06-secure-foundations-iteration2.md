@@ -86,11 +86,14 @@ Both the UPN and the service project Cloud Build Google Managed Service Account 
 
 ```
 SVC_PROJECT_CLOUD_BUILD_GMSA_FQN=$SVC_PROJECT_NUMBER@cloudbuild.gserviceaccount.com
+SVC_PROJECT_CLOUD_FUNCTION_GMSA_FQN=$SVC_PROJECT_NUMBER@gcf-admin-robot.iam.gserviceaccount.com
 
 cat > access_conditions.yaml << ENDOFFILE
 - members:
     - user:$ADMIN_UPN_FQN
     - serviceAccount:$SVC_PROJECT_CLOUD_BUILD_GMSA_FQN
+    - serviceAccount:$SVC_PROJECT_CLOUD_FUNCTION_GMSA_FQN
+    - serviceAccount:$SVC_PROJECT_UMSA_FQN
 ENDOFFILE
 ```
 
