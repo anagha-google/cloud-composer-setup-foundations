@@ -47,6 +47,7 @@ The DAGs are deliberately embarassigly basic to maintain focus on environment pr
 | 8 | Cloud Dataflow specific IAM permissions | 
 | 9 | Cloud Storage specific IAM permissions | 
 | 10 | BigQuery specific IAM permissions | 
+| 11 | Permissions specific to Cloud Composer 2 infrastructure |
 
 
 ### Module 2: Secure Cloud Composer setup - iteration 1
