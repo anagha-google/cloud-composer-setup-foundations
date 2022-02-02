@@ -1,6 +1,6 @@
 # About
 
-This module covers creation of a Shared VPC, subnets, requisite organizational policies, associated firewall rules, associated IAM permissions, in preparation of a secure and realistic Cloud Composer setup.<br>
+This module covers creation of a Shared VPC, subnets, requisite organizational policies, associated firewall rules, associated IAM permissions, DNS entries, in preparation of a secure and realistic Cloud Composer setup.<br>
 
 Shared VPC enables organizations to establish budgeting and access control boundaries at the project level while allowing for secure and efficient communication using private IPs across those boundaries. In the Shared VPC configuration, Cloud Composer can invoke services hosted in other Google Cloud projects in the same organization without exposing services to the public internet.
 
