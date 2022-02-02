@@ -161,6 +161,7 @@ c) Review the various tabs
 
 ### 8.0.1. Create a trigger file in GCS
 ```
+GCF_TRIGGER_BUCKET_FQN=gs://cc2-hw-trigger-bucket
 touch dummy.txt
 gsutil cp dummy.txt $GCF_TRIGGER_BUCKET_FQN
 rm dummy.txt
