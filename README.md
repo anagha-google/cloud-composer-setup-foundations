@@ -1,13 +1,14 @@
-# Cloud Composer 2 Provisioning Foundations for Data Analytics Endeavors
+# Cloud Composer Provisioning Foundations for Data Analytics Endeavors
 
 ## About the Repository
-This repository includes hands-on-lab modules that cover provisioning the foundational infrastructure and security in GCP for Cloud Composer 2 based Data Analytics projects. It does not cover authoring complex Apache Airflow DAGs and Airflow functionality.
-
-## Structure
-The repository contains modules that are deliberately detailed with sequential steps (versus fully scripted, automated) to provide an understanding of what is involved. We do plan to complement this lab with Terraform scripts for automated provisioning.
+This repository contains hands-on-lab modules that cover provisioning the foundational infrastructure and security in GCP for Cloud Composer 2 based Data Analytics projects. It does not cover authoring complex Apache Airflow DAGs and Airflow functionality.
 
 ## Motivation and Audience
 Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on the intricacies of foundational setup, unblocking and improving speed to productivity in their core competency (analytics). For the GCP Customer Engineer, the hands on labs cover provisioning in **Argolis**. 
+
+## Structure
+The repository contains modules that are deliberately detailed with sequential steps (versus fully scripted, automated) to provide an understanding of what is involved. The hands on lab modules will be complemented with Terraform scripts for automation.
+
 
 ## Table of Contents
 
