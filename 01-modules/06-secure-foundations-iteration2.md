@@ -285,7 +285,7 @@ ENDOFFILE
 ### 7.0.3. Create perimeter
 
 ```
-gcloud access-context-manager perimeters create create xyz_perimeter \
+gcloud access-context-manager perimeters create xyz_perimeter \
 --perimeter-title=xyz_perimeter \
 --perimeter-type="regular" \
 --perimeter-resources=projects/$SVC_PROJECT_NUMBER,projects/$SHARED_VPC_HOST_PROJECT_NUMBER \
