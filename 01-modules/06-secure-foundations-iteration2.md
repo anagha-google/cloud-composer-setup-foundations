@@ -298,3 +298,7 @@ gcloud access-context-manager perimeters create zeus_perimeter \
 --egress-policies=zeus-perimeter-egress-policies.yaml \
 --policy=$ACM_POLICY_NUMBER
 ```
+
+### 7.0.4. Restest Cloud Composer 
+
+Retest all the three DAG modules you created to ensure they work with the perimeter in place.
