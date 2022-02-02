@@ -190,9 +190,8 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction st
 
 ## 6.0 Configure incremental firewall rules in the host project
 
+To connect to restricted Google APIs..
 ```
-#1. To connect to restricted Google APIs
-
 gcloud compute --project=$SHARED_VPC_HOST_PROJECT_ID firewall-rules create allow-gke-egress-rgapis \
 --direction=EGRESS \
 --priority=1000 \
@@ -201,3 +200,7 @@ gcloud compute --project=$SHARED_VPC_HOST_PROJECT_ID firewall-rules create allow
 --rules=tcp:443 \
 --destination-ranges=199.36.153.4/30
 ```
+
+## 7.0. Create the VPC-SC
+
+
