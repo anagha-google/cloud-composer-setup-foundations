@@ -9,7 +9,7 @@ Completion of the prior module.
 
 ## 2. Variables used in the project
 
-In Cloud shell scoped to the service project/data analytics project, e2e-demo-indra in the author's case, declare the below-
+In Cloud shell scoped to the service project, declare the below-
 ```
 SVC_PROJECT_NUMBER=187732393981 #Replace with yours
 SVC_PROJECT_ID=zeus-svc-proj #Data analytics service project
