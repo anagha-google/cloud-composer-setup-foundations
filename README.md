@@ -18,22 +18,22 @@ This module includes the below sub-modules, is standalone and is available in a 
 
 If you need to start with a secure Cloud Composer 2 setup, jump to section 2, below. The same DAGs in section 2, are used across public/private Cloud Composer provisioning modules.
 
-### Section 2: Walk through of Cloud Composer DAGs and associated code
+### Section 2: Cloud Composer DAGs used in the lab modules 
 
 The DAGs are deliberately embarassigly basic to maintain focus on environment provisioning->securing->testing.
 
 | # | Sub-Modules | 
 | -- | :--- |
 | 1 | Git repo cloning | 
-| 2 | Walk through of a Hello World DAG |
-| 3 | Walk through of GCS Event Driven Orchestration of the Hello World DAG |
-| 4 | Walk through of Pub/Sub Event Driven Orchestration of the Hello World DAG |
-| 5 | Walk through of a slightly more realistic DAG with GCS, Cloud Dataflow and BigQuery |
+| 2 | Hello World DAG |
+| 3 | GCS Event Driven Orchestration of the Hello World DAG |
+| 4 | Pub/Sub Event Driven Orchestration of the Hello World DAG |
+| 5 | Minimum viable (ETL) DAG with GCS, Cloud Dataflow and BigQuery |
 
 
 ### Module 1: Foundational One-time Setup Lab for a secure Cloud Composer 2 deployment
 
-[Jump to lab module](01-modules/03-foundational-setup.md)
+[Jump to lab module](01-modules/01-foundational-setup.md)
 
 | # | Sub-module | 
 | -- | :---    |
