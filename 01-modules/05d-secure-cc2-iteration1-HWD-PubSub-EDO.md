@@ -139,6 +139,7 @@ b) Gp back to the Cloud Pub/Sub UI and notice that the deployment of the Pub/Sub
 ## 8.0.Test the function from cloud shell
 
 ```
+PUBSUB_TRIGGER_TOPIC=cc2-hw-trigger-topic
 CURRENT_TIME=`date -d "-6 hours"`
 gcloud pubsub topics publish $PUBSUB_TRIGGER_TOPIC --message "$CURRENT_TIME"
 ```
