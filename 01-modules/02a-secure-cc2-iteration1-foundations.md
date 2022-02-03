@@ -16,7 +16,7 @@ To set up Shared VPC, you will need to pre-define the following IP ranges in the
 And ensure that secondary ranges are large enough to accommodate the cluster's size and your environment scaling.<br><br>
 
 [GCP Documentation for Cloud Composer 2 with Shared VPC](https://cloud.google.com/composer/docs/composer-2/configure-shared-vpc)<br>
-Sub-module dependencies: Successful completion of Module 2
+Sub-module dependencies: Successful completion of [foundational setup](01-foundational-setup.md).
 <hr>
 
 ## 1. Create a project for "Shared VPC" called zeus-host-proj 
