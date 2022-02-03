@@ -110,5 +110,5 @@ This is a community effort. Contributions are welcome.<br>
 
 | # | Contributor | Contribution | About |
 | -- | :---    | :---| :---| 
-| 1 | Anagha Khanolkar | Vision and Primary Author | Data Analytics Specialist Engineer, NATT, Google Cloud |
+| 1 | Anagha Khanolkar | Author | Data Analytics Specialist Engineer, NATT, Google Cloud |
 | 2 | Jay O' Leary | Testing | Data Analytics Specialist Engineer, SRTT, Google Cloud |
