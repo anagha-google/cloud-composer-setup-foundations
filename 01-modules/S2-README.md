@@ -110,14 +110,16 @@ You should see-
 - jsonSchema.json is the schema file
 - transformCSVtoJSON.js is a Javascript file that has a transformation function to be run by Cloud Dataflow
 <br>
+
 Now lets review the DAG script-
 ```
 ls -al 00-scripts
 ```
+
 You should see-
 ```
 -rw-r--r--  1 ...  primarygroup  3541 Feb  2 15:16 min-viable-data-dag.py
 ```
 
-Review the script min-viable-data-dag.py. The DAG is explained in depth in the GCP Cloud Composer documentation.
+Review the script ```min-viable-data-dag.py```. The DAG is explained in depth in the GCP Cloud Composer documentation.
 
