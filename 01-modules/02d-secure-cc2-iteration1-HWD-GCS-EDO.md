@@ -3,16 +3,9 @@
 This module builds on the "Hello World" exercise, by adding the orchestration element to it.<br>
 Specifically, GCS bucket event driven orchestration.<br>
 
+![hwd-edo-gcs](../00-images/hwd-edo-gcs.png)
+
 FIRST and foremost - read this [GCP documentation](https://cloud.google.com/composer/docs/composer-2/triggering-with-gcf) to get an understanding of what we are about to attempt. Start with step 1, once done.
-
-## Duration 
-~ 30 minutes or less
-
-## Skill Level
-Medium
-
-## Goal
-The attendee should be able to trigger a DAG execution in response to a GCS event.
 
 
 ## 1.0. Create a GCS trigger bucket
@@ -58,7 +51,7 @@ https://e2XXXXXXX09e8bf9-dot-us-central1.composer.googleusercontent.com
 
 In cloud shell, navigate to the scripts directory for the exercise-
 ```
-cd ~/e2e-demo-indra/03-Cloud-Composer2/01-hello-world-dag/00-scripts/2-dag-gcf-orchestrated/
+cd ~/cloud-composer-setup-foundations/02-dags/00-hello-world-dag/2-dag-gcf-orchestrated
 ```
 
 Open and review the script below-
@@ -179,4 +172,5 @@ And then go to Airflow web UI and click on the DAG node, and look at the logs...
 <br>
 
 <hr>
-This concludes the lab module.
+
+This concludes the lab module. Proceed to the [next module](02e-secure-cc2-iteration1-HWD-PubSub-EDO.md).
