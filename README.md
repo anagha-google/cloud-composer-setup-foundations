@@ -54,9 +54,25 @@ The DAGs are deliberately embarassigly basic to maintain focus on environment pr
 
 This module covers the following security features/components/layers-
 
-| # | Module | 
-| -- | :---    | 
-| 1 | ..|  
+| # | Sub-module | 
+| -- | :---    |
+| 1 | Create a (host) project for the shared VPC | 
+| 2 | Enable requisite Google APIs |  
+| 3 | Apply organizational policies in the host project | 
+| 4 | Grant operator/admin permissions in the host project | 
+| 5 | Enable shared VPC in the host project | 
+| 6 | Associate the service (data analytics) project with the "Shared VPC" project | 
+| 7 | Create a VPC in the host project | 
+| 8 | Create subnets for secure Cloud Composer 2 & for a shared VPC Access Connector | 
+| 9 | Create firewall rules | 
+| 10 | Configure DNS for \*.pkg.dev | 
+| 11 | Grant IAM permissions in host project for service project's service accounts |
+| 12 | Create the Serverless VPC Access Connector |
+| 13 | Configure networking to allow downloads of external packages  |
+| 14 | Deploy and test a "Hello World" DAG  |
+| 15 | Deploy and test a Cloud Function to call the "Hello World" DAG when triggered by a Cloud Storage event  |
+| 16 | Deploy and test a Cloud Function to call the "Hello World" DAG when triggered by a Cloud Pub/Sub event  |
+| 17 | Deploy and test a minimum viable ETL DAG (GCS->Cloud Dataflow for ETL->BigQuery  |
 
 ### Module 3: Secure Cloud Composer setup - iteration 2
 
