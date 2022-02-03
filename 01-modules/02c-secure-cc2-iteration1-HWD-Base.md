@@ -1,18 +1,6 @@
 # About
 
-This module covers deploying a "Hello World" DAG, and executing the same, manually, in a secure cluster.<br>
-
-## Duration 
-~ 30 minutes or less
-
-## Skill Level
-Low
-
-## Goal
-The attendee should be able to create a very basic DAG successfully in a secure Cloud Composer 2 cluster.
-
-## Note
-This lab needs to be run in the data analytics project (e2e-demo-indra, in the author's case).
+This module covers deploying the "Hello World" DAG, and executing the same, manually, in a secure cluster.<br>
 
 ## Prerequisites
 All the prior modules.
@@ -21,7 +9,7 @@ All the prior modules.
 
 a) Navigate to the scripts directory cloned in cloud shell-
 ```
-cd ~/e2e-demo-indra/03-Cloud-Composer2/01-hello-world-dag/00-scripts/1-dag-base/
+cd ~/cloud-composer-setup-foundations/02-dags/00-hello-world-dag/1-dag-base
 ```
 
 b) Declare variables-
