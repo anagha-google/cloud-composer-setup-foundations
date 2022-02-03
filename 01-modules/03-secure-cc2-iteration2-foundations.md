@@ -62,7 +62,7 @@ b) Grab its identifier -
 ACM_POLICY_NUMBER=`gcloud access-context-manager policies list --organization $ORG_ID_NUMBER | grep NAME | cut -d':' -f2 | sed 's/^ *//g'`
 ```
 
-## 4. Create an access levels for VPC-SC in the host project
+## 4. Create access levels in the host project for the VPC perimeter 
 
 ### 4.1. Create access level for the office CIDR & VPC Access Connector Subnet
 
