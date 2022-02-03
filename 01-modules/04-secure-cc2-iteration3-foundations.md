@@ -95,4 +95,9 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
 
 <hr>
 
-This concludes the module. Validate the setup by running all the DAGs, manually and with event driven orchestraion. Delete the projects upon completion.
+## 5.0. Testing
+
+Validate the setup by running all the DAGs, manually and with event driven orchestraion. 
+
+## 6.0. Housekeeping
+This concludes the module. Delete the projects created, upon completion.
