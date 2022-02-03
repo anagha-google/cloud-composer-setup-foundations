@@ -95,4 +95,4 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
 
 <hr>
 
-This concludes the module, please proceed to the [next module](04-secure-cc2-iteration3-foundations.md).
+This concludes the module. Validate the setup by running all the DAGs, manually and with event driven orchestraion. Delete the projects upon completion.
