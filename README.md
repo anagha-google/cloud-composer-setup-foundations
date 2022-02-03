@@ -108,10 +108,10 @@ This module adds Private Service Connect (PSC) to the setup in module 4.
 
 
 ## Credits
-This is a community contribution. <br>
+This is a community effort. Contributions are welcome.<br>
 
 
 | # | Contributor | Contribution | About |
 | -- | :---    | :---| :---| 
-| 1 | Anagha Khanolkar | Primary Author | Data Analytics Specialist, Google Cloud |
-| 2 | Jay O' Leary | Testing | Data Analytics Specialist, Google Cloud |
+| 1 | Anagha Khanolkar | Vision and Primary Author | Data Analytics Specialist Engineer, NATT, Google Cloud |
+| 2 | Jay O' Leary | Testing | Data Analytics Specialist Engineer, SRTT, Google Cloud |
