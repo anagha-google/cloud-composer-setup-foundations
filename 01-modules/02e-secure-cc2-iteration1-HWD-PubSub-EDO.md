@@ -3,6 +3,8 @@
 This module builds on the "Hello World" exercise, by adding the orchestration element to it.<br>
 Specifically, Pub/Sub message event driven orchestration.<br>
 
+![hwd-edo-pubsub](../00-images/hwd-edo-pubsub.png)
+
 
 ## 1.0. Create a Google Pub/Sub topic
 
@@ -61,7 +63,7 @@ https://e2XXXXXXX09e8bf9-dot-us-central1.composer.googleusercontent.com
 
 In cloud shell, navigate to the scripts directory for the exercise-
 ```
-cd ~/e2e-demo-indra/03-Cloud-Composer2/01-hello-world-dag/00-scripts/3-dag-pubsub-orchestrated/
+cd ~/cloud-composer-setup-foundations/02-dags/00-hello-world-dag/3-dag-pubsub-orchestrated
 ```
 
 Open and review the script below-
@@ -177,4 +179,8 @@ Go to the Cloud Console and navigate to the IAM -> IAM & Admin and ensure you ch
 ![01-02-09](../00-images/01-02-09.png)
 <br>
 
+
+<hr>
+
+This concludes this module. Please proceed to the [next module](02f-secure-cc2-iteration1-MVDD.md).
 
