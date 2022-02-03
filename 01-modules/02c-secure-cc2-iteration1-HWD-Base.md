@@ -85,3 +85,6 @@ gcloud composer environments storage dags import \
 Event-driven orchestration samples..
 1. GCS bucket event driven orchestration
 2. Pub/Sub message event driven orchestration
+
+<hr>
+Proceed to the [next module](02d-secure-cc2-iteration1-HWD-GCS-EDO.md).
