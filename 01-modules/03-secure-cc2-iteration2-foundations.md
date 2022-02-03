@@ -110,7 +110,7 @@ gcloud access-context-manager levels create UPN_SPN_ACCESS_LVL \
 ```
 
 
-## 5. Create DNS entries from the host project 
+## 5. Create DNS entries in the host project for googleapis.com, gcr.io and composer.cloud.google.com
 
 https://cloud.google.com/composer/docs/composer-2/configure-vpc-sc#connectivity_to_the_restrictedgoogleapiscom_endpoint
 ```
@@ -208,7 +208,7 @@ gcloud compute --project=$SHARED_VPC_HOST_PROJECT_ID firewall-rules create allow
 --destination-ranges=199.36.153.4/30
 ```
 
-## 7.0. Create the VPC-SC from the host project
+## 7.0. Create the VPC perimeter 
 
 ### 7.0.1. Create policies file for ingress 
 
@@ -299,6 +299,6 @@ gcloud access-context-manager perimeters create zeus_perimeter \
 --policy=$ACM_POLICY_NUMBER
 ```
 
-### 7.0.4. Restest Cloud Composer 
+### 7.0.4. Retest Cloud Composer DAGs
 
 Retest all the three DAG modules you created to ensure they work with the perimeter in place.
