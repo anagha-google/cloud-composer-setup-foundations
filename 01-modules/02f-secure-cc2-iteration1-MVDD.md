@@ -1,7 +1,9 @@
 # About
 
-This module covers creating an ultra basic DAG that reads a CSV file from GCS, transforms it and loads it into BigQuery from Cloud Dataflow.<br>
-It is based off of a [sample in the GCP documentation](https://cloud.google.com/composer/docs/how-to/using/using-dataflow-template-operator), with some enhancements such as BYO VPC subnet, use a service account etc.
+This module covers creating an ultra basic DAG that reads a CSV file from GCS, transforms it and loads it into BigQuery from Cloud Dataflow. It is based off of a [sample in the GCP documentation](https://cloud.google.com/composer/docs/how-to/using/using-dataflow-template-operator), with some enhancements such as BYO VPC subnet, use a service account etc.
+
+Here is a pictorial overview of the DAG-
+![mvdd](../00-images/mvdd.png)
 
 ### Prerequisites
 Successful completion of prior modules.
@@ -409,3 +411,7 @@ Explore the DAG execution logs
 2) Edit the transformation Javascript function to set defaults to load into BigQuery
 3) Configure event driven orchestration of th DAG with a Cloud Storage event 
 4) Configure event driven orchestration of th DAG with a Cloud Pub/Sub event 
+
+<hr>
+
+This concludes the module, please proceed to the [next module](03-secure-cc2-iteration2-foundations.md).
