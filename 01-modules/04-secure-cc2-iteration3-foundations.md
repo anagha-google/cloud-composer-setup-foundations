@@ -92,3 +92,7 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
     --web-server-allow-ip ip_range=${OFFICE_CIDR},description="Office CIDR" \
     --web-server-allow-ip ip_range=${SERVERLESS_VPC_ACCESS_CONNECTOR_CIDR},description="Serverless VPC Connector subnet"
 ```
+
+<hr>
+
+This concludes the module, please proceed to the [next module](04-secure-cc2-iteration3-foundations.md).
