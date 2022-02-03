@@ -137,4 +137,4 @@ Review the script ```min-viable-data-dag.py```. The DAG is explained in depth in
 
 <hr>
 
-Proceed to the next module.
+Proceed to the [next module](01-foundational-setup.md).
