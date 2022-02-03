@@ -1,6 +1,6 @@
 # About
 
-This module covers configuring VPC-SC and PSC over and above the secure setup from the prior secure setup module.
+This module covers configuring VPC-SC over and above the secure setup from the prior secure setup module.
 <br>
 
 The following are the variabes we will use, execute the same in cloud shell scoped to your host project-
