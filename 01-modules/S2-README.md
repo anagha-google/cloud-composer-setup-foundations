@@ -45,6 +45,10 @@ This DAG just print "Hello World", for testing the environment, IAM permissions,
 
 ## 4. "Hello World" DAG triggered by Cloud Storage Event
 
+The scripts referenced below are for event driven orchestration - a Cloud Storage event that triggers a Cloud Function that calls the "Hello World" DAG from section 3 above.<br>
+
+![hwd-edo-gcs](../00-images/hwd-edo-gcs.png)
+
 Navigate in cloud shell to-
 ```
 cd ~/cloud-composer-setup-foundations/02-dags/00-hello-world-dag/2-dag-gcf-orchestrated
@@ -62,6 +66,11 @@ Review each of the files for the Cloud Function-
 main.py - calls composer2_airflow_rest_api that launches the Cloud Composer DAG
 
 ## 5. "Hello World" DAG triggered by Cloud Pub/Sub Event
+
+The scripts referenced below are for event driven orchestration - a Cloud Pub/Sub message event that triggers a Cloud Function that calls the "Hello World" DAG from section 3 above.<br>
+
+![hwd-edo-pubsub](../00-images/hwd-edo-pubsub.png)
+
 
 Navigate in cloud shell to-
 ```
@@ -82,6 +91,9 @@ main.py - calls composer2_airflow_rest_api that launches the Cloud Composer DAG
 ## 6. Minimum viable ETL DAG
 
 The "Minimum viable ETL DAG" uses a Cloud Dataflow template to read a CSV file in Cloud Storage, transform it using a JavaScript function, and loads/appends into a BigQuery table.
+
+![mvdd](../00-images/mvdd.png)
+
 <br><br>
 Navigate in cloud shell to-
 ```
