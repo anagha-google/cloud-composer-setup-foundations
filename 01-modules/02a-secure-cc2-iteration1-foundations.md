@@ -521,7 +521,7 @@ execute --zone="pkg-dev"
 ```
 
 
-## 13. IAM permissions to host project for service project's (e2e-demo-indra) service accounts
+## 13. Grant IAM permissions to host project for service project's service accounts
 
 ### 13.1. Service project's Google APIs default service account specific IAM permissions
 In the host project, edit permissions for the Google APIs service account, SERVICE_PROJECT_NUMBER@cloudservices.gserviceaccount.com. For this account, add another role, compute.networkUser at the project level. This is a requirement for managed instance groups used with Shared VPC because this type of service account performs tasks such as instance creation.<br>
@@ -536,7 +536,7 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
         --role=roles/compute.networkUser 
 ```
 
-### 13.2. Service project's GKE default service account specific IAM permissions
+### 13.2. Grant service project's GKE default service account specific IAM permissions
 
 In this step, we will grant IAM permissions in the host project, for the GKE defaukt Google Managed Service Account from service project.
 
@@ -571,7 +571,7 @@ gcloud beta services identity create --service=composer.googleapis.com
 ```
 
 
-### 13.4. IAM permissions in the host project for the service project's Cloud Composer 2 default service account 
+### 13.4. Grant IAM permissions in the host project for the service project's Cloud Composer 2 default service account 
 
 In cloud shell scoped to the shared VPC/host project, run the below. 
 ```
@@ -593,7 +593,7 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
 ```  
  
 
-### 13.5. IAM permissions in the host project for the service project's User Managed Service Account
+### 13.5. Grant IAM permissions in the host project for the service project's User Managed Service Account
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
@@ -602,7 +602,7 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --role=roles/compute.networkUser 
 ```
 
-### 13.6. IAM permissions in the host project for the service project's Google Managed Cloud Dataflow service account 
+### 13.6. Grant IAM permissions in the host project for the service project's Google Managed Cloud Dataflow service account 
 
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
@@ -613,7 +613,7 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --role=roles/compute.networkUser 
 ```
 
-### 13.7. Serverless VPC Access Connector related IAM permissions
+### 13.7. Grant Serverless VPC Access Connector related IAM permissions
 
 For each service project that will use VPC Connectors, a Shared VPC Admin must grant the Compute Network User role (compute.networkUser) in the host project to the service project cloudservices and vpcaccess service accounts.
 
@@ -672,7 +672,7 @@ gcloud compute networks vpc-access connectors create zeus-gcf-vpc-cnnctr \
 <br>
 <hr>
 
-## 15. Configure networking to allow external package download
+## 15. Configure networking to allow downloads of external package 
 This is specific to opening up a private cluster for downloading from Maven/PyPi/CRAN for DAGs in Cloud Composer 2 and/or in Cloud Dataflow DAGs referenced within<br>
 
 ### 15.1. Cloud Router setup
