@@ -87,4 +87,5 @@ Event-driven orchestration samples..
 2. Pub/Sub message event driven orchestration
 
 <hr>
+
 Proceed to the [next module](02d-secure-cc2-iteration1-HWD-GCS-EDO.md).
