@@ -699,3 +699,5 @@ gcloud compute routers nats create zeus-nat-shared \
     --region=$LOCATION
 ```
 <hr><br>
+
+This concludes this module. Proceed to the [next module](02b-secure-cc2-iteration1-provisioning.md).
