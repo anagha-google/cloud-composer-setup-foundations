@@ -1,9 +1,10 @@
-# Cloud Composer Provisioning Foundations for Data Analytics Endeavors
+# Cloud Composer Setup for Data Analytics Endeavors
 
 ## About the Repository
 This repository contains hands-on-lab modules that cover provisioning the foundational infrastructure and security in GCP for Cloud Composer based Data Analytics projects. It does not cover authoring complex Apache Airflow DAGs and Airflow functionality as the focus is creating a stable and secure environment for authoring pipelines.
 
 ## Motivation and Audience
+
 Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on the intricacies of foundational setup, unblocking and improving speed to productivity in their core competency (analytics). For the GCP Customer Engineer, the hands on labs cover provisioning in **Argolis**. 
 
 ## Structure
