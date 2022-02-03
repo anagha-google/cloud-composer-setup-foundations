@@ -302,3 +302,7 @@ gcloud access-context-manager perimeters create zeus_perimeter \
 ### 7.0.4. Retest Cloud Composer DAGs
 
 Retest all the three DAG modules you created to ensure they work with the perimeter in place.
+
+<hr>
+
+This concludes the module, please proceed to the [next module](04-secure-cc2-iteration3-foundations.md).
