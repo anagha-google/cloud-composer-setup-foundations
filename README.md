@@ -76,15 +76,22 @@ This module covers the following security features/components/layers-
 
 ### Module 3: Secure Cloud Composer setup - iteration 2
 
-This module covers provisioning a secure Cloud Composer environment and testing scheduled as well as event driven orchestration of a "Hello World" DAG, followed by a minimum viable data pipeline/DAG.
+This module adds incremental security with VPC Service Controls
 
 | # | Module | 
 | -- | :---    | 
-| 1 | ..|  
+| 1 | Enable requisite Google APIs|  
+| 2 | Grant IAM permissions to operate with Access Context Manager in host project|  
+| 3 | Create Access Context Manager policy in host project|  
+| 4 | Create access levels in the host project for the VPC perimeter |  
+| 5 | Create DNS entries in the host project for googleapis.com, gcr.io and composer.cloud.google.com|  
+| 6 | Configure incremental firewall rules in the host project|  
+| 7 | Create the VPC perimeter |  
+| 8 | Retest Cloud Composer DAGs|  
 
-### Module 4: Secure Cloud Composer setup - iteration 2
+### Module 4: Secure Cloud Composer setup - iteration 3
 
-This module adds VPC Service Controls (VPC-SC) to the setup in module 3.
+This module adds incremental security with Private Service Connect
 
 | # | Module | 
 | -- | :---    | 
@@ -97,7 +104,7 @@ This module adds Private Service Connect (PSC) to the setup in module 4.
 
 | # | Module | 
 | -- | :---    | 
-| 1 | ..| 
+| 1 | Create a Cloud Composer cluster with PSC configured at provision time| 
 
 
 ## Credits
