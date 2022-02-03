@@ -135,3 +135,6 @@ You should see-
 
 Review the script ```min-viable-data-dag.py```. The DAG is explained in depth in the [GCP Cloud Composer documentation](https://cloud.google.com/composer/docs/how-to/using/using-dataflow-template-operator).
 
+<hr>
+
+Proceed to the next module.
