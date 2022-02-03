@@ -133,5 +133,5 @@ You should see-
 -rw-r--r--  1 ...  primarygroup  3541 Feb  2 15:16 min-viable-data-dag.py
 ```
 
-Review the script ```min-viable-data-dag.py```. The DAG is explained in depth in the GCP Cloud Composer documentation.
+Review the script ```min-viable-data-dag.py```. The DAG is explained in depth in the [GCP Cloud Composer documentation](https://cloud.google.com/composer/docs/how-to/using/using-dataflow-template-operator).
 
