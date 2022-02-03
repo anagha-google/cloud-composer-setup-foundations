@@ -89,6 +89,6 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
     --service-account $UMSA_FQN \
     --enable-master-authorized-networks \
     --master-authorized-networks ${OFFICE_CIDR} \
- --web-server-allow-ip ip_range=${OFFICE_CIDR},description="Office CIDR" \
- --web-server-allow-ip ip_range=${SERVERLESS_VPC_ACCESS_CONNECTOR_CIDR},description="Serverless VPC Connector subnet"
+    --web-server-allow-ip ip_range=${OFFICE_CIDR},description="Office CIDR" \
+    --web-server-allow-ip ip_range=${SERVERLESS_VPC_ACCESS_CONNECTOR_CIDR},description="Serverless VPC Connector subnet"
 ```
