@@ -77,10 +77,10 @@ This module covers the below security features/components/layers.<br>
 
 ### Module 3: Secure Cloud Composer setup - iteration 2
 
-This module adds incremental security with VPC Service Controls.<br>
+This module adds incremental security with VPC Service Controls to the setup from module 2.<br>
 [Jump to lab module](01-modules/03-secure-cc2-iteration2-foundations.md)
 
-| # | Module | 
+| # | Sub-module | 
 | -- | :---    | 
 | 1 | Enable requisite Google APIs|  
 | 2 | Grant IAM permissions to operate with Access Context Manager in host project|  
@@ -93,21 +93,15 @@ This module adds incremental security with VPC Service Controls.<br>
 
 ### Module 4: Secure Cloud Composer setup - iteration 3
 
-This module adds incremental security with Private Service Connect.<br>
+This module adds incrementally, the Private Service Connect (PSC) security feature to the setup from module 3.<br>
 [Jump to lab module](01-modules/04-secure-cc2-iteration3-foundations.md)
 
-| # | Module | 
-| -- | :---    | 
-| 1 | ..| 
 
-
-### Module 5: Secure Cloud Composer 2 setup - iteration 3
-
-This module adds Private Service Connect (PSC) to the setup in module 4.
-
-| # | Module | 
+| # | Sub-module | 
 | -- | :---    | 
 | 1 | Create a Cloud Composer cluster with PSC configured at provision time| 
+| 2 | Retest Cloud Composer DAGs|  
+| 3 | Delete resoruces created for the lab|  
 
 
 ## Credits
