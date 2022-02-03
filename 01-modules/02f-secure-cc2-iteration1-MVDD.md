@@ -12,15 +12,14 @@ Successful completion of prior modules.
 
 a) From cloud shell, navigate to the directory where the script is located
 ```
-cd ~/e2e-demo-indra/03-Cloud-Composer2/02-ultra-basic-gcs-cdf-bq-dag/00-scripts/1-dag-base/
+cd ~/cloud-composer-setup-foundations/02-dags/01-min-viable-data-dag/00-scripts
 ```
 
-b) Review the DAG Python script "ultra_basic_gcs_cdf_bq_dag.py" available [here](../02-ultra-basic-gcs-cdf-bq-dag/00-scripts/1-dag-base/ultra_basic_gcs_cdf_bq_dag.py)
-<br>
+b) Review the DAG Python script "min-viable-data-dag.py"<br>
 
-It reads files from GCS, maps/transforms and loads the data into BigQuery, via Cloud Dataflow.
-It uses a Dataflow template available in Cloud storage for the same.
-This template accepts parameters for the transformation function, source and sink paths and such.
+It reads files from GCS, maps/transforms and loads the data into BigQuery, via Cloud Dataflow.<br>
+It uses a Dataflow template available in Cloud storage for the same.<br>
+This template accepts parameters for the transformation function, source and sink paths and such.<br>
 
 ## 2. Variables for the lab
 
@@ -109,8 +108,9 @@ gsutil mb -c standard -p $SVC_PROJECT_ID -l $LOCATION $SRC_FILE_STAGING_BUCKET_P
 
 1) Navigate to the local directory in the Git repo cloned, in cloud shell-
 ```
-cd ~/e2e-demo-indra/03-Cloud-Composer2/02-ultra-basic-gcs-cdf-bq-dag/00-source-files/
+cd ~/cloud-composer-setup-foundations/02-dags/01-min-viable-data-dag/01-source-files
 ```
+
 2) Review data file - inputFile.txt
 ```
 POINT(40.7128 74.006),45,'July',2,true,2020-02-16
@@ -179,7 +179,7 @@ return jsonString;
 ### 4.3. Copy the source files to the staging bucket
 ```
 
-cd ~/e2e-demo-indra/03-Cloud-Composer2/02-ultra-basic-gcs-cdf-bq-dag/00-source-files
+cd ~/cloud-composer-setup-foundations/02-dags/01-min-viable-data-dag/01-source-files
 gsutil cp jsonSchema.json $SRC_FILE_STAGING_BUCKET_PATH
 gsutil cp transformCSVtoJSON.js $SRC_FILE_STAGING_BUCKET_PATH
 gsutil cp inputFile.txt $SRC_FILE_STAGING_BUCKET_PATH
@@ -346,13 +346,13 @@ use_public_ips_in_dataflow $USE_PUBLIC_IPS_IN_DATAFLOW
 Run the below command to deploy the DAG
 
 ```
-cd ~/e2e-demo-indra/03-Cloud-Composer2/02-ultra-basic-gcs-cdf-bq-dag/00-scripts/1-dag-base/
+cd ~/cloud-composer-setup-foundations/02-dags/01-min-viable-data-dag/00-scripts/
 ```
 
 ```
 gcloud composer environments storage dags import \
 --environment $COMPOSER_ENV_NM  --location $LOCATION \
---source ultra_basic_gcs_cdf_bq_dag.py \
+--source min-viable-data-dag.py \
 --impersonate-service-account $UMSA_FQN
 ```
 
