@@ -460,4 +460,4 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 <hr style="border:12px solid gray"> </hr>
 <br>
 
-This concludes the module. 
+This concludes the module, proceed to the [next module](02a-secure-cc2-iteration1-foundations.md).
