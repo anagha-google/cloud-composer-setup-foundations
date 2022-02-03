@@ -3,18 +3,18 @@
 This module covers the foundational one-time setup to start working on Cloud Composer 2 based Data Analytics endeavors on GCP.
 
 In this module, we will cover the folowing-<br>
-[1. Pre-requisites](03-foundational-setup.md#1-pre-requisites)<br>
-[2. Variables for use in the module](03-foundational-setup.md#2-variables-for-use-in-the-module)<br>
-[3. Enable requisite Google APIs for Project Indra](03-foundational-setup.md#3-enable-requisite-google-apis)<br>
-[4. Update organizational policies](03-foundational-setup.md#4-update-organizational-policies)<br>
-[5. Create a User Managed Service Account (UMSA)](03-foundational-setup.md#5-create-a-user-managed-service-account-umsa)<br>
-[6. Grant IAM Permissions](03-foundational-setup.md#6-grant-iam-permissions)<br>
-[7. Permissions specific to Cloud Composer](03-foundational-setup.md#7-permissions-specific-to-cloud-composer)<br>
-[8. Permissions specific to Cloud Functions](03-foundational-setup.md#8-permissions-specific-to-cloud-functions)<br>
-[9. Permissions specific to Cloud Dataflow](03-foundational-setup.md#9-permissions-specific-to-cloud-dataflow)<br>
-[10. Permissions specific to Cloud Storage](03-foundational-setup.md#10-permissions-specific-to-cloud-storage)<br>
-[11. Permissions specific to BigQuery](03-foundational-setup.md#11-permissions-specific-to-bigquery)<br>
-[12. Permissions specific to Cloud Composer 2 infrastructure](03-foundational-setup.md#12-permissions-specific-to-google-managed-default-service-accounts)<br>
+[1. Pre-requisites](01-foundational-setup.md#1-pre-requisites)<br>
+[2. Variables for use in the module](01-foundational-setup.md#2-variables-for-use-in-the-module)<br>
+[3. Enable requisite Google APIs for Project Indra](01-foundational-setup.md#3-enable-requisite-google-apis)<br>
+[4. Update organizational policies](01-foundational-setup.md#4-update-organizational-policies)<br>
+[5. Create a User Managed Service Account (UMSA)](01-foundational-setup.md#5-create-a-user-managed-service-account-umsa)<br>
+[6. Grant IAM Permissions](01-foundational-setup.md#6-grant-iam-permissions)<br>
+[7. Permissions specific to Cloud Composer](01-foundational-setup.md#7-permissions-specific-to-cloud-composer)<br>
+[8. Permissions specific to Cloud Functions](01-foundational-setup.md#8-permissions-specific-to-cloud-functions)<br>
+[9. Permissions specific to Cloud Dataflow](01-foundational-setup.md#9-permissions-specific-to-cloud-dataflow)<br>
+[10. Permissions specific to Cloud Storage](01-foundational-setup.md#10-permissions-specific-to-cloud-storage)<br>
+[11. Permissions specific to BigQuery](01-foundational-setup.md#11-permissions-specific-to-bigquery)<br>
+[12. Permissions specific to Cloud Composer 2 infrastructure](01-foundational-setup.md#12-permissions-specific-to-google-managed-default-service-accounts)<br>
 
 
 ## Duration
@@ -447,7 +447,7 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 
 ## 12. Permissions specific to Google Managed Default Service Accounts
 
-### 12.1. Permissions for GCE Default GMSA to interact download from container registry
+### 12.1. Permissions for GCE Default GMSA to interact/download from container registry
 
 ```
 SVC_PROJECT_GCE_DEFAULT_GMSA=$SVC_PROJECT_NUMBER-compute@developer.gserviceaccount.com

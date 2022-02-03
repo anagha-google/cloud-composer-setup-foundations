@@ -1,6 +1,6 @@
 # About
 
-This module covers configuring VPC-SC and PSC over and above the secure setup from the prior secure setup module.
+This module covers configuring VPC-SC over and above the secure setup from the prior secure setup module.
 <br>
 
 The following are the variabes we will use, execute the same in cloud shell scoped to your host project-
@@ -62,7 +62,7 @@ b) Grab its identifier -
 ACM_POLICY_NUMBER=`gcloud access-context-manager policies list --organization $ORG_ID_NUMBER | grep NAME | cut -d':' -f2 | sed 's/^ *//g'`
 ```
 
-## 4. Create an access levels for VPC-SC in the host project
+## 4. Create access levels in the host project for the VPC perimeter 
 
 ### 4.1. Create access level for the office CIDR & VPC Access Connector Subnet
 
@@ -110,7 +110,7 @@ gcloud access-context-manager levels create UPN_SPN_ACCESS_LVL \
 ```
 
 
-## 5. Create DNS entries from the host project 
+## 5. Create DNS entries in the host project for googleapis.com, gcr.io and composer.cloud.google.com
 
 https://cloud.google.com/composer/docs/composer-2/configure-vpc-sc#connectivity_to_the_restrictedgoogleapiscom_endpoint
 ```
@@ -208,7 +208,7 @@ gcloud compute --project=$SHARED_VPC_HOST_PROJECT_ID firewall-rules create allow
 --destination-ranges=199.36.153.4/30
 ```
 
-## 7.0. Create the VPC-SC from the host project
+## 7.0. Create the VPC perimeter 
 
 ### 7.0.1. Create policies file for ingress 
 
@@ -299,6 +299,6 @@ gcloud access-context-manager perimeters create zeus_perimeter \
 --policy=$ACM_POLICY_NUMBER
 ```
 
-### 7.0.4. Restest Cloud Composer 
+### 7.0.4. Retest Cloud Composer DAGs
 
 Retest all the three DAG modules you created to ensure they work with the perimeter in place.
