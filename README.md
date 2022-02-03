@@ -52,7 +52,8 @@ The DAGs are deliberately embarassigly basic to maintain focus on environment pr
 
 ### Module 2: Secure Cloud Composer setup - iteration 1
 
-This module covers the following security features/components/layers-
+This module covers the below security features/components/layers.<br>
+[Jump to lab module](01-modules/02a-secure-cc2-iteration1-foundations.md)
 
 | # | Sub-module | 
 | -- | :---    |
@@ -76,7 +77,8 @@ This module covers the following security features/components/layers-
 
 ### Module 3: Secure Cloud Composer setup - iteration 2
 
-This module adds incremental security with VPC Service Controls
+This module adds incremental security with VPC Service Controls.<br>
+[Jump to lab module](01-modules/03-secure-cc2-iteration2-foundations.md)
 
 | # | Module | 
 | -- | :---    | 
@@ -91,7 +93,8 @@ This module adds incremental security with VPC Service Controls
 
 ### Module 4: Secure Cloud Composer setup - iteration 3
 
-This module adds incremental security with Private Service Connect
+This module adds incremental security with Private Service Connect.<br>
+[Jump to lab module](01-modules/04-secure-cc2-iteration3-foundations.md)
 
 | # | Module | 
 | -- | :---    | 
