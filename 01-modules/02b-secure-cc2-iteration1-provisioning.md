@@ -66,3 +66,5 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
     --web-server-allow-ip ip_range=${SERVERLESS_VPC_ACCESS_CONNECTOR_CIDR},description="Serverless VPC Connector subnet"
 ```
 
+<hr><br>
+This concludes the module, proceed to the [next module](02c-secure-cc2-iteration1-HWD-Base.md).
