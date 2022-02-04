@@ -318,8 +318,7 @@ gcloud compute networks subnets describe $SHARED_VPC_CONNECTOR_SNET_NM
 
 Author's output-
 ```
-gcloud compute networks subnets describe $SHARED_VPC_CONNECTOR_SNET_NM
-Did you mean region [us-central1] for subnetwork: [zeus-vpc-cnctr-snet] (Y/n)?  y
+gcloud compute networks subnets describe $SHARED_VPC_CONNECTOR_SNET_NM --region $LOCATION
 
 creationTimestamp: '2022-01-28T14:56:32.860-08:00'
 fingerprint: gaWbylk4EZs=
