@@ -19,7 +19,7 @@ And ensure that secondary ranges are large enough to accommodate the cluster's s
 Sub-module dependencies: Successful completion of [foundational setup](01-foundational-setup.md).
 <hr>
 
-## 1. Create a project for "Shared VPC" called zeus-host-proj 
+## 1. Create a host project
 
 Create a new project for the shared VPC.
 <br>
