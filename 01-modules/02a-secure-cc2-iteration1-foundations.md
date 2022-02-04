@@ -673,7 +673,7 @@ gcloud compute routers create $PROJECT_KEYWORD-router-shared \
 Docs: https://cloud.google.com/nat/docs/gke-example#create-nat<br>
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
-gcloud compute routers nats create $$PROJECT_KEYWORD-nat-shared \
+gcloud compute routers nats create $PROJECT_KEYWORD-nat-shared \
     --router=$PROJECT_KEYWORD-router-shared \
     --auto-allocate-nat-external-ips \
     --nat-all-subnet-ip-ranges \
