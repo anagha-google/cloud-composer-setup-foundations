@@ -214,7 +214,7 @@ gcloud compute shared-vpc enable $SHARED_VPC_HOST_PROJECT_ID
 <br>
 <hr>
 
-## 7. Associate your data analytics project with the "Shared VPC" project
+## 7. Associate your service project with the "Shared VPC" project
 
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
