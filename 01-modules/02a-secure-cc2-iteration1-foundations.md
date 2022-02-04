@@ -318,26 +318,6 @@ Describe and ensure private
 gcloud compute networks subnets describe $SHARED_VPC_CONNECTOR_SNET_NM
 ```
 
-Author's output-
-```
-gcloud compute networks subnets describe $SHARED_VPC_CONNECTOR_SNET_NM --region $LOCATION
-
-creationTimestamp: '2022-01-28T14:56:32.860-08:00'
-fingerprint: gaWbylk4EZs=
-gatewayAddress: 10.70.0.1
-id: '1454704618911681103'
-ipCidrRange: 10.70.0.0/28
-kind: compute#subnetwork
-name: zeus-vpc-cnctr-snet
-network: https://www.googleapis.com/compute/v1/projects/zeus-host-proj/global/networks/zeus-shared-vpc
-privateIpGoogleAccess: true
-privateIpv6GoogleAccess: DISABLE_GOOGLE_ACCESS
-purpose: PRIVATE
-region: https://www.googleapis.com/compute/v1/projects/zeus-host-proj/regions/us-central1
-selfLink: https://www.googleapis.com/compute/v1/projects/zeus-host-proj/regions/us-central1/subnetworks/zeus-vpc-cnctr-snet
-stackType: IPV4_ONLY
-```
-
 ## 11. Create firewall rules
 
 
