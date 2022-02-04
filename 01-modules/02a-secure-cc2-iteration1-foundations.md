@@ -316,7 +316,7 @@ gcloud compute networks subnets create $SHARED_VPC_CONNECTOR_SNET_NM \
 
 Describe and ensure private
 ```
-gcloud compute networks subnets describe $SHARED_VPC_CONNECTOR_SNET_NM
+gcloud compute networks subnets describe $SHARED_VPC_CONNECTOR_SNET_NM --region $LOCATION
 ```
 
 ## 11. Create firewall rules
