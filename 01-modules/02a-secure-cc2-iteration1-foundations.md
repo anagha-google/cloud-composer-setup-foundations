@@ -211,6 +211,8 @@ In cloud shell scoped to the shared VPC/host project, run the below:
 gcloud compute shared-vpc enable $SHARED_VPC_HOST_PROJECT_ID
 ```
 
+![Enable-SVPC](../00-images/02a-01-shared-vpc-enable.png)
+
 <br>
 <hr>
 
@@ -221,6 +223,8 @@ In cloud shell scoped to the shared VPC/host project, run the below:
 gcloud compute shared-vpc associated-projects add $SVC_PROJECT_ID \
     --host-project $SHARED_VPC_HOST_PROJECT_ID
 ```
+
+![Attach-Svc-Proj](../00-images/02a-02-attach-svc-proj.png)
 
 <br>
 <hr>
@@ -244,6 +248,8 @@ gcloud compute networks create $SHARED_VPC_NETWORK_NM \
 --mtu=1460 \
 --bgp-routing-mode=regional
 ```
+
+![VPC](../00-images/02a-03-cc2-snet.png)
 
 <br>
 <hr>
