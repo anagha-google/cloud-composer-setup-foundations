@@ -219,9 +219,9 @@ gcloud compute --project=$SHARED_VPC_HOST_PROJECT_ID firewall-rules create allow
 ### 7.0.1. Create policies file for ingress 
 
 ```
-rm zeus-perimeter-ingress-policies.yaml
+rm $PROJECT_KEYWORD-perimeter-ingress-policies.yaml
 
-cat > zeus-perimeter-ingress-policies.yaml << ENDOFFILE
+cat > $PROJECT_KEYWORD-perimeter-ingress-policies.yaml << ENDOFFILE
 
   - 
     ingressFrom: 
@@ -261,9 +261,9 @@ ENDOFFILE
 ### 7.0.2. Create policies file for egress 
 
 ```
-rm zeus-perimeter-egress-policies.yaml
+rm $PROJECT_KEYWORD-perimeter-egress-policies.yaml
 
-cat > zeus-perimeter-egress-policies.yaml << ENDOFFILE
+cat > $PROJECT_KEYWORD-perimeter-egress-policies.yaml << ENDOFFILE
 
   - 
     egressFrom: 
@@ -300,8 +300,8 @@ gcloud access-context-manager perimeters create zeus_perimeter \
 --access-levels=accessPolicies/$ACM_POLICY_NUMBER/accessLevels/UPN_SPN_ACCESS_LVL,accessPolicies/$ACM_POLICY_NUMBER/accessLevels/OFFICE_CIDR_ACCESS_LVL \
 --restricted-services=$VPC_SC_SERVICES_SCOPE \
 --vpc-allowed-services=$VPC_SC_SERVICES_SCOPE \
---ingress-policies=zeus-perimeter-ingress-policies.yaml \
---egress-policies=zeus-perimeter-egress-policies.yaml \
+--ingress-policies=$PROJECT_KEYWORD-perimeter-ingress-policies.yaml \
+--egress-policies=$PROJECT_KEYWORD-perimeter-egress-policies.yaml \
 --policy=$ACM_POLICY_NUMBER
 ```
 
