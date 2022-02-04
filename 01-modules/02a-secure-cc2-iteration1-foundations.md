@@ -520,17 +520,15 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
 
 ### 13.2. Grant service project's GKE default service account specific IAM permissions
 
-In this step, we will grant IAM permissions in the host project, for the GKE defaukt Google Managed Service Account from service project.
-
-<br><br>
+In this step, we will grant IAM permissions in the host project, for the GKE default Google Managed Service Account from service project.
+<br>
+In the host project, edit permissions for the GKE service accounts, service-SERVICE_PROJECT_NUMBER@container-engine-robot.iam.gserviceaccount.com.
+For the service account, add another role, **compute.networkUser**. Grant this role at the subnet level to allow a service account to set up the VPC peerings required by Cloud Composer. As an alternative, you can grant this role for the whole host project. In this case, the service project's GKE service account has permissions to use any subnet in the host project.
+<br>
 In cloud shell scoped to the host/shared VPC project, run the below-
 ```
 SVC_PROJECT_GKE_GMSA=service-$SVC_PROJECT_NUMBER@container-engine-robot.iam.gserviceaccount.com
-```
 
-In the host project, edit permissions for the GKE service accounts, service-SERVICE_PROJECT_NUMBER@container-engine-robot.iam.gserviceaccount.com.
-For the service account, add another role, **compute.networkUser**. Grant this role at the subnet level to allow a service account to set up the VPC peerings required by Cloud Composer. As an alternative, you can grant this role for the whole host project. In this case, the service project's GKE service account has permissions to use any subnet in the host project.
-```
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
     --member=serviceAccount:${SVC_PROJECT_GKE_GMSA} \
     --role=roles/compute.networkUser 
