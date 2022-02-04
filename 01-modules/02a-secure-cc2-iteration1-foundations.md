@@ -285,6 +285,9 @@ gcloud compute networks subnets create $SHARED_VPC_CC2_SNET_NM \
  --project $SHARED_VPC_HOST_PROJECT_ID 
 ```
 
+
+![CC2-Snet](../00-images/02a-04-cc2-snet.png)
+
 ### 10.2. Update CC2 subnet to add a second  secondary IP range - for composer pods
 *As of the authoring of this guide (Jan 14, 2022), the secondary IP range name had to strictly be composer-pods.*<br>
 In cloud shell scoped to the shared VPC/host project, run the below:
@@ -294,7 +297,7 @@ In cloud shell scoped to the shared VPC/host project, run the below:
  --add-secondary-ranges composer-pods=$CC2_PODS_CIDR_BLK
 ```
 
-### 10.3. Update CC2 subnet to add asecond  secondary IP range - for composer services
+### 10.3. Update CC2 subnet to add a second  secondary IP range - for composer services
 *As of the authoring of this guide (Jan 14, 2022), the secondary IP range name had to strictly be composer-services*<br>
 In cloud shell scoped to the shared VPC/host project, run the below:
 ```
@@ -303,8 +306,12 @@ In cloud shell scoped to the shared VPC/host project, run the below:
  --add-secondary-ranges composer-services=$CC2_SVCS_CIDR_BLK
 ```
 
+
+
 ### 10.4 Other CC2 related secondary IP ranges
 The other secondary IP ranges listed in the variables should not be created, but **reserved** for Cloud Composer 2 secure deployment lab sub-module and will be used at environment provisioning time.
+
+![CC2-sipr](../00-images/02a-05-cc2-sipr.png)
 
 <br>
 <hr>
@@ -319,6 +326,8 @@ gcloud compute networks subnets create $SHARED_VPC_CONNECTOR_SNET_NM \
  --enable-private-ip-google-access \
  --project $SHARED_VPC_HOST_PROJECT_ID 
 ```
+
+![CC2-vpcac](../00-images/02a-06-vpc-connector-snet.png)
 
 Describe and ensure private
 ```
@@ -472,6 +481,14 @@ gcloud compute firewall-rules create vpc-connector-requests \
 --network=$SHARED_VPC_NETWORK_NM
 ```
 
+### 11.10. Pictorial overview
+
+![firewall-1](../00-images/02a-07-firewall-menu.png)
+
+![firewall-2](../00-images/02a-08-firewall-ui.png)
+
+![firewall-3](../00-images/02a-09-firewall.png)
+
 <br>
 <hr>
 
@@ -488,6 +505,8 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create pkg-d
 --networks=$SHARED_VPC_NETWORK_NM
 ```
 
+![dns-1](../00-images/02a-06-vpc-connector-snet.png)
+
 ### 12.2. Create a A record
 
 ```
@@ -496,7 +515,6 @@ start --zone="pkg-dev" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID 
 add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 --name="pkg.dev." --ttl="300" --type="A" --zone="pkg-dev"  && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
 execute --zone="pkg-dev"
 ```
-
 
 ### 12.3. Create a CNAME record
 
