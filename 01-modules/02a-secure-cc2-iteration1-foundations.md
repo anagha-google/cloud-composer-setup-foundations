@@ -509,6 +509,8 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create pkg-d
 
 ![dns-2](../00-images/02a-19-dns.png)
 
+![dns-3](../00-images/02a-20-dns.png)
+
 ### 12.2. Create a A record
 
 ```
@@ -518,7 +520,7 @@ add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 --name="pkg.dev." --ttl=
 execute --zone="pkg-dev"
 ```
 
-![dns-3](../00-images/02a-20-dns.png)
+![dns-4](../00-images/02a-21-dns.png)
 
 ### 12.3. Create a CNAME record
 
@@ -529,7 +531,7 @@ record-sets transaction start --zone="pkg-dev" && gcloud beta dns --project=$SHA
 add pkg.dev. --name="*.pkg.dev." --ttl="300" --type="CNAME" --zone="pkg-dev" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
 execute --zone="pkg-dev"
 ```
-![dns-4](../00-images/02a-21-dns.png)
+![dns-5](../00-images/02a-22-dns.png)
 
 ## 13. Grant IAM permissions to host project for service project's service accounts
 
