@@ -28,8 +28,8 @@ None, but the rest of the modules are dependent on this module being successfull
 
 Create a GCP project. You will need administrator privileges to the organization and owner privileges for the project for the rest of the modules.<br>
 <br>
-The author's service/data analytics project is called "zeus-svc-proj"<br>
-For the rest of the hands on lab, we will refer to the project as "zeus-svc-proj"<br>
+The author's service/data analytics project is called "thor-svc-proj"<br>
+For the rest of the hands on lab, we will refer to the project as "thor-svc-proj"<br>
 <br>
 From the cloud console project dashboard, capture the project number.<br>
 
@@ -250,10 +250,6 @@ gcloud iam service-accounts create ${UMSA} \
     --description="User Managed Service Account for the $PROJECT_KEYWORD Service Project" \
     --display-name=$UMSA 
 ```
-
-![UMSA-4](../00-images/00-04-UMSA-nav.png)
-<br>
-![UMSA-5](../00-images/00-05-UMSA.png)
 <br>
 <hr style="border:12px solid gray"> </hr>
 <br>
@@ -270,8 +266,6 @@ gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --member=serviceAccount:${UMSA_FQN} \
     --role=roles/iam.serviceAccountUser   
 ```
-
-![UMSA-5](../00-images/00-05-UMSA.png)
 
 #### 6.1.b. Service Account Token Creator role for UMSA
 
@@ -296,9 +290,6 @@ gcloud iam service-accounts add-iam-policy-binding \
     --member="user:${ADMIN_FQ_UPN}" \
     --role="roles/iam.serviceAccountTokenCreator"
 ```
-
-![UMSA-6](../00-images/00-06-UMSA-ActAs.png)
-
 
 <hr style="border:12px solid gray"> </hr>
 <br>
@@ -455,7 +446,6 @@ SVC_PROJECT_GCE_DEFAULT_GMSA=$SVC_PROJECT_NUMBER-compute@developer.gserviceaccou
 
 gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$SVC_PROJECT_GCE_DEFAULT_GMSA \
 --role="roles/editor"
-
 ```
 
 <hr style="border:12px solid gray"> </hr>
