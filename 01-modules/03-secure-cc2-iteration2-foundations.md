@@ -5,28 +5,33 @@ This module covers configuring VPC-SC over and above the secure setup from the p
 
 The following are the variabes we will use, execute the same in cloud shell scoped to your host project-
 ```
-ORG_ID=akhanolkar.altostrat.com #Replace with yours
-ORG_ID_NUMBER=236589261571 #Replace with yours
+PROJECT_KEYWORD="thor"  # Replace with your keyword from module 1
 
-SVC_PROJECT_NUMBER=187732393981 #Replace with yours
-SVC_PROJECT_ID=zeus-svc-proj #Data analytics service project
 
-SHARED_VPC_HOST_PROJECT_ID=zeus-host-proj        #Shared VPC project - replace with yours
-SHARED_VPC_HOST_PROJECT_NUMBER=322087561681        #Shared VPC project - replace with yours
+ORG_ID=akhanolkar.altostrat.com                              #Replace with yours
+ORG_ID_NBR=236589261571                                      #Replace with yours
+
+SVC_PROJECT_NUMBER=509862753528                              #Replace with yours
+SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     #Data analytics service project
+
+SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj        #Shared VPC project - replace with yours
+SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                  #Shared VPC project - replace with yours
 
 
 LOCATION=us-central1
 
 ADMIN_UPN_FQN=admin@$ORG_ID #Replace with yours if its a different construct
-SVC_PROJECT_UMSA="zeus-sa"
+SVC_PROJECT_UMSA="$PROJECT_KEYWORD-sa"
 SVC_PROJECT_UMSA_FQN=$SVC_PROJECT_UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 
-SHARED_VPC_NETWORK_NM=zeus-shared-vpc
+COMPOSER_ENV_NM=cc2-$PROJECT_KEYWORD-secure
+
+SHARED_VPC_NETWORK_NM=$PROJECT_KEYWORD-shared-vpc
 SHARED_VPC_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/global/networks/$SHARED_VPC_NETWORK_NM"
-SHARED_VPC_CC2_SNET_NM="zeus-shared-cc2-snet"
+SHARED_VPC_CC2_SNET_NM="$PROJECT_KEYWORD-shared-cc2-snet"
 SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
 
-SHARED_VPC_CONNECTOR_SNET_NM=zeus-vpc-cnctr-snet
+SHARED_VPC_CONNECTOR_SNET_NM=$PROJECT_KEYWORD-vpc-cnctr-snet
 SHARED_VPC_CONNECTOR_SNET_CIDR=10.70.0.0/28
 
 OFFICE_CIDR=98.222.97.10/32 # Replace with your CIDR
