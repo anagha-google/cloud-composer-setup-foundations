@@ -42,6 +42,7 @@ From the cloud console project dashboard, capture the project number.<br>
 
 In Cloud Shell, lets create some variables we will use for the rest of the project-
 ```
+PROJECT_KEYWORD="thor"
 SVC_PROJECT_NUMBER=509862753528  # Replace with your project's
 SVC_PROJECT_ID=thor-svc-proj  # Replace with your project's
 UMSA="thor-sa"
@@ -246,7 +247,7 @@ We will use this UMSA as the runtime service account in the Data Analytics hands
 
 ```
 gcloud iam service-accounts create ${UMSA} \
-    --description="User Managed Service Account for the Zeus Service Project" \
+    --description="User Managed Service Account for the $PROJECT_KEYWORD Service Project" \
     --display-name=$UMSA 
 ```
 
