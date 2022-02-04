@@ -47,7 +47,7 @@ ADMIN_UPN_FQN=admin@$ORG_ID #Replace with yours if its a different construct
 SVC_PROJECT_UMSA="$PROJECT_KEYWORD-sa"
 SVC_PROJECT_UMSA_FQN=$SVC_PROJECT_UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 
-SHARED_VPC_NETWORK_NM=zeus-shared-vpc
+SHARED_VPC_NETWORK_NM=$PROJECT_KEYWORD-shared-vpc
 SHARED_VPC_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/global/networks/$SHARED_VPC_NETWORK_NM"
 SHARED_VPC_CC2_SNET_NM="$PROJECT_KEYWORD-shared-cc2-snet"
 SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
@@ -661,7 +661,7 @@ Docs: https://cloud.google.com/compute/docs/images/restricting-image-access<br>
 
 In cloud shell scoped to the shared VPC/host project, run the below-<br>
 ```
-gcloud compute networks vpc-access connectors create zeus-gcf-vpc-cnnctr \
+gcloud compute networks vpc-access connectors create $$PROJECT_KEYWORD-gcf-vpc-cnnctr \
 --region $LOCATION \
 --subnet $SHARED_VPC_CONNECTOR_SNET_NM \
 --subnet-project $SHARED_VPC_HOST_PROJECT_ID \
@@ -681,7 +681,7 @@ This is specific to opening up a private cluster for downloading from Maven/PyPi
 Docs: https://cloud.google.com/network-connectivity/docs/router/how-to/creating-routers<br>
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
-gcloud compute routers create zeus-router-shared \
+gcloud compute routers create $PROJECT_KEYWORD-router-shared \
     --project=$SHARED_VPC_HOST_PROJECT_ID \
     --network=$SHARED_VPC_NETWORK_NM \
     --asn=65000 \
@@ -692,8 +692,8 @@ gcloud compute routers create zeus-router-shared \
 Docs: https://cloud.google.com/nat/docs/gke-example#create-nat<br>
 In cloud shell scoped to the shared VPC/host project, run the below.<br>
 ```
-gcloud compute routers nats create zeus-nat-shared \
-    --router=zeus-router-shared \
+gcloud compute routers nats create $$PROJECT_KEYWORD-nat-shared \
+    --router=$PROJECT_KEYWORD-router-shared \
     --auto-allocate-nat-external-ips \
     --nat-all-subnet-ip-ranges \
     --enable-logging \
