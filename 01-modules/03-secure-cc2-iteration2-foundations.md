@@ -60,7 +60,7 @@ gcloud organizations add-iam-policy-binding $ORG_ID_NUMBER \
 a) If you dont have a default policy in your organization, create one- 
 ```
 gcloud access-context-manager policies create \
---organization $ORG_ID_NUMBER --title Zeus_CC2_Access_Policy
+--organization $ORG_ID_NUMBER --title $PROJECT_KEYWORD_CC2_access_policy
 ```
 
 b) Grab its identifier -
