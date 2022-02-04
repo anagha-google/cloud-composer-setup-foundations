@@ -33,7 +33,7 @@ For the rest of the hands on lab, we will refer to the project as "thor-svc-proj
 <br>
 From the cloud console project dashboard, capture the project number.<br>
 
-![Dashboard](../00-images/00-00-dashboard.png)
+![Dashboard](../00-images/01-00-dashboard.png)
 
 <hr style="border:12px solid gray"> </hr>
 <br>
@@ -250,6 +250,13 @@ gcloud iam service-accounts create ${UMSA} \
     --description="User Managed Service Account for the $PROJECT_KEYWORD Service Project" \
     --display-name=$UMSA 
 ```
+
+
+![UMSA-SA1](../00-images/01-03-iam-sa.png)
+
+
+![UMSA-SA2](../00-images/01-04-iam-sa.png)
+
 <br>
 <hr style="border:12px solid gray"> </hr>
 <br>
@@ -274,6 +281,7 @@ gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --member=serviceAccount:${UMSA_FQN} \
     --role=roles/iam.serviceAccountTokenCreator  
 ```
+
 
 ### 6.2. Permissions for the lab attendee
 
@@ -450,5 +458,29 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 
 <hr style="border:12px solid gray"> </hr>
 <br>
+
+## 13. IAM permissions recap
+
+### 13.1. UMSA
+
+![UMSA-SA3](../00-images/01-05-iam-iam.png)
+
+![UMSA-SA3](../00-images/01-06-umsa-roles.png)
+
+### 13.2. Lab attendee/operator
+
+![Admin](../00-images/01-07a-admin-roles.png)
+
+![Admin-2](../00-images/01-07b-admin-roles.png)
+
+### 13.3. Cloud Composer Agent
+
+![CCA](../00-images/01-08-cc-agent.png)
+
+
+### 13.4. Google Managed Default Service Accounts
+
+![GMSA](../00-images/01-09-gmsa.png)
+
 
 This concludes the module, proceed to the [next module](02a-secure-cc2-iteration1-foundations.md).
