@@ -35,11 +35,11 @@ PROJECT_KEYWORD="thor"  # Replace with your keyword from module 1
 ORG_ID=akhanolkar.altostrat.com                              #Replace with yours
 ORG_ID_NBR=236589261571                                      #Replace with yours
 
-SVC_PROJECT_NUMBER=187732393981                              #Replace with yours
+SVC_PROJECT_NUMBER=509862753528                              #Replace with yours
 SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     #Data analytics service project
 
 SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj        #Shared VPC project - replace with yours
-SHARED_VPC_HOST_PROJECT_NUMBER=322087561681                  #Shared VPC project - replace with yours
+SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                  #Shared VPC project - replace with yours
 
 
 LOCATION=us-central1
