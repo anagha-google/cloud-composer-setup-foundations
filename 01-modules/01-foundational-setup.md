@@ -28,8 +28,7 @@ None, but the rest of the modules are dependent on this module being successfull
 
 Create a GCP project. You will need administrator privileges to the organization and owner privileges for the project for the rest of the modules.<br>
 <br>
-The author's service/data analytics project is called "thor-svc-proj"<br>
-For the rest of the hands on lab, we will refer to the project as "thor-svc-proj"<br>
+The author's service project (for data analytics) is called "thor-svc-proj"<br>
 <br>
 From the cloud console project dashboard, capture the project number.<br>
 
