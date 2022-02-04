@@ -29,7 +29,8 @@ Create a new project for the shared VPC.
 
 In cloud shell scoped to the shared VPC/host project, paste the following variables after **updating the same to match your environment**-
 ```
-PROJECT_KEYWORD="thor"
+PROJECT_KEYWORD="thor"  # Use a keyword of your preference, as prefix to your project names
+
 
 ORG_ID=akhanolkar.altostrat.com                              #Replace with yours
 ORG_ID_NBR=236589261571                                      #Replace with yours
