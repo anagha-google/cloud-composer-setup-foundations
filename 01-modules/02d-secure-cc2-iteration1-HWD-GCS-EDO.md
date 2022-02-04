@@ -148,7 +148,7 @@ gcloud functions deploy cc2_hw_gcs_trigger_fn \
 --trigger-resource $GCF_TRIGGER_BUCKET_FQN \
 --trigger-event google.storage.object.finalize \
 --runtime python39   \
---vpc-connector projects/$SHARED_VPC_HOST_PROJECT_ID/locations/$LOCATION/connectors/zeus-gcf-vpc-cnnctr \
+--vpc-connector projects/$SHARED_VPC_HOST_PROJECT_ID/locations/$LOCATION/connectors/$PROJECT_KEYWORD-gcf-vpc-cnnctr \
 --service-account=${UMSA_FQN}
 ```
 
