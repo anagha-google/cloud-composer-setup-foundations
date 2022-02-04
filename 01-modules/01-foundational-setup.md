@@ -356,7 +356,7 @@ gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
 ```
 SVC_PROJECT_DEFAULT_GCE_GMSA=$SVC_PROJECT_NUMBER-compute@developer.gserviceaccount.com
 gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
-    --member=user:${SVC_PROJECT_DEFAULT_GCE_GMSA} \
+    --member=serviceAccount:${SVC_PROJECT_DEFAULT_GCE_GMSA} \
     --role roles/editor
 ```
 
