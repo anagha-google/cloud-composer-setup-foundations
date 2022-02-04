@@ -26,19 +26,31 @@ This template accepts parameters for the transformation function, source and sin
 In cloud shell, lets define variables to use
 
 ```
-SVC_PROJECT_ID=zeus-svc-proj
-SHARED_VPC_HOST_PROJECT_ID=zeus-host-proj
+PROJECT_KEYWORD="thor"  # Replace with your keyword from module 1
 
-UMSA="zeus-sa"
-UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 
-COMPOSER_ENV_NM=cc2-zeus-secure
+ORG_ID=akhanolkar.altostrat.com                              #Replace with yours
+ORG_ID_NBR=236589261571                                      #Replace with yours
+
+SVC_PROJECT_NUMBER=509862753528                              #Replace with yours
+SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     #Data analytics service project
+
+SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj        #Shared VPC project - replace with yours
+SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                  #Shared VPC project - replace with yours
+
+
 LOCATION=us-central1
 
-USE_PUBLIC_IPS_IN_DATAFLOW="false"
-DATAFLOW_SUBNET_FQN="https://www.googleapis.com/compute/v1/projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/zeus-shared-cc2-snet"
+ADMIN_UPN_FQN=admin@$ORG_ID #Replace with yours if its a different construct
+SVC_PROJECT_UMSA="$PROJECT_KEYWORD-sa"
+SVC_PROJECT_UMSA_FQN=$SVC_PROJECT_UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 
-SRC_FILE_STAGING_BUCKET_PATH=gs://cc2-mvp-dag-src
+COMPOSER_ENV_NM=cc2-$PROJECT_KEYWORD-secure
+
+USE_PUBLIC_IPS_IN_DATAFLOW="false"
+DATAFLOW_SUBNET_FQN="https://www.googleapis.com/compute/v1/projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$PROJECT_KEYWORD-shared-cc2-snet"
+
+SRC_FILE_STAGING_BUCKET_PATH=gs://cc2-mvp-dag-src-$SVC_PROJECT_ID
 BQ_DATASET_NM=average_weather_ds
 BQ_TABLE_NM=average_weather
 
