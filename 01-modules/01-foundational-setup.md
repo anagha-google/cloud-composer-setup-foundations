@@ -44,8 +44,8 @@ In Cloud Shell, lets create some variables we will use for the rest of the proje
 ```
 PROJECT_KEYWORD="thor"
 SVC_PROJECT_NUMBER=509862753528  # Replace with your project's
-SVC_PROJECT_ID=thor-svc-proj  # Replace with your project's
-UMSA="thor-sa"
+SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj  # Replace with your project's
+UMSA="$PROJECT_KEYWORD-sa"
 UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 ADMIN_FQ_UPN="admin@akhanolkar.altostrat.com" # Replace with your Argolis UPN
 ```
