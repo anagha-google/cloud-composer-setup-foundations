@@ -619,7 +619,7 @@ gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
   --role=roles/compute.securityAdmin
 ```
 
-The service accounts needing VCP connector access require permissions
+The service accounts needing VPC connector access require permissions
 ```
 
 gcloud projects add-iam-policy-binding ${SHARED_VPC_HOST_PROJECT_ID} \
@@ -642,7 +642,7 @@ Docs: https://cloud.google.com/compute/docs/images/restricting-image-access<br>
 
 In cloud shell scoped to the shared VPC/host project, run the below-<br>
 ```
-gcloud compute networks vpc-access connectors create $$PROJECT_KEYWORD-gcf-vpc-cnnctr \
+gcloud compute networks vpc-access connectors create $PROJECT_KEYWORD-gcf-vpc-cnnctr \
 --region $LOCATION \
 --subnet $SHARED_VPC_CONNECTOR_SNET_NM \
 --subnet-project $SHARED_VPC_HOST_PROJECT_ID \
