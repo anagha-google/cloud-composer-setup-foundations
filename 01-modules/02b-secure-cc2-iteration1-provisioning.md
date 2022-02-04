@@ -70,9 +70,33 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
     --service-account $UMSA_FQN \
     --enable-master-authorized-networks \
     --master-authorized-networks ${OFFICE_CIDR} \
+    --web-server-allow-all
+```
+
+
+Once Cloud Composer add support, we can restrict the Airflow webserver to specific CIDRs with this provisioning command-
+```
+gcloud beta composer environments create $COMPOSER_ENV_NM \
+    --image-version $CC2_IMAGE_VERSION \
+    --labels env=demo,purpose=secure-cc2-demo \
+    --location $LOCATION \
+    --enable-private-environment \
+    --network $SHARED_VPC_NETWORK_FQN \
+    --subnetwork $SHARED_VPC_CC2_SNET_FQN \
+    --cluster-ipv4-cidr $CC2_PODS_CIDR_BLK \
+    --services-ipv4-cidr $CC2_SVCS_CIDR_BLK \
+    --master-ipv4-cidr $GKE_CNTRL_PLN_CIDR_BLK \
+    --composer-network-ipv4-cidr $CC2_CIDR_BLK \
+    --cloud-sql-ipv4-cidr $CSQL_CIDR_BLK \
+    --service-account $UMSA_FQN \
+    --enable-master-authorized-networks \
+    --master-authorized-networks ${OFFICE_CIDR} \
     --web-server-allow-ip ip_range=${OFFICE_CIDR},description="Office CIDR" \
     --web-server-allow-ip ip_range=${SERVERLESS_VPC_ACCESS_CONNECTOR_CIDR},description="Serverless VPC Connector subnet"
 ```
 
-<hr><br>
+<hr>
+
+<br>
+
 This concludes the module, proceed to the [next module](02c-secure-cc2-iteration1-HWD-Base.md).
