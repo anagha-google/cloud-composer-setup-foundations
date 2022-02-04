@@ -42,9 +42,9 @@ From the cloud console project dashboard, capture the project number.<br>
 
 In Cloud Shell, lets create some variables we will use for the rest of the project-
 ```
-SVC_PROJECT_NUMBER=187732393981  # Replace with your project's
-SVC_PROJECT_ID=zeus-svc-proj  # Replace with your project's
-UMSA="zeus-sa"
+SVC_PROJECT_NUMBER=509862753528  # Replace with your project's
+SVC_PROJECT_ID=thor-svc-proj  # Replace with your project's
+UMSA="thor-sa"
 UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 ADMIN_FQ_UPN="admin@akhanolkar.altostrat.com" # Replace with your Argolis UPN
 ```
