@@ -35,7 +35,7 @@ SVC_PROJECT_UMSA_FQN=$SVC_PROJECT_UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 
 COMPOSER_ENV_NM=cc2-$PROJECT_KEYWORD-secure
 
-GCF_TRIGGER_BUCKET_FQN=gs://$SVC_PROJECT_NUMBER-cc2-hw-trigger-bucket
+GCF_TRIGGER_BUCKET_FQN=gs://cc2-hw-trigger-bucket-$SVC_PROJECT_NUMBER
 DAG_ID=hello_world_dag
 ```
 
