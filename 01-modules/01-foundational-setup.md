@@ -261,7 +261,7 @@ gcloud iam service-accounts create ${UMSA} \
 
 ## 6. Grant IAM Permissions 
 
-### 6.1. Permissions specific to UMSA
+### 6.1. General permissions specific to UMSA
 
 #### 6.1.a. Service Account User role for UMSA
 
@@ -281,7 +281,9 @@ gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --role=roles/iam.serviceAccountTokenCreator  
 ```
 
-### 6.1.c. Permission for lab attendee to operate as the UMSA
+### 6.2. Permissions for the lab attendee
+
+### 6.1.c. Permission to operate as the UMSA
 
 ```
 gcloud iam service-accounts add-iam-policy-binding \
@@ -334,7 +336,7 @@ gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
 ```
 
 
-### 7.d. Permissions for operator to be able to change configuration of Composer 2 environment and such
+### 7.d. Permissions for operator (lab attendee) to be able to change configuration of Composer 2 environment and such
 
 ```
 gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
@@ -343,7 +345,7 @@ gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
 
 ```
 
-### 7.e. Permissions for operator to be able to manage the Composer 2 GCS buckets and environments
+### 7.e. Permissions for operator (lab attendee) to be able to manage the Composer 2 GCS buckets and environments
 
 
 ```
@@ -361,16 +363,6 @@ gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
     --role roles/editor
 ```
 
-### 7.g. Permissiosn for UMSA to act as GCF service agent account
-
-Docs: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/functions.html
-
-```
-gcloud iam service-accounts add-iam-policy-binding \
-  ${SVC_PROJECT_ID}@appspot.gserviceaccount.com \
-  --member="serviceAccount:${UMSA_FQN}" \
-  --role="roles/iam.serviceAccountUser"
-```
 
 <hr style="border:12px solid gray"> </hr>
 <br>
@@ -382,7 +374,15 @@ gcloud iam service-accounts add-iam-policy-binding \
 
 ### 8.1.a. Permission for UMSA to operate as a GCF service agent
 
+
+Docs: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/functions.html
+
 ```
+gcloud iam service-accounts add-iam-policy-binding \
+  ${SVC_PROJECT_ID}@appspot.gserviceaccount.com \
+  --member="serviceAccount:${UMSA_FQN}" \
+  --role="roles/iam.serviceAccountUser"
+
 gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} --member=serviceAccount:$UMSA_FQN --role=roles/cloudfunctions.serviceAgent
 ```
 
