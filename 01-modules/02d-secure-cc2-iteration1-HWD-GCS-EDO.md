@@ -14,13 +14,28 @@ From cloud shell, run the commands below-
 
 a) The variables
 ```
-SVC_PROJECT_ID=zeus-svc-proj
-SHARED_VPC_HOST_PROJECT_ID=zeus-host-proj 
-UMSA="zeus-sa"
-UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
-COMPOSER_ENV_NM=cc2-zeus-secure
+PROJECT_KEYWORD="thor"  # Replace with your keyword from module 1
+
+
+ORG_ID=akhanolkar.altostrat.com                              #Replace with yours
+ORG_ID_NBR=236589261571                                      #Replace with yours
+
+SVC_PROJECT_NUMBER=509862753528                              #Replace with yours
+SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     #Data analytics service project
+
+SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj        #Shared VPC project - replace with yours
+SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                  #Shared VPC project - replace with yours
+
+
 LOCATION=us-central1
-GCF_TRIGGER_BUCKET_FQN=gs://cc2-hw-trigger-bucket
+
+ADMIN_UPN_FQN=admin@$ORG_ID #Replace with yours if its a different construct
+SVC_PROJECT_UMSA="$PROJECT_KEYWORD-sa"
+SVC_PROJECT_UMSA_FQN=$SVC_PROJECT_UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
+
+COMPOSER_ENV_NM=cc2-$PROJECT_KEYWORD-secure
+
+GCF_TRIGGER_BUCKET_FQN=gs://$SVC_PROJECT_NUMBER-cc2-hw-trigger-bucket
 DAG_ID=hello_world_dag
 ```
 
