@@ -14,10 +14,21 @@ cd ~/cloud-composer-setup-foundations/02-dags/00-hello-world-dag/1-dag-base
 
 b) Declare variables-
 ```
-PROJECT_ID=zeus-svc-proj 
-UMSA="zeus-sa"
+PROJECT_KEYWORD="thor"  # Replace with your keyword from module 1
+
+ORG_ID=akhanolkar.altostrat.com                              #Replace with yours
+ORG_ID_NBR=236589261571                                      #Replace with yours
+
+SVC_PROJECT_NUMBER=509862753528                              #Replace with yours
+SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     
+
+SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj        #Shared VPC project - replace with yours
+SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                  #Shared VPC project - replace with yours
+
+
+UMSA="$PROJECT_KEYWORD-sa"
 UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
-COMPOSER_ENV_NM=cc2-zeus-secure
+COMPOSER_ENV_NM=cc2-$PROJECT_KEYWORD-secure
 LOCATION=us-central1
 ```
 
