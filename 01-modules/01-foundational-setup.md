@@ -35,6 +35,8 @@ From the cloud console project dashboard, capture the project number.<br>
 
 ![Dashboard](../00-images/01-00-dashboard.png)
 
+![Dashboard-2](../00-images/01-01-project.png)
+
 <hr style="border:12px solid gray"> </hr>
 <br>
 
