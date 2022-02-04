@@ -29,28 +29,30 @@ Create a new project for the shared VPC.
 
 In cloud shell scoped to the shared VPC/host project, paste the following variables after **updating the same to match your environment**-
 ```
-ORG_ID=akhanolkar.altostrat.com #Replace with yours
-ORG_ID_NBR=236589261571 #Replace with yours
+PROJECT_KEYWORD="thor"
 
-SVC_PROJECT_NUMBER=187732393981 #Replace with yours
-SVC_PROJECT_ID=zeus-svc-proj #Data analytics service project
+ORG_ID=akhanolkar.altostrat.com                              #Replace with yours
+ORG_ID_NBR=236589261571                                      #Replace with yours
 
-SHARED_VPC_HOST_PROJECT_ID=zeus-host-proj        #Shared VPC project - replace with yours
-SHARED_VPC_HOST_PROJECT_NUMBER=322087561681        #Shared VPC project - replace with yours
+SVC_PROJECT_NUMBER=187732393981                              #Replace with yours
+SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     #Data analytics service project
+
+SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj        #Shared VPC project - replace with yours
+SHARED_VPC_HOST_PROJECT_NUMBER=322087561681                  #Shared VPC project - replace with yours
 
 
 LOCATION=us-central1
 
 ADMIN_UPN_FQN=admin@$ORG_ID #Replace with yours if its a different construct
-SVC_PROJECT_UMSA="zeus-sa"
+SVC_PROJECT_UMSA="$PROJECT_KEYWORD-sa"
 SVC_PROJECT_UMSA_FQN=$SVC_PROJECT_UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 
 SHARED_VPC_NETWORK_NM=zeus-shared-vpc
 SHARED_VPC_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/global/networks/$SHARED_VPC_NETWORK_NM"
-SHARED_VPC_CC2_SNET_NM="zeus-shared-cc2-snet"
+SHARED_VPC_CC2_SNET_NM="$PROJECT_KEYWORD-shared-cc2-snet"
 SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
 
-SHARED_VPC_CONNECTOR_SNET_NM=zeus-vpc-cnctr-snet
+SHARED_VPC_CONNECTOR_SNET_NM=$PROJECT_KEYWORD-vpc-cnctr-snet
 SHARED_VPC_CONNECTOR_SNET_CIDR=10.70.0.0/28
 
 SHARED_VPC_CC2_SNET_CIDR_BLK='10.65.61.0/24' # Number of GKE nodes and ILBs available 
