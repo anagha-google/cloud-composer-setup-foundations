@@ -485,4 +485,8 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 ![GMSA](../00-images/01-09-gmsa.png)
 
 
+<br>
+<br>
+<hr>
+
 This concludes the module, proceed to the [next module](02a-secure-cc2-iteration1-foundations.md).
