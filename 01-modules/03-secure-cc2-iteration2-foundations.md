@@ -39,6 +39,7 @@ VPC_SC_SERVICES_SCOPE="bigquery.googleapis.com,dataflow.googleapis.com,cloudfunc
 ```
 gcloud services enable accesscontextmanager.googleapis.com
 gcloud services enable cloudresourcemanager.googleapis.com
+gcloud services enable vpcaccess.googleapis.com 
 ```
 
 ## 2. IAM permissions to operate with Access Context Manager in host project
