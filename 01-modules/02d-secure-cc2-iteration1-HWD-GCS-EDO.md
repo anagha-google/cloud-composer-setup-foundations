@@ -7,12 +7,10 @@ Specifically, GCS bucket event driven orchestration in a secure Cloud Composer s
 
 FIRST and foremost - read this [GCP documentation](https://cloud.google.com/composer/docs/composer-2/triggering-with-gcf) to get an understanding of what we are about to attempt. Start with step 1, once done.
 
-
 ## 1.0. Create a GCS trigger bucket
 
-From cloud shell, run the commands below-
+From cloud shell, run the commands below in the service project-
 
-a) The variables
 ```
 PROJECT_KEYWORD="thor"  # Replace with your keyword from module 1
 
@@ -37,16 +35,8 @@ COMPOSER_ENV_NM=cc2-$PROJECT_KEYWORD-secure
 
 GCF_TRIGGER_BUCKET_FQN=gs://cc2-hw-trigger-bucket-$SVC_PROJECT_NUMBER
 DAG_ID=hello_world_dag
-```
 
-b) Create a bucket
-```
-gsutil mb -p $SVC_PROJECT_ID -c STANDARD -l $LOCATION -b on $GCF_TRIGGER_BUCKET_FQN
-```
 
-## 2.0. Get the Airflow Web URL
-
-```
 AIRFLOW_URI=`gcloud composer environments describe $COMPOSER_ENV_NM \
     --location $LOCATION \
     --format='value(config.airflowUri)'`
@@ -60,6 +50,12 @@ echo $AIRFLOW_URI
 The author's result-
 ```
 https://e2XXXXXXX09e8bf9-dot-us-central1.composer.googleusercontent.com
+```
+
+
+## 2.0. Create a GCS trigger bucket
+```
+gsutil mb -p $SVC_PROJECT_ID -c STANDARD -l $LOCATION -b on $GCF_TRIGGER_BUCKET_FQN
 ```
 
 ## 3.0. Review the Airflow DAG executor script
