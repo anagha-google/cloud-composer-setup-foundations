@@ -1,7 +1,7 @@
 # About
 
 This module builds on the "Hello World" exercise, by adding the orchestration element to it.<br>
-Specifically, GCS bucket event driven orchestration.<br>
+Specifically, GCS bucket event driven orchestration in a secure Cloud Composer setup.<br>
 
 ![hwd-edo-gcs](../00-images/hwd-edo-gcs.png)
 
