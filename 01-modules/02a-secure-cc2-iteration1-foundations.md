@@ -717,13 +717,13 @@ gcloud compute routers nats create $PROJECT_KEYWORD-nat-shared \
 
 ![nat](../00-images/02a-13-nat-search.png)
 
-![nat-2](../00-images/02a-14-nat-search.png)
+![nat-2](../00-images/02a-14-nat.png)
 
-![nat-3](../00-images/02a-15-nat-search.png)
+![nat-3](../00-images/02a-15-nat.png)
 
-![nat-4](../00-images/02a-16-nat-search.png)
+![nat-4](../00-images/02a-16-nat.png)
 
-![nat-5](../00-images/02a-17-nat-search.png)
+![nat-5](../00-images/02a-17-nat.png)
 
 <hr><br>
 
