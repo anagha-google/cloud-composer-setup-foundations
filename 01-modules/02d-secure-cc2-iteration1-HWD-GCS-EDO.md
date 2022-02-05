@@ -115,19 +115,13 @@ DAG_ID_TO_BE_REPLACED<br>
 ```
 sed -i "s|AIRFLOW_URI_TO_BE_REPLACED|$AIRFLOW_URI|g" main.py
 ```
-If you are on a Mac with zsh-
-```
-sed -i '' "s|AIRFLOW_URI_TO_BE_REPLACED|$AIRFLOW_URI|g" main.py
-```
+
 
 2. Replace DAG_NAME_TO_BE_REPLACED in main.py with your env specific value
 ```
 sed -i "s|DAG_ID_TO_BE_REPLACED|$DAG_ID|g" main.py
 ```
-If you are on a Mac with zsh-
-```
-sed -i '' "s|DAG_ID_TO_BE_REPLACED|$DAG_ID|g" main.py
-```
+
 
 3. Validate
 ```
