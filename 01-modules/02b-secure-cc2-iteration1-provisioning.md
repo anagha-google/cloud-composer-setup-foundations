@@ -96,6 +96,10 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
 
 <hr>
 
+# 4. Pictorial walk through of Cloud Composer environment
+
+
+
 <br>
 
 This concludes the module, proceed to the [next module](02c-secure-cc2-iteration1-HWD-Base.md).
