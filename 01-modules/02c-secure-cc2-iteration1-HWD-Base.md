@@ -2,8 +2,12 @@
 
 This module covers deploying the "Hello World" DAG, and executing the same, manually, in a secure cluster.<br>
 
+<hr>
+
 ## Prerequisites
 All the prior modules.
+
+<hr>
 
 ## 1. Deploy the DAG to a secure Cloud Composer 2
 
@@ -41,6 +45,8 @@ gcloud composer environments storage dags import \
 --impersonate-service-account $UMSA_FQN
 ```
 
+<hr>
+
 ## 2. The DAG deployment
 
 ### 2.1. Check the Cloud Composer GCS bucket DAG folder
@@ -54,6 +60,8 @@ gcloud composer environments storage dags import \
 ![af](../00-images/02c-02-af-uri.png)
 
 
+<hr>
+
 ## 3. Execute the DAG and check results
 
 
@@ -64,7 +72,7 @@ gcloud composer environments storage dags import \
 
 <br><br>
 
-### 2.2. Trigger the DAG as shown below
+### 3.2. Trigger the DAG as shown below
 
 ![tg-1](../00-images/02c-04-run-dag.png)
 
@@ -72,36 +80,36 @@ gcloud composer environments storage dags import \
 
 <br><br>
 
-### 2.3. Notice the run show up with a light green cricle on the run number
+### 3.3. Notice the run show up with a light green cricle on the run number
 
 ![tg-2](../00-images/02c-05-run-dag.png)
 
 <br><br>
 
-### 2.4. Switch to "Graph" view
+### 3.4. Switch to "Graph" view
 
 ![tg-3](../00-images/02c-06-graph-dag.png)
 
 <br><br>
 
-### 2.5. Click on the node "print_dag_run_conf"
+### 3.5. Click on the node "print_dag_run_conf"
 
 
 ![tg-7](../00-images/02c-07-dag.png)
 
 <br><br>
 
-### 2.6. Click on logs
+### 3.6. Click on logs
 
 ![tg-81](../00-images/02c-08-dag.png)
 
 <br><br>
 
-### 2.7. Notice that there are run attempts, and in the first attempt, the output with "Hello World"...
+### 3.7. Notice that there are run attempts, and in the first attempt, the output with "Hello World"...
 
 ![tg-9](../00-images/02c-09-run-dag.png)
 
-## 3.0. What's next?
+## 4.0. What's next?
 
 Event-driven orchestration samples..
 1. GCS bucket event driven orchestration
