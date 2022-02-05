@@ -1,7 +1,7 @@
 # About
 
 This section covers provisioning a secure Cloud Composer 2 environment but without VPC-SC and PSC.<br>
-This entire module is run in the service project/data analytics project.
+This entire module is run in the service project (data analytics project).
 
 ## 1. Dependencies
 
@@ -96,47 +96,47 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
 
 <hr>
 
-# 4. Pictorial walk through of Cloud Composer environment
+## 4. Pictorial walk through of Cloud Composer environment
 
-## 4.1. Navigating to Cloud Composer
+### 4.1. Navigating to Cloud Composer
 
-## 4.2. Landing page
+### 4.2. Landing page
 
-## 4.3. Monitoring 
+### 4.3. Monitoring 
 
-## 4.4. Environment Configuration 
+### 4.4. Environment Configuration 
 
-## 4.5. Airflow Configuration Overrides 
+### 4.5. Airflow Configuration Overrides 
 
-## 4.6. Environment Variables 
+### 4.6. Environment Variables 
 
-## 4.7. Labels 
+### 4.7. Labels 
 
-## 4.8. Pypi Packages 
+### 4.8. Pypi Packages 
 
-## 4.9. Airflow website
-
-
-# 5. Pictorial walk through of the underlying Google Kubernetes Engine environment
-
-## 5.1. Navigating 
-
-## 5.2. Landing page
-
-## 5.3. Cluster attributes 
+### 4.9. Airflow website
 
 
-# 6. What about other dependencies provisioned?
+## 5. Pictorial walk through of the underlying Google Kubernetes Engine environment
 
-## 6.1. Metastore
+### 5.1. Navigating 
+
+### 5.2. Landing page
+
+### 5.3. Cluster attributes 
+
+
+## 6. What about other dependencies provisioned?
+
+### 6.1. Metastore
 The underlying Cloud SQL used as metastore is not exposed. 
 
 
-## 6.2. Cloud Storage
+### 6.2. Cloud Storage
 A single Cloud Storage is auto-created when the environment is provisioned.
 
 
-## 6.3. Cloud Pub/Sub
+### 6.3. Cloud Pub/Sub
 Cloud Pub/Sub toics are auto-created and used under the hood
 
 
