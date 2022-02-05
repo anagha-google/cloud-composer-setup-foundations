@@ -45,63 +45,61 @@ gcloud composer environments storage dags import \
 
 ### 2.1. Check the Cloud Composer GCS bucket DAG folder
 
-
+![gcs](../00-images/02c-01-gcs.png)
 
 
 ### 2.2. Switch to the Airflow web UI and check for the DAG
 
 
+![af](../00-images/02c-02-af-uri.png)
 
 
 ## 3. Execute the DAG and check results
 
 
-### 2.1. Notice the new DG deployed show up in the DAG listing. Also, look at the "Run" button.
-![01-16](../00-images/01-16.png)
+### 3.1. Notice the new DG deployed show up in the DAG listing. Also, look at the "Run" button.
+
+![af](../00-images/02c-03-run-dag.png)
 
 
 <br><br>
 
 ### 2.2. Trigger the DAG as shown below
 
-![01-17](../00-images/01-17.png)
+![tg-1](../00-images/02c-04-run-dag.png)
+
+
 
 <br><br>
 
 ### 2.3. Notice the run show up with a light green cricle on the run number
 
-![01-18](../00-images/01-18.png)
+![tg-2](../00-images/02c-05-run-dag.png)
 
 <br><br>
 
 ### 2.4. Switch to "Graph" view
 
-![01-19](../00-images/01-19.png)
+![tg-3](../00-images/02c-06-graph-dag.png)
 
 <br><br>
 
 ### 2.5. Click on the node "print_dag_run_conf"
 
 
-![01-20](../00-images/01-20.png)
+![tg-7](../00-images/02c-07-dag.png)
 
 <br><br>
 
 ### 2.6. Click on logs
 
-![01-21](../00-images/01-21.png)
+![tg-81](../00-images/02c-08-dag.png)
 
 <br><br>
 
-### 2.7. Notice that there are run attempts, scroll on the attempt 1
+### 2.7. Notice that there are run attempts, and in the first attempt, the output with "Hello World"...
 
-![01-22](../00-images/01-22.png)
-
-<br><br>
-
-### 2.8. The output with "Hello World"...
-
-![01-23](../00-images/01-23.png)
+![tg-9](../00-images/02c-09-run-dag.png)
 
 ## 3.0. What's next?
 
