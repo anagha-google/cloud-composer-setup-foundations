@@ -56,7 +56,7 @@ echo $AIRFLOW_URI
 
 The author's result-
 ```
-https://e2XXXXXXX09e8bf9-dot-us-central1.composer.googleusercontent.com
+https://xxXXXXXXX09e8bf9-dot-us-central1.composer.googleusercontent.com
 ```
 <hr>
 
@@ -135,7 +135,7 @@ def trigger_dag_gcf(data, context=None):
     """
     ....
     web_server_url = (
-        'https://3e84aaa5xxxx5f41d7177bd49-dot-us-central1.composer.googleusercontent.com'
+        'https://xxxxxx-dot-us-central1.composer.googleusercontent.com'
     )
     # Replace with the ID of the DAG that you want to run.
     dag_id = 'hello_world_dag'
