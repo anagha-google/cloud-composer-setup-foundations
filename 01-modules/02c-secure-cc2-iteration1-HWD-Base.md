@@ -41,7 +41,19 @@ gcloud composer environments storage dags import \
 --impersonate-service-account $UMSA_FQN
 ```
 
-## 2. Switch to the Cloud Composer Aiflow Web UI and execute the DAG and check results
+## 2. The DAG deployment
+
+### 2.1. Check the Cloud Composer GCS bucket DAG folder
+
+
+
+
+### 2.2. Switch to the Airflow web UI and check for the DAG
+
+
+
+
+## 3. Execute the DAG and check results
 
 
 ### 2.1. Notice the new DG deployed show up in the DAG listing. Also, look at the "Run" button.
