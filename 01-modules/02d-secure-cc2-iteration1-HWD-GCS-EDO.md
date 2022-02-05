@@ -1,13 +1,17 @@
 # About
 
-This module builds on the "Hello World" exercise, by adding the orchestration element to it.<br>
-Specifically, GCS bucket event driven orchestration in a secure Cloud Composer setup.<br>
+This module builds on the "Hello World" exercise, by adding the GCS bucket event driven orchestration element to it.<br>
+The purpose of this module is to ensure that GCS bucket event driven orchestration works in a secure Cloud Composer setup. <br>
+
+FIRST and foremost - read this [GCP documentation](https://cloud.google.com/composer/docs/composer-2/triggering-with-gcf) to get an understanding of what we are about to attempt. Here is a pictorial overview.
 
 ![hwd-edo-gcs](../00-images/hwd-edo-gcs.png)
 
-FIRST and foremost - read this [GCP documentation](https://cloud.google.com/composer/docs/composer-2/triggering-with-gcf) to get an understanding of what we are about to attempt. Start with step 1, once done.
 
-## 1.0. Create a GCS trigger bucket
+<hr>
+
+
+## 1.0. Variables
 
 From cloud shell, run the commands below in the service project-
 
@@ -51,12 +55,15 @@ The author's result-
 ```
 https://e2XXXXXXX09e8bf9-dot-us-central1.composer.googleusercontent.com
 ```
+<hr>
 
 
 ## 2.0. Create a GCS trigger bucket
 ```
 gsutil mb -p $SVC_PROJECT_ID -c STANDARD -l $LOCATION -b on $GCF_TRIGGER_BUCKET_FQN
 ```
+
+<hr>
 
 ## 3.0. Review the Airflow DAG executor script
 
@@ -73,12 +80,16 @@ cat composer2_airflow_rest_api.py
 Do not change any variables.<br>
 The Cloud Function we will author, imports this file from the main.py file.
 
+<hr>
+
 ## 4.0. Review the Python dependencies file
 
 Open and review the script below-
 ```
 cat requirements.txt
 ```
+
+<hr>
 
 ## 5.0. Review the GCF main python file
 
@@ -91,6 +102,8 @@ Notice that there are two variables to be replaced-<br>
 AIRFLOW_URI_TO_BE_REPLACED<br>
 and<br>
 DAG_ID_TO_BE_REPLACED<br>
+
+<hr>
 
 ## 6.0. Update the GCF main python file
 
@@ -133,6 +146,8 @@ def trigger_dag_gcf(data, context=None):
     ...
 ```
 
+<hr>
+
 
 ## 7.0. Deploy the Google Cloud Function (GCF) to run as UMSA
 
@@ -148,6 +163,10 @@ gcloud functions deploy cc2_hw_gcs_trigger_fn \
 --service-account=${UMSA_FQN}
 ```
 
+<hr>
+
+## 8.0. Validate function deployment and configuration in the Cloud Console
+
 a) In the cloud console, navigate to Cloud Functions-
 
 ![01-02-01](../00-images/01-02-01.png)
@@ -160,18 +179,19 @@ b) Click on the deployed function
 c) Review the various tabs
 ![01-02-03](../00-images/01-02-03.png)
 
+<hr>
 
-## 8.0.Test the function from cloud shell
 
-### 8.0.1. Create a trigger file in GCS
+## 9.0.Test the function from cloud shell
+
+### 9.0.1. Create a trigger file in GCS
 ```
-GCF_TRIGGER_BUCKET_FQN=gs://cc2-hw-trigger-bucket
 touch dummy.txt
 gsutil cp dummy.txt $GCF_TRIGGER_BUCKET_FQN
 rm dummy.txt
 ```
 
-### 8.0.2. Validate successful GCF execution
+### 9.0.2. Validate successful GCF execution
 
 Go to the Cloud Function Logs, in the cloud console and check for errors..
 
