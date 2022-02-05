@@ -729,18 +729,19 @@ gcloud compute routers nats create $PROJECT_KEYWORD-nat-shared \
 
 ## 16. IAM permissions recap
 
-### 16.1. IAM permissions of service project user managed service account
+### 16.1. IAM permissions of service project's user managed service account in host project
 
 ![IAM-1](../00-images/02a-25-IAM-UMSA.png)
 
-
-![IAM-2](../00-images/02a-26-IAM-admin.png)
-
+### 16.2. IAM permissions of service project's Google Managed Service Accounts (GMSA) in host project
 
 ![IAM-3](../00-images/02a-27-IAM-GMSA-svc-proj.png)
 
-
+### 16.3. IAM permissions of host project's Google Managed Service Accounts (GMSA) in host project
 ![IAM-4](../00-images/02a-28-IAM-GMSA-host-proj.png)
+
+### 16.4. IAM permissions of lab attendee/operator
+![IAM-2](../00-images/02a-26-IAM-admin.png)
 
 
 <hr><br>
