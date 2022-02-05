@@ -1,6 +1,6 @@
 # About
 
-This section covers provisioning a secure Cloud Composer 2 environment but without VPC-SC and PSC.<br>
+This section covers provisioning a secure Cloud Composer 2 environment *but without* VPC-SC and PSC.<br>
 This entire module is run in the service project (data analytics project).
 
 ## 1. Dependencies
@@ -164,7 +164,6 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
 
 ![gke-3e](../00-images/2b-18-k8s.png)
 
-![gke-3f](../00-images/2b-19-k8s.png)
 
 ## 6. What about other dependencies provisioned?
 
