@@ -1,9 +1,9 @@
 # About
 
 This module builds on the "Hello World" exercise, by adding the GCS bucket event driven orchestration element to it.<br>
-FIRST and foremost - read this [GCP documentation](https://cloud.google.com/composer/docs/composer-2/triggering-with-gcf) to get an understanding of what we are about to attempt. <br>
+FIRST and foremost - read this [GCP documentation](https://cloud.google.com/composer/docs/composer-2/triggering-with-gcf) to get an understanding of what we are about to attempt. And...here is a pictorial overview. <br>
 The purpose of this module is to ensure that GCS bucket event driven orchestration works in a secure Cloud Composer setup. <br>
-And...here is a pictorial overview.
+
 
 ![hwd-edo-gcs](../00-images/hwd-edo-gcs.png)
 
