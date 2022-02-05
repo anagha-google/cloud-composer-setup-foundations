@@ -73,7 +73,7 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
 ```
 
 
-Once Cloud Composer adds support, we can restrict the Airflow webserver to specific CIDRs including that of the serverless VPC Connector subnet with this provisioning command-
+Once supported by the product, we can restrict the Airflow webserver to specific CIDRs including that of the serverless VPC Connector subnet with this provisioning command-
 ```
 gcloud beta composer environments create $COMPOSER_ENV_NM \
     --image-version $CC2_IMAGE_VERSION \
