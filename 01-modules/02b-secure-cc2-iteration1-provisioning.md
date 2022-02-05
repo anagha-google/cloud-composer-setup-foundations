@@ -3,9 +3,13 @@
 This section covers provisioning a secure Cloud Composer 2 environment *but without* VPC-SC and PSC.<br>
 This entire module is run in the service project (data analytics project).
 
+<hr>
+
 ## 1. Dependencies
 
 Completion of the prior module.
+
+<hr>
 
 ## 2. Variables used in the project
 
@@ -48,6 +52,7 @@ SERVERLESS_VPC_ACCESS_CONNECTOR_CIDR='10.70.0.0/28' # For event driven orchestra
 CC2_IMAGE_VERSION=composer-2.0.2-airflow-2.1.4  #composer-2.0.0-airflow-2.1.4
 ```
 
+<hr>
 
 ## 3. Provision "private" Cloud Composer 2 with shared VPC
 
@@ -142,6 +147,8 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
 
 ![CC-10a](../00-images/2b-11-af.png)
 
+<hr>
+
 ## 5. Pictorial walk through of the underlying Google Kubernetes Engine environment
 
 ### 5.1. Navigating
@@ -163,6 +170,8 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
 ![gke-3d](../00-images/2b-17-k8s.png)
 
 ![gke-3e](../00-images/2b-18-k8s.png)
+
+<hr>
 
 
 ## 6. What about other dependencies provisioned?
