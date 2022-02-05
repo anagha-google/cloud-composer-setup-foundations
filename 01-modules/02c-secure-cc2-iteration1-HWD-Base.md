@@ -27,7 +27,7 @@ SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                  #Shared VPC project
 
 
 UMSA="$PROJECT_KEYWORD-sa"
-UMSA_FQN=$UMSA@$PROJECT_ID.iam.gserviceaccount.com
+UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 COMPOSER_ENV_NM=cc2-$PROJECT_KEYWORD-secure
 LOCATION=us-central1
 ```
