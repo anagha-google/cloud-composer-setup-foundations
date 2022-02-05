@@ -73,7 +73,7 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
 ```
 
 
-Once Cloud Composer adds support, we can restrict the Airflow webserver to specific CIDRs with this provisioning command-
+Once Cloud Composer adds support, we can restrict the Airflow webserver to specific CIDRs including that of the serverless VPC Connector subnet with this provisioning command-
 ```
 gcloud beta composer environments create $COMPOSER_ENV_NM \
     --image-version $CC2_IMAGE_VERSION \
@@ -98,8 +98,49 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
 
 # 4. Pictorial walk through of Cloud Composer environment
 
+## 4.1. Navigating to Cloud Composer
+
+## 4.2. Landing page
+
+## 4.3. Monitoring 
+
+## 4.4. Environment Configuration 
+
+## 4.5. Airflow Configuration Overrides 
+
+## 4.6. Environment Variables 
+
+## 4.7. Labels 
+
+## 4.8. Pypi Packages 
+
+## 4.9. Airflow website
 
 
+# 5. Pictorial walk through of the underlying Google Kubernetes Engine environment
+
+## 5.1. Navigating 
+
+## 5.2. Landing page
+
+## 5.3. Cluster attributes 
+
+
+# 6. What about other dependencies provisioned?
+
+## 6.1. Metastore
+The underlying Cloud SQL used as metastore is not exposed. 
+
+
+## 6.2. Cloud Storage
+A single Cloud Storage is auto-created when the environment is provisioned.
+
+
+## 6.3. Cloud Pub/Sub
+Cloud Pub/Sub toics are auto-created and used under the hood
+
+
+<hr>
 <br>
 
 This concludes the module, proceed to the [next module](02c-secure-cc2-iteration1-HWD-Base.md).
