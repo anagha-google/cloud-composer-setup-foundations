@@ -100,31 +100,71 @@ gcloud beta composer environments create $COMPOSER_ENV_NM \
 
 ### 4.1. Navigating to Cloud Composer
 
+![CC-1](../00-images/2b-01-navigate.png)
+
 ### 4.2. Landing page
+
+![CC-2](../00-images/2b-02-landing.png)
 
 ### 4.3. Monitoring 
 
-### 4.4. Environment Configuration 
+![CC-3](../00-images/2b-03-monitoring.png)
 
-### 4.5. Airflow Configuration Overrides 
+### 4.4. Logs
 
-### 4.6. Environment Variables 
+![CC-4](../00-images/2b-04-logs.png)
 
-### 4.7. Labels 
+### 4.5. Environment Configuration 
 
-### 4.8. Pypi Packages 
+![CC-5a](../00-images/2b-05-ec.png)
 
-### 4.9. Airflow website
+![CC-5b](../00-images/2b-05-ec-2.png)
 
+### 4.6. Airflow Configuration Overrides 
+
+![CC-6](../00-images/2b-06-ac.png)
+
+### 4.7. Environment Variables 
+
+![CC-7](../00-images/2b-07-ev.png)
+
+### 4.8. Labels
+
+![CC-8](../00-images/2b-08-lbl.png)
+
+### 4.9. Pypi Packages 
+
+![CC-9](../00-images/2b-09-pypi.png)
+
+### 4.10. Airflow website
+
+![CC-10](../00-images/2b-10-af-uri.png)
+
+![CC-10a](../00-images/2b-11-af.png)
 
 ## 5. Pictorial walk through of the underlying Google Kubernetes Engine environment
 
-### 5.1. Navigating 
+### 5.1. Navigating
+
+![gke-1](../00-images/2b-12-k8s.png)
 
 ### 5.2. Landing page
 
+![gke-2](../00-images/2b-13-k8s.png)
+
 ### 5.3. Cluster attributes 
 
+![gke-3a](../00-images/2b-14-k8s.png)
+
+![gke-3b](../00-images/2b-15-k8s.png)
+
+![gke-3c](../00-images/2b-16-k8s.png)
+
+![gke-3d](../00-images/2b-17-k8s.png)
+
+![gke-3e](../00-images/2b-18-k8s.png)
+
+![gke-3f](../00-images/2b-19-k8s.png)
 
 ## 6. What about other dependencies provisioned?
 
@@ -135,10 +175,16 @@ The underlying Cloud SQL used as metastore is not exposed.
 ### 6.2. Cloud Storage
 A single Cloud Storage is auto-created when the environment is provisioned.
 
+![gcs-1](../00-images/2b-20-gcs.png)
+
+![gcs-2](../00-images/2b-21-gcs.png)
+
+
 
 ### 6.3. Cloud Pub/Sub
 Cloud Pub/Sub toics are auto-created and used under the hood
 
+![ps-1](../00-images/2b-22-pubsub.png)
 
 <hr>
 <br>
