@@ -519,8 +519,8 @@ start --zone="pkg-dev" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID 
 add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 --name="pkg.dev." --ttl="300" --type="A" --zone="pkg-dev"  && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
 execute --zone="pkg-dev"
 ```
+![dns-5](../00-images/02a-22-dns.png)
 
-![dns-4](../00-images/02a-21-dns.png)
 
 ### 12.3. Create a CNAME record
 
@@ -531,7 +531,7 @@ record-sets transaction start --zone="pkg-dev" && gcloud beta dns --project=$SHA
 add pkg.dev. --name="*.pkg.dev." --ttl="300" --type="CNAME" --zone="pkg-dev" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction \
 execute --zone="pkg-dev"
 ```
-![dns-5](../00-images/02a-22-dns.png)
+![dns-4](../00-images/02a-21-dns.png)
 
 ## 13. Grant IAM permissions to host project for service project's service accounts
 
@@ -679,6 +679,10 @@ gcloud compute networks vpc-access connectors create $PROJECT_KEYWORD-gcf-vpc-cn
 --machine-type f1-micro
 ```
 
+![SVPCAC-1](../00-images/02a-23-vpc-connector.png)
+
+![SVPCAC-2](../00-images/02a-24-vpc-connector.png)
+
 <br>
 <hr>
 
@@ -696,6 +700,8 @@ gcloud compute routers create $PROJECT_KEYWORD-router-shared \
     --asn=65000 \
     --region=$LOCATION
 ```
+
+![router](../00-images/02a-12-router.png)
     
 ### 15.2. Cloud NAT setup
 Docs: https://cloud.google.com/nat/docs/gke-example#create-nat<br>
@@ -708,6 +714,35 @@ gcloud compute routers nats create $PROJECT_KEYWORD-nat-shared \
     --enable-logging \
     --region=$LOCATION
 ```
+
+![nat](../00-images/02a-13-nat-search.png)
+
+![nat-2](../00-images/02a-14-nat-search.png)
+
+![nat-3](../00-images/02a-15-nat-search.png)
+
+![nat-4](../00-images/02a-16-nat-search.png)
+
+![nat-5](../00-images/02a-17-nat-search.png)
+
+<hr><br>
+
+## 16. IAM permissions recap
+
+### 16.1. IAM permissions of service project user managed service account
+
+![IAM-1](../00-images/02a-25-IAM-UMSA.png)
+
+
+![IAM-2](../00-images/02a-26-IAM-admin.png)
+
+
+![IAM-3](../00-images/02a-27-IAM-GMSA-svc-proj.png)
+
+
+![IAM-4](../00-images/02a-28-IAM-GMSA-host-proj.png)
+
+
 <hr><br>
 
 This concludes this module. Proceed to the [next module](02b-secure-cc2-iteration1-provisioning.md).
