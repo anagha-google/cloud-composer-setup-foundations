@@ -17,20 +17,24 @@ In Cloud shell scoped to the service project, declare the below-
 ```
 PROJECT_KEYWORD="thor"  # Replace with your keyword from module 1
 
+#Replace with yours
+ORG_ID=akhanolkar.altostrat.com                              
+ORG_ID_NBR=236589261571                                      
 
-ORG_ID=akhanolkar.altostrat.com                              #Replace with yours
-ORG_ID_NBR=236589261571                                      #Replace with yours
-
-SVC_PROJECT_NUMBER=509862753528                              #Replace with yours
+#Replace with yours
+SVC_PROJECT_NUMBER=509862753528                              
 SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     
 
-SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj        #Shared VPC project - replace with yours
-SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                  #Shared VPC project - replace with yours
+#Shared VPC project - replace with yours
+SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj        
+SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                 
 
 
 UMSA="$PROJECT_KEYWORD-sa"
 UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
-ADMIN_FQ_UPN="admin@akhanolkar.altostrat.com"               #Replace with yours
+
+#Replace with yours
+ADMIN_FQ_UPN="admin@akhanolkar.altostrat.com"               
 
 COMPOSER_ENV_NM=cc2-$PROJECT_KEYWORD-secure
 LOCATION=us-central1
@@ -42,14 +46,20 @@ SHARED_VPC_CC2_SNET_NM="$PROJECT_KEYWORD-shared-cc2-snet"
 SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$SHARED_VPC_CC2_SNET_NM"
 SHARED_VPC_CC2_SNET_CIDR_BLK='10.65.61.0/24'
 
-GKE_CNTRL_PLN_CIDR_BLK='10.65.62.0/24' # GKE master
-CC2_CIDR_BLK='10.65.63.0/24'  # Composer network
-CSQL_CIDR_BLK='10.65.64.0/24' # Cloud SQL (Composer metastore)
+# GKE master
+GKE_CNTRL_PLN_CIDR_BLK='10.65.62.0/24' 
+# Composer network
+CC2_CIDR_BLK='10.65.63.0/24' 
+# Cloud SQL (Composer metastore)****
+CSQL_CIDR_BLK='10.65.64.0/24' 
 
-OFFICE_CIDR=98.222.97.10/32 # Lab attendee's Public IP or your organization's office CIDR block for Airflow UI access
-SERVERLESS_VPC_ACCESS_CONNECTOR_CIDR='10.70.0.0/28' # For event driven orchestration (GCF) to work
+# Lab attendee's Public IP or your organization's office CIDR block for Airflow UI access
+OFFICE_CIDR=98.222.97.10/32 
 
-CC2_IMAGE_VERSION=composer-2.0.2-airflow-2.1.4  #composer-2.0.0-airflow-2.1.4
+# For event driven orchestration (GCF) to work
+SERVERLESS_VPC_ACCESS_CONNECTOR_CIDR='10.70.0.0/28' 
+
+CC2_IMAGE_VERSION=composer-2.0.2-airflow-2.1.4  
 ```
 
 <hr>
@@ -197,4 +207,66 @@ Cloud Pub/Sub toics are auto-created and used under the hood
 <hr>
 <br>
 
+
+## 7.0. Airflow User Setup in the service project
+
+In this step, we wll add the User Managed Service Account - zeus-sa to the Airflow database, so it can access the Airflow web components via Cloud Functions call in subsetquent modules.
+
+<br>
+a) First, lets check the users already configured in the Airflow database. Run this in the service project-
+```
+gcloud composer environments run $COMPOSER_ENV_NM --location=$LOCATION users -- list
+```
+
+Here is the author's output-
+```
+akhanolkar-macbookpro2% gcloud composer environments run $COMPOSER_ENV_NM --location=$LOCATION users -- list
+kubeconfig entry generated for us-central1-cc2-thor-secure-d18c82d4-gke.
+Executing within the following Kubernetes cluster namespace: composer-2-0-2-airflow-2-1-4-d18c82d4
+id | username         | email            | first_name        | last_name | roles
+===+==================+==================+===================+===========+======
+1  | accounts.google. | admin@akhanolkar | admin@akhanolkar. | -         | Op   
+   | com:111645786868 | .altostrat.com   | altostrat.com     |           |      
+   | 869111335        |                  |                   |           |      
+
+```
+
+b) Next, lets get the numeric ID of the UMSA for our project-
+
+```
+UMSA_NUM_ID=`gcloud iam service-accounts describe $UMSA_FQN --format="value(oauth2ClientId)"`
+```
+
+<br>
+c) Lets add the UMSA to the Airlow Users table-
+```
+gcloud composer environments run $COMPOSER_ENV_NM --location=$LOCATION users -- create --use-random-password --username "accounts.google.com:$UMSA_NUM_ID" --role Op --email  $UMSA_FQN -f Service -l Account
+```
+<br>
+
+d) Validate the addition-
+```
+gcloud composer environments run $COMPOSER_ENV_NM --location=$LOCATION users -- list
+```
+
+Author's output-
+```
+akhanolkar-macbookpro2% gcloud composer environments run $COMPOSER_ENV_NM --location=$LOCATION users -- list
+kubeconfig entry generated for us-central1-cc2-thor-secure-d18c82d4-gke.
+Executing within the following Kubernetes cluster namespace: composer-2-0-2-airflow-2-1-4-d18c82d4
+id | username         | email            | first_name        | last_name | roles
+===+==================+==================+===================+===========+======
+1  | accounts.google. | admin@akhanolkar | admin@akhanolkar. | -         | Op   
+   | com:111645786868 | .altostrat.com   | altostrat.com     |           |      
+   | 869111335        |                  |                   |           |      
+2  | accounts.google. | thor-sa@thor-svc | Service           | Account   | Op   
+   | com:113649389075 | -proj.iam.gservi |                   |           |      
+   | 672365994        | ceaccount.com    |                   |           | 
+```
+
+<hr>
+<br>
+
 This concludes the module, proceed to the [next module](02c-secure-cc2-iteration1-HWD-Base.md).
+
+
