@@ -316,6 +316,12 @@ gcloud access-context-manager perimeters create ${PROJECT_KEYWORD}_perimeter --t
 --policy=$ACM_POLICY_NUMBER 
 ```
 
+Clean up-
+```
+rm ${PROJECT_KEYWORD}-perimeter-ingress-policies.yaml
+rm ${PROJECT_KEYWORD}-perimeter-egress-policies.yaml
+```
+
 ### 7.0.4. Retest Cloud Composer DAGs
 
 Retest all the three DAG modules you created to ensure they work with the perimeter in place.
