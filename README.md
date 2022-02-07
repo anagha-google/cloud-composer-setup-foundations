@@ -20,8 +20,7 @@ The setup is verified with -<br>
 12. Event driven Cloud Composer DAG orchestration (GCF) with Cloud Pub/Sub event trigger<br>
 13. Minimum viable data pipeline (files in GCS -> ETL with Cloud Dataflow -> BigQuery)<br>
 
-The security setup is by no means 100% comprehensive, but is a quickstart, step by step, instructional guide.
-
+The security setup is by no means 100% comprehensive (not air gap), but is a quickstart, step by step, instructional guide.
 
 ## Motivation and Audience
 
