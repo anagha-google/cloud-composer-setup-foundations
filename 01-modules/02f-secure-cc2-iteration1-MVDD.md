@@ -50,7 +50,7 @@ COMPOSER_ENV_NM=cc2-$PROJECT_KEYWORD-secure
 USE_PUBLIC_IPS_IN_DATAFLOW="false"
 DATAFLOW_SUBNET_FQN="https://www.googleapis.com/compute/v1/projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/subnetworks/$PROJECT_KEYWORD-shared-cc2-snet"
 
-SRC_FILE_STAGING_BUCKET_PATH=gs://cc2-mvp-dag-src-$SVC_PROJECT_ID
+SRC_FILE_STAGING_BUCKET_PATH=gs://cc2-mvp-dag-src-$SVC_PROJECT_NUMBER
 BQ_DATASET_NM=average_weather_ds
 BQ_TABLE_NM=average_weather
 
@@ -90,20 +90,9 @@ location:GEOGRAPHY,average_temperature:INTEGER,month:STRING,inches_of_rain:NUMER
 
 ### 3.3. Grant IAM permissions for the user managed service account to BigQuery
 
-Grant BQ data editor role
-```
-gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
---role="roles/bigquery.dataEditor"
-```
+This was already completed in the very first module.
 
-Grant BQ admin role (sounds excessive, but is the only way it works)
-```
-gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
---role="roles/bigquery.admin"
-```
 
-![01-03-03b](../00-images/01-03-03b.png)
-<br>
 
 ## 4. Create a GCS bucket, stage the source files, and grant IAM permissions 
 
@@ -202,9 +191,9 @@ gsutil cp inputFile.txt $SRC_FILE_STAGING_BUCKET_PATH
 
 ### 4.4. Grant IAM permissions 
 The UMSA will execute the Composer pipeline that uses a Dataflow template that reads from GCS, as the user managed service account (UMSA).
-So, we will need to grant the UMSA the permissions to access the bucket.
+So, we will need to grant the UMSA the permissions to access the bucket. This was already completed in the very first module.
 ```
-gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$SVC_PROJECT_UMSA_FQN \
 --role="roles/storage.objectViewer"
 ```
 
@@ -215,17 +204,17 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 
 The Composer DAG launches Cloud Dataflow which uses a Dataflow template - therefore no code walk through of Dataflow job.<br> 
 We will run Composer as the UMSA.<br> 
-Therefore, we will need to grant the **UMSA**, the requisite permissions.<br>
+Therefore, we will need to grant the **UMSA**, the requisite permissions. This was already completed in the very first module.<br>
 
 1) Dataflow developer role
 ```
-gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$SVC_PROJECT_UMSA_FQN \
 --role="roles/dataflow.developer"
 ```
 
 2) Dataflow worker role
 ```
-gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$SVC_PROJECT_UMSA_FQN \
 --role="roles/dataflow.worker"
 ```
 
@@ -234,17 +223,17 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 
 ## 6. BigQuery specific permissions
 
-The Cloud Dataflow template persis to BigQuery and we will run the DAG as the UMSA. Therefore, we will need to grant the **UMSA**, the requisite permissions.<br>
+The Cloud Dataflow template persis to BigQuery and we will run the DAG as the UMSA. Therefore, we will need to grant the **UMSA**, the requisite permissions. This was already completed in the very first module.<br>
 
 1) BigQuery admin role
 ```
-gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$SVC_PROJECT_UMSA_FQN \
 --role="roles/bigquery.admin"
 ```
 
 2) BigQuery data editor role
 ```
-gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$SVC_PROJECT_UMSA_FQN \
 --role="roles/bigquery.dataEditor"
 ```
 
@@ -338,7 +327,7 @@ bq_tbl_nm $BQ_TABLE_NM
 gcloud beta composer environments run $COMPOSER_ENV_NM \
 --location $LOCATION \
 variables set -- \
-umsa_fqn $UMSA_FQN
+umsa_fqn $SVC_PROJECT_UMSA_FQN
 ```
 
 8) Boolean to indicate whether to have Dataflow be public/private IP based
@@ -365,7 +354,7 @@ cd ~/cloud-composer-setup-foundations/02-dags/01-min-viable-data-dag/00-scripts/
 gcloud composer environments storage dags import \
 --environment $COMPOSER_ENV_NM  --location $LOCATION \
 --source min-viable-data-dag.py \
---impersonate-service-account $UMSA_FQN
+--impersonate-service-account $SVC_PROJECT_UMSA_FQN
 ```
 
 Review the deployment in the Cloud Console, in Cloud Storage.
