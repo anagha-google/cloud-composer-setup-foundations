@@ -157,7 +157,7 @@ gcloud functions deploy cc2_hw_gcs_trigger_fn \
 --trigger-event google.storage.object.finalize \
 --runtime python39   \
 --vpc-connector projects/$SHARED_VPC_HOST_PROJECT_ID/locations/$LOCATION/connectors/$PROJECT_KEYWORD-gcf-vpc-cnnctr \
---service-account=${UMSA_FQN}
+--service-account=${SVC_PROJECT_UMSA_FQN}
 ```
 
 <hr>
