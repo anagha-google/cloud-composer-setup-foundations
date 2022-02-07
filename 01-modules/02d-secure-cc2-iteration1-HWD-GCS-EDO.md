@@ -71,6 +71,8 @@ https://xxXXXXXXX09e8bf9-dot-us-central1.composer.googleusercontent.com
 gsutil mb -p $SVC_PROJECT_ID -c STANDARD -l $LOCATION -b on $GCF_TRIGGER_BUCKET_FQN
 ```
 
+![Bucket](../00-images/02d-00-bucket-trigger.png)
+
 <hr>
 
 ## 3.0. Review the Airflow DAG executor script
@@ -169,17 +171,51 @@ gcloud functions deploy cc2_hw_gcs_trigger_fn \
 
 ## 8.0. Validate function deployment and configuration in the Cloud Console
 
-a) In the cloud console, navigate to Cloud Functions-
+a) In the cloud console navigate to Cloud Storage, you should see an additional bucket created for the function-
 
-![01-02-01](../00-images/01-02-01.png)
-<br><br><br>
+![Bucket-2](../00-images/02d-01-buckets-all.png)
+<br>
+Click through the bucket-
+![Bucket-2](../00-images/02d-02-gcf-bucket.png)
+<br>
+![Bucket-3](../00-images/02d-03-gcf-bucket.png)
+<br>
+![Bucket-4](../00-images/02d-04-gcf-bucket.png)
+<br>
 
-b) Click on the deployed function
-![01-02-02](../00-images/01-02-02.png)
-<br><br><br>
+b) In the cloud console, navigate to Cloud Functions-
+![Landing](../00-images/02d-05-gcf-landing.png)
+<br>
+Click on the function name
+<br>
 
-c) Review the various tabs
-![01-02-03](../00-images/01-02-03.png)
+c) Review the function details
+![Details](../00-images/02d-06-gcf-details.png)
+
+d) Review the rest of the tabs
+
+![tab-07](../00-images/02d-07-gcf.png)
+<br>
+![tab-08](../00-images/02d-08-gcf.png)
+<br>
+![tab-09](../00-images/02d-09-gcf.png)
+<br>
+![tab-10](../00-images/02d-10-gcf.png)
+<br>
+![tab-11](../00-images/02d-11-gcf.png)
+<br>
+![tab-12](../00-images/02d-12-gcf.png)
+<br>
+![tab-13](../00-images/02d-13-gcf.png)
+<br>
+![tab-14](../00-images/02d-14-gcf.png)
+<br>
+![tab-15](../00-images/02d-15-gcf.png)
+<br>
+![tab-16](../00-images/02d-16-gcf.png)
+<br>
+![tab-17](../00-images/02d-17-gcf.png)
+<br>
 
 <hr>
 
