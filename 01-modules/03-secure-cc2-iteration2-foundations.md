@@ -165,6 +165,7 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create googl
 --networks=$SHARED_VPC_NETWORK_NM
 ```
 
+Here is the view in Cloud Console-
 ![dns-gapi-1](../00-images/03-03-dns-gapi.png)
 <br><br>
 
@@ -183,7 +184,7 @@ record-sets transaction add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="googleapis" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add restricted.googleapis.com. --name="*.googleapis.com." --ttl="300" --type="CNAME" --zone="googleapis" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="googleapis"
 
 ```
-
+Here is the view in Cloud Console-
 ![dns-gapi-2](../00-images/03-04-dns-gapi.png)
 <br><br>
 
@@ -203,7 +204,7 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create gcr-i
 --visibility="private" \
 --networks=$SHARED_VPC_NETWORK_NM
 ```
-
+Here is the view in Cloud Console-
 ![dns-gcrio-1](../00-images/03-07-dns-gcrio.png)
 <br><br>
 
@@ -212,7 +213,7 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create gcr-i
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="gcr-io" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 --name="gcr.io." --ttl="300" --type="A" --zone="gcr-io" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="gcr-io"
 ```
-
+Here is the view in Cloud Console-
 ![dns-gcrio-2](../00-images/03-08-dns-gcrio.png)
 <br><br>
 
@@ -220,11 +221,13 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction st
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="gcr-io" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add gcr.io. --name="*.gcr.io." --ttl="300" --type="CNAME" --zone="gcr-io" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="gcr-io"
-
 ```
+Here is the view in Cloud Console-
 
 ![dns-gcrio-3](../00-images/03-09-dns-gcrio.png)
 <br><br>
+
+
 
 
 
@@ -235,15 +238,10 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction st
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create composer-cloud-google --description="" --dns-name="composer.cloud.google.com." --visibility="private" --networks=$SHARED_VPC_NETWORK_NM
 ```
 
-
-![dns-gapi-2](../00-images/03-04-dns-gapi.png)
+Here is the view in Cloud Console-
+![dns-ccgc-1](../00-images/03-10-dns-ccgc.png)
 <br><br>
 
-![dns-gapi-3](../00-images/03-05-dns-gapi.png)
-<br><br>
-
-![dns-gapi-4](../00-images/03-06-dns-gapi.png)
-<br><br>
 
 #### 5.3.b Create A record
 
@@ -251,17 +249,18 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create compo
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="composer-cloud-google" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 --name="composer.cloud.google.com." --ttl="300" --type="A" --zone="composer-cloud-google" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="composer-cloud-google"
 ```
 
+Here is the view in Cloud Console-
+![dns-ccgc-2](../00-images/03-11-dns-ccgc.png)
+<br><br>
+
 #### 5.3.c Create CNAME record
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="composer-cloud-google" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add composer.cloud.google.com. --name="*.composer.cloud.google.com." --ttl="300" --type="CNAME" --zone="composer-cloud-google" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="composer-cloud-google"
-
 ```
 
-![dns-gapi-3](../00-images/03-05-dns-gapi.png)
-<br><br>
-
-![dns-gapi-4](../00-images/03-06-dns-gapi.png)
+Here is the view in Cloud Console-
+![dns-ccgc-3](../00-images/03-12-dns-ccgc.png)
 <br><br>
 
 ## 6.0 Configure incremental firewall rules in the host project
@@ -276,6 +275,7 @@ gcloud compute --project=$SHARED_VPC_HOST_PROJECT_ID firewall-rules create allow
 --rules=tcp:443 \
 --destination-ranges=199.36.153.4/30
 ```
+
 
 ## 7.0. Create the VPC perimeter 
 
@@ -373,7 +373,50 @@ rm ${PROJECT_KEYWORD}-perimeter-ingress-policies.yaml
 rm ${PROJECT_KEYWORD}-perimeter-egress-policies.yaml
 ```
 
-### 7.0.4. Retest Cloud Composer DAGs
+### 7.0.4. Pictorial overview - Cloud Console
+
+Here is the view in Cloud Console-
+![dns-vpc-sc-1](../00-images/03-13-vpc-sc.png)
+<br><br>
+
+![dns-vpc-sc-2](../00-images/03-14-vpc-sc.png)
+<br><br>
+
+![dns-vpc-sc-3](../00-images/03-15-vpc-sc.png)
+<br><br>
+
+![dns-vpc-sc-4](../00-images/03-16-vpc-sc.png)
+<br><br>
+
+![dns-vpc-sc-5](../00-images/03-17-vpc-sc.png)
+<br><br>
+
+![dns-vpc-sc-6](../00-images/03-18-vpc-sc.png)
+<br><br>
+
+![dns-vpc-sc-7](../00-images/03-19-vpc-sc.png)
+<br><br>
+
+![dns-vpc-sc-8](../00-images/03-20-vpc-sc.png)
+<br><br>
+
+![dns-vpc-sc-9](../00-images/03-21-vpc-sc.png)
+<br><br>
+
+![dns-vpc-sc-10](../00-images/03-22-vpc-sc.png)
+<br><br>
+
+![dns-vpc-sc-11](../00-images/03-23-vpc-sc.png)
+<br><br>
+
+![dns-vpc-sc-12](../00-images/03-24-vpc-sc.png)
+<br><br>
+
+![dns-vpc-sc-13](../00-images/03-25-vpc-sc.png)
+<br><br>
+
+
+## 8. Retest Cloud Composer DAGs
 
 Retest all the three DAG modules you created to ensure they work with the perimeter in place.
 
