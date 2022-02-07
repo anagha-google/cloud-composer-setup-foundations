@@ -5,6 +5,9 @@ This module covers creating an ultra basic DAG that reads a CSV file from GCS, t
 Here is a pictorial overview of the DAG-
 ![mvdd](../00-images/mvdd.png)
 
+Purpose of the module:
+The purpose of this module is to ensure that such a minimum viable data pipeline works in a secure Cloud Composer setup.
+
 ### Prerequisites
 Successful completion of prior modules.
 
