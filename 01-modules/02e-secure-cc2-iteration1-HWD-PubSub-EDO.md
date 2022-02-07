@@ -47,12 +47,20 @@ AIRFLOW_URI=`gcloud composer environments describe $COMPOSER_ENV_NM \
     --format='value(config.airflowUri)'`
 ```
 
+<br>
+
+<hr>
+
 ## 2.0. Create a Google Pub/Sub topic
 ```
 gcloud pubsub topics create $PUBSUB_TRIGGER_TOPIC
 ```
 
 ![ps](../00-images/02e-00-pubsub-landng.png)
+
+<br>
+
+<hr>
 
 
 ## 3.0. Review the Airflow DAG executor script
@@ -70,12 +78,20 @@ cat composer2_airflow_rest_api.py
 Do not change any variables.<br>
 The Cloud Function we will author, imports this file from the main.py file.
 
+<br>
+
+<hr>
+
 ## 4.0. Review the Python dependencies file
 
 Open and review the script below-
 ```
 cat requirements.txt
 ```
+
+<br>
+
+<hr>
 
 ## 5.0. Review the GCF main python file
 
@@ -88,6 +104,10 @@ Notice that there are two variables to be replaced-<br>
 AIRFLOW_URI_TO_BE_REPLACED<br>
 and<br>
 DAG_ID_TO_BE_REPLACED<br>
+
+<br>
+
+<hr>
 
 ## 6.0. Update the GCF main python file
 
@@ -108,6 +128,10 @@ cat main.py
 ```
 
 You should see the actual Airflow URI and the DAG ID
+
+<br>
+
+<hr>
 
 ## 7.0. Deploy the Google Cloud Function (GCF) to run as UMSA
 
@@ -145,7 +169,7 @@ Browse through the tabs-
 ![gcf-log-testing](../00-images/02e-08-gcf-perm.png)
 <br><br><br>
 
-
+<hr>
 
 ## 8.0.Test the function from cloud shell
 
@@ -158,33 +182,15 @@ Go to the Cloud Function Logs, in the cloud console and check for errors..
 ![gcf-deployment](../00-images/02e-09-deploy-logs.png)
 <br><br><br>
 
-And then go to Airflow web UI and click on the DAG node, and look at the logs...
+And then go to Airflow web UI and click on the DAG runs...
 ![gcf-dag-run](../00-images/02e-10-dag-run.png)
 <br>
 
-Publish multiple messages to the Pub/Sub topic and explore DAG runs in the Airflow UI...
+Click on the DAG and into the sole node, and into the logs, you should see the output...
 ![gcf-dag-exec](../00-images/02e-11-dag-exec-log.png)
 <br>
 
-## 9.0. Lets do a quick review of permissions for the major identities in scope for this demo
 
-Go to the Cloud Console and navigate to the IAM -> IAM & Admin and ensure you check the "Include Google Provided Role Grants". Screenshots of what you should expect are below. 
-
-## 9.0.1. The lab attendee permissions
-![01-02-06](../00-images/01-02-06.png)
-<br>
-
-## 9.0.2. The UMSA permissions
-![01-02-07](../00-images/01-02-07.png)
-<br>
-
-## 9.0.3. The Cloud Composer Service Agent Account permissions
-![01-02-08](../00-images/01-02-08.png)
-<br>
-
-## 9.0.4. The various Google Managed Default Service Accounts
-![01-02-09](../00-images/01-02-09.png)
-<br>
 
 
 <hr>
