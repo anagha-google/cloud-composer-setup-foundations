@@ -5,6 +5,10 @@ Specifically, Pub/Sub message event driven orchestration.<br>
 
 ![hwd-edo-pubsub](../00-images/hwd-edo-pubsub.png)
 
+Purpose of the module:
+The purpose of this module is to ensure that Cloud Pub/Sub message event driven orchestration works in a secure Cloud Composer setup.
+
+
 
 ## 1.0. Variables
 
