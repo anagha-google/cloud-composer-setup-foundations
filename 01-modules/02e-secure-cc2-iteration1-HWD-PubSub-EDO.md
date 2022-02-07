@@ -142,10 +142,10 @@ Browse through the tabs-
 <br><br><br>
 ![gcf-perm](../00-images/02e-06-gcf-perm.png)
 <br><br><br>
-![gcf-log-perm](../00-images/02e-08-gcf-perm.png)
+![gcf-log-testing](../00-images/02e-08-gcf-perm.png)
 <br><br><br>
-![gcf-deployment](../00-images/02e-09-deploy-logs.png)
-<br><br><br>
+
+
 
 ## 8.0.Test the function from cloud shell
 
@@ -155,16 +155,15 @@ gcloud pubsub topics publish $PUBSUB_TRIGGER_TOPIC --message "$CURRENT_TIME"
 ```
 
 Go to the Cloud Function Logs, in the cloud console and check for errors..
-
-![01-02-15](../00-images/01-02-15.png)
-<br>
+![gcf-deployment](../00-images/02e-09-deploy-logs.png)
+<br><br><br>
 
 And then go to Airflow web UI and click on the DAG node, and look at the logs...
-![01-02-16](../00-images/01-02-16.png)
+![gcf-dag-run](../00-images/02e-10-dag-run.png)
 <br>
 
 Publish multiple messages to the Pub/Sub topic and explore DAG runs in the Airflow UI...
-![01-02-17](../00-images/01-02-17.png)
+![gcf-dag-exec](../00-images/02e-11-dag-exec-log.png)
 <br>
 
 ## 9.0. Lets do a quick review of permissions for the major identities in scope for this demo
