@@ -165,6 +165,10 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create googl
 --networks=$SHARED_VPC_NETWORK_NM
 ```
 
+![dns-gapi-1](../00-images/03-03-dns-gapi.png)
+<br><br>
+
+
 #### 5.1.b Create A record
 
 ```
@@ -173,12 +177,22 @@ record-sets transaction add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 
 
 ```
 
+![dns-gapi-2](../00-images/03-04-dns-gapi.png)
+<br><br>
+
 #### 5.1.c Create CNAME record
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="googleapis" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add restricted.googleapis.com. --name="*.googleapis.com." --ttl="300" --type="CNAME" --zone="googleapis" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="googleapis"
 
 ```
+
+
+![dns-gapi-3](../00-images/03-05-dns-gapi.png)
+<br><br>
+
+![dns-gapi-4](../00-images/03-06-dns-gapi.png)
+<br><br>
 
 
 ### 5.2. DNS entries gcr.io
