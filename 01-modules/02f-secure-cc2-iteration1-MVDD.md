@@ -11,6 +11,8 @@ The purpose of this module is to ensure that such a minimum viable data pipeline
 ### Prerequisites
 Successful completion of prior modules.
 
+<hr>
+
 ## 1. Review the DAG script
 
 a) From cloud shell, navigate to the directory where the script is located
@@ -23,6 +25,8 @@ b) Review the DAG Python script "min-viable-data-dag.py"<br>
 It reads files from GCS, maps/transforms and loads the data into BigQuery, via Cloud Dataflow.<br>
 It uses a Dataflow template available in Cloud storage for the same.<br>
 This template accepts parameters for the transformation function, source and sink paths and such.<br>
+
+<hr>
 
 ## 2. Variables for the lab
 
@@ -59,6 +63,8 @@ BQ_TABLE_NM=average_weather
 
 ```
 
+<hr>
+
 ## 3. Create a BigQuery dataset and table
 
 From cloud shell, run the commands below.
@@ -70,11 +76,11 @@ bq --location=$LOCATION mk \
 $PROJECT_ID:$BQ_DATASET_NM
 ```
 
-![01-03-00](../00-images/01-03-00.png)
+![bq-1](../00-images/02f-00-bq-landing.png)
 <br><br>
 
-![01-03-01](../00-images/01-03-01.png)
-<br>
+![bq-2](../00-images/02f-01-bq.png)
+<br><br>
 
 ### 3.2. Create the table
 ```
@@ -84,18 +90,23 @@ $PROJECT_ID:$BQ_DATASET_NM.$BQ_TABLE_NM \
 location:GEOGRAPHY,average_temperature:INTEGER,month:STRING,inches_of_rain:NUMERIC,is_current:BOOLEAN,latest_measurement:DATE
 ```
 
-![01-03-02](../00-images/01-03-02.png)
+
+![bq-3](../00-images/02f-02-bq-tbl.png)
 <br><br>
 
-![01-03-03](../00-images/01-03-03.png)
-<br>
+
+![bq-4](../00-images/02f-03-bq-tbl.png)
+<br><br>
 
 
 ### 3.3. Grant IAM permissions for the user managed service account to BigQuery
 
 This was already completed in the very first module.
 
+![bq-5](../00-images/02f-03-bq-tbl.png)
+<br><br>
 
+<hr>
 
 ## 4. Create a GCS bucket, stage the source files, and grant IAM permissions 
 
@@ -105,7 +116,7 @@ gsutil mb -c standard -p $SVC_PROJECT_ID -l $LOCATION $SRC_FILE_STAGING_BUCKET_P
 ```
 
 
-![01-03-04](../00-images/01-03-04.png)
+![gcs](../00-images/02f-05-gcs.png)
 <br>
 
 ### 4.2. Review the files, and understand their purpose
@@ -189,7 +200,7 @@ gsutil cp transformCSVtoJSON.js $SRC_FILE_STAGING_BUCKET_PATH
 gsutil cp inputFile.txt $SRC_FILE_STAGING_BUCKET_PATH
 ```
 
-![01-03-05](../00-images/01-03-05.png)
+![gcs-2](../00-images/02f-06-gcs-files.png)
 <br>
 
 ### 4.4. Grant IAM permissions 
@@ -200,8 +211,10 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 --role="roles/storage.objectViewer"
 ```
 
-![01-03-03c](../00-images/01-03-03c.png)
+![gcs-3](../00-images/02f-11-gcs.png)
 <br>
+
+<hr>
 
 ## 5. Cloud Dataflow specific permissions
 
@@ -221,8 +234,10 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 --role="roles/dataflow.worker"
 ```
 
-![01-03-03a](../00-images/01-03-03a.png)
+![df](../00-images/02f-10-df.png)
 <br>
+
+<hr>
 
 ## 6. BigQuery specific permissions
 
@@ -239,6 +254,12 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$SVC_PROJECT_UMSA_FQN \
 --role="roles/bigquery.dataEditor"
 ```
+
+
+![bq-iam](../00-images/02f-09-iam-bq.png)
+<br>
+
+<hr>
 
 ## 7. Configure Composer Environment Variables
 The DAG expects some environment variables.<br>
@@ -342,8 +363,13 @@ use_public_ips_in_dataflow $USE_PUBLIC_IPS_IN_DATAFLOW
 ```
 
 
-![01-03-06](../00-images/01-03-06.png)
-<br>
+![af-1](../00-images/02f-07-af-vars.png)
+<br><br>
+
+![af-2](../00-images/02f-08-af-vars.png)
+<br><br>
+
+<hr>
 
 ## 8. Deploy the DAG to Cloud Composer 2
 
@@ -361,38 +387,51 @@ gcloud composer environments storage dags import \
 ```
 
 Review the deployment in the Cloud Console, in Cloud Storage.
-![01-03-07](../00-images/01-03-07.png)
-<br>
+![dep-gcs](../00-images/02f-13-dag-gcs.png)
+<br><br>
+![dep-gcs-2](../00-images/02f-14-dag-gcs.png)
+<br><br>
+![dep-gcs-3](../00-images/02f-15-dag-gcs.png)
+<br><br>
 
-
+<hr>
 
 ## 9. Switch to the Cloud Composer Aiflow Web UI and view the DAG execution and check results
 
 Switch to Airflow UI, you should see the new DAG executing
-![01-03-08](../00-images/01-03-08.png)
-<br>
+![af-dag-1](../00-images/02f-16-dag-af.png)
+<br><br>
+![af-dag-2](../00-images/02f-17-dag-af.png)
+<br><br>
+![af-dag-3](../00-images/02f-18-dag-af.png)
+<br><br>
+Check the logs...
+![af-dag-4](../00-images/02f-24-dag-af.png)
+
+<hr>
 
 
 ## 10. Switch to the Cloud Dataflow UI and view the pipeline execution 
 
-Switch to the Cloud Console, and navigate to Cloud Dataflow-
-![01-03-13](../00-images/01-03-13.png)
-<br>
+Switch to the Cloud Console, and navigate to Cloud Dataflow-<br>
+Notice that the Dataflow job has started..
 
-
-Notice that the Dataflow job has started
-![01-03-09](../00-images/01-03-09.png)
-<br>
+![df-1](../00-images/02f-19-dag-df.png)
+<br><br>
 
 Explore the DAG
-![01-03-10](../00-images/01-03-10.png)
-<br>
+![df-2](../00-images/02f-20-dag-df.png)
+<br><br>
 
 Explore the DAG execution logs
-![01-03-11](../00-images/01-03-11.png)
-<br>
+![df-3](../00-images/02f-21-dag-df.png)
+<br><br>
+
+![df-4](../00-images/02f-22-dag-df.png)
+<br><br>
 
 
+<hr>
 
 ## 11. Switch to the BigQuery UI and view the results
 
@@ -405,8 +444,10 @@ You should see the following results-
 
 
 Explore the DAG execution logs
-![01-03-12](../00-images/01-03-12.png)
+![bq-finito](../00-images/02f-23-dag-bq.png)
 <br>
+
+<hr>
 
 
 ## 13. Want a challenge?
