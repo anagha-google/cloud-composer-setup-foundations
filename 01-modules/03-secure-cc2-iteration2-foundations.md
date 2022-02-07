@@ -184,6 +184,15 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction st
 
 ```
 
+![dns-gapi-2](../00-images/03-04-dns-gapi.png)
+<br><br>
+
+![dns-gapi-3](../00-images/03-05-dns-gapi.png)
+<br><br>
+
+![dns-gapi-4](../00-images/03-06-dns-gapi.png)
+<br><br>
+
 
 ### 5.2. DNS entries gcr.io
 #### 5.2.a Create zone
@@ -195,11 +204,17 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create gcr-i
 --networks=$SHARED_VPC_NETWORK_NM
 ```
 
+![dns-gcrio-1](../00-images/03-07-dns-gcrio.png)
+<br><br>
+
 #### 5.2.b Create A record
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="gcr-io" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 --name="gcr.io." --ttl="300" --type="A" --zone="gcr-io" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="gcr-io"
 ```
+
+![dns-gcrio-2](../00-images/03-08-dns-gcrio.png)
+<br><br>
 
 #### 5.2.c Create CNAME record
 
@@ -208,13 +223,7 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction st
 
 ```
 
-![dns-gapi-2](../00-images/03-04-dns-gapi.png)
-<br><br>
-
-![dns-gapi-3](../00-images/03-05-dns-gapi.png)
-<br><br>
-
-![dns-gapi-4](../00-images/03-06-dns-gapi.png)
+![dns-gcrio-3](../00-images/03-09-dns-gcrio.png)
 <br><br>
 
 
