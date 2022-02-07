@@ -6,7 +6,7 @@ Specifically, Pub/Sub message event driven orchestration.<br>
 ![hwd-edo-pubsub](../00-images/hwd-edo-pubsub.png)
 
 
-## 1.0. Create a Google Pub/Sub topic
+## 1.0. Variables
 
 Note: We already enabled the Pub/Sub API in the prerequisites module. <br>
 From cloud shell, run the commands below-
@@ -47,26 +47,15 @@ AIRFLOW_URI=`gcloud composer environments describe $COMPOSER_ENV_NM \
     --format='value(config.airflowUri)'`
 ```
 
-b) Create a Pub/Sub topic
+## 2.0. Create a Google Pub/Sub topic
 ```
 gcloud pubsub topics create $PUBSUB_TRIGGER_TOPIC
 ```
 
-c) Check the Cloud Console UI and browse through the various tabs and configuration<br>
+![ps](../00-images/02e-00-pubsub-landng.png)
 
-Navigate to Cloud Pub/Sub UI<br>
-![01-02-10](../00-images/01-02-10.png)
-<br><br><br>
 
-Review the Pub/Sub topic listing
-![01-02-11](../00-images/01-02-11.png)
-<br><br><br>
-
-Browse through the Pub/Sub topic UI
-![01-02-12](../00-images/01-02-12.png)
-<br><br><br>
-
-## 2.0. Review the Airflow DAG executor script
+## 3.0. Review the Airflow DAG executor script
 
 In cloud shell, navigate to the scripts directory for the exercise-
 ```
@@ -134,9 +123,13 @@ gcloud functions deploy cc2_hw_pubsub_trigger_fn \
 
 ```
 
+a) In the cloud console, navigate to Cloud Storage-
+![gcs](../00-images/02e-01-gcs.png)
+<br><br><br>
+
 a) In the cloud console, navigate to Cloud Functions-
 
-![01-02-13](../00-images/01-02-13.png)
+![01-02-13](../00-images/02e-01-gcs.png)
 <br><br><br>
 
 b) Gp back to the Cloud Pub/Sub UI and notice that the deployment of the Pub/Sub topic triggered GCF created a Pub/Sub subscription
