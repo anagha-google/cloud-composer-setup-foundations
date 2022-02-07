@@ -1,7 +1,27 @@
 # Cloud Composer Setup for Data Analytics Endeavors on Google Cloud
 
 ## About the Repository
-This repository contains hands-on-lab modules that cover provisioning the foundational infrastructure and security in GCP for Cloud Composer based Data Analytics projects. It does not cover authoring complex Apache Airflow DAGs and Airflow functionality as the focus is creating a stable and secure environment for authoring pipelines.
+This repository contains hands-on-lab modules that cover provisioning the foundational infrastructure and security in GCP for Cloud Composer based Data Analytics projects. It does not cover authoring complex Apache Airflow DAGs and Airflow functionality as the focus is creating a stable and secure environment for authoring pipelines.<br>
+
+The security features covered include-
+1. Shared VPC
+2. Private Cloud Composer
+3. Authorized networks in GKE
+4. VPC-SC
+5. PSC
+6. Serverless VPC Access Connector for Cloud Functions
+7. Private Dataflow cluster in Cloud Composer DAG
+8. Network config to allow downloading from Maven/PyPi/CRAN
+9. User Managed Service Account for Cloud Composer, for Cloud Functions runtime account
+10. With permissions based on principle of least privilege (work in progress)
+
+The setup is verified with -
+11. Event driven Cloud Composer DAG orchestration (GCF) with Cloud Storage event trigger
+12. Event driven Cloud Composer DAG orchestration (GCF) with Cloud Pub/Sub event trigger
+13. Minimum viable data pipeline (files in GCS -> ETL with Cloud Dataflow -> BigQuery)
+
+It is by no means a comprehensive security setup, but is a quickstart step by step guide.
+
 
 ## Motivation and Audience
 
