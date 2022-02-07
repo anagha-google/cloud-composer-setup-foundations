@@ -13,14 +13,14 @@ The security features covered include-
 7. Private Dataflow cluster in Cloud Composer DAG
 8. Network config to allow downloading from Maven/PyPi/CRAN
 9. User Managed Service Account for Cloud Composer, for Cloud Functions runtime account
-10. With permissions based on principle of least privilege (work in progress)
+10. Permissions based on principle of least privilege where possible
 
 The setup is verified with -
 11. Event driven Cloud Composer DAG orchestration (GCF) with Cloud Storage event trigger
 12. Event driven Cloud Composer DAG orchestration (GCF) with Cloud Pub/Sub event trigger
 13. Minimum viable data pipeline (files in GCS -> ETL with Cloud Dataflow -> BigQuery)
 
-It is by no means a comprehensive security setup, but is a quickstart step by step guide.
+The security setup is by no means 100% comprehensive, but is a quickstart, step by step, instructional guide.
 
 
 ## Motivation and Audience
