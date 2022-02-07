@@ -129,7 +129,7 @@ gcloud functions deploy cc2_hw_pubsub_trigger_fn \
 --entry-point trigger_dag_gcf \
 --trigger-topic $PUBSUB_TRIGGER_TOPIC \
 --runtime python39 \
---service-account=${UMSA_FQN} \
+--service-account=${SVC_PROJECT_UMSA_FQN} \
 --vpc-connector projects/$SHARED_VPC_HOST_PROJECT_ID/locations/$LOCATION/connectors/$PROJECT_KEYWORD-gcf-vpc-cnnctr 
 
 ```
