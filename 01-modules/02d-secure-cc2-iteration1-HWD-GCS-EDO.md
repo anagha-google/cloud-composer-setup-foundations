@@ -72,7 +72,7 @@ gsutil mb -p $SVC_PROJECT_ID -c STANDARD -l $LOCATION -b on $GCF_TRIGGER_BUCKET_
 
 In cloud shell, navigate to the scripts directory for the exercise-
 ```
-cd ~/cloud-composer-setup-foundations/02-dags/00-hello-world-dag/2-dag-gcf-orchestrated
+cd ~/cloud-composer-setup-foundations/02-dags/00-hello-world-dag/2-dag-gcs-orchestrated
 ```
 
 Open and review the script below-
