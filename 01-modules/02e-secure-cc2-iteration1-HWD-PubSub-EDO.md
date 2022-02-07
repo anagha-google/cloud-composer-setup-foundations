@@ -127,17 +127,25 @@ a) In the cloud console, navigate to Cloud Storage-
 ![gcs](../00-images/02e-01-gcs.png)
 <br><br><br>
 
-a) In the cloud console, navigate to Cloud Functions-
-
-![01-02-13](../00-images/02e-01-gcs.png)
+b) In the cloud console, navigate to Cloud Functions-
+![gcf](../00-images/02e-01-gcf-landng.png)
 <br><br><br>
 
-b) Gp back to the Cloud Pub/Sub UI and notice that the deployment of the Pub/Sub topic triggered GCF created a Pub/Sub subscription
-
-![01-02-14](../00-images/01-02-14.png)
+Browse through the tabs-
+![gcf-details](../00-images/02e-02-gcf-details.png)
 <br><br><br>
-
-
+![gcf-code](../00-images/02e-03-gcf-code.png)
+<br><br><br>
+![gcf-var](../00-images/02e-04-gcf-var.png)
+<br><br><br>
+![gcf-trigger](../00-images/02e-05-gcf-trigger.png)
+<br><br><br>
+![gcf-perm](../00-images/02e-06-gcf-perm.png)
+<br><br><br>
+![gcf-log-perm](../00-images/02e-08-gcf-perm.png)
+<br><br><br>
+![gcf-deployment](../00-images/02e-09-deploy-logs.png)
+<br><br><br>
 
 ## 8.0.Test the function from cloud shell
 
