@@ -15,7 +15,7 @@ The security features covered include-
 9. User Managed Service Account for Cloud Composer, for Cloud Functions runtime account
 10. Permissions based on principle of least privilege where possible
 
-The setup is verified with -
+The setup is verified with -<br>
 11. Event driven Cloud Composer DAG orchestration (GCF) with Cloud Storage event trigger
 12. Event driven Cloud Composer DAG orchestration (GCF) with Cloud Pub/Sub event trigger
 13. Minimum viable data pipeline (files in GCS -> ETL with Cloud Dataflow -> BigQuery)
