@@ -258,7 +258,7 @@ The DAG expects some environment variables.<br>
 Lets set the same.<br>
 
 
-### 7.1. Create via Cloud Shell (not recommended)
+### 7.1. OPTION 1: Create via Cloud Shell (not recommended)
 To allow yourself to access a secure Cloud Composer cluster from gcloud, lets capture the non-static IP granted to cloud shell and add it to the authorized networks-
 
 a) Your Cloud Shell IP address-
@@ -284,12 +284,16 @@ gcloud container clusters update $CC2_GKE_CLUSTER \
     --region $LOCATION
 ```
 
-e) Update the firewall rule for the subnet hosting the GKE cluster to allow your cloud shell IP address (
+e) Update the firewall rule for the subnet hosting the GKE cluster to allow your cloud shell IP address<br>
 
-### 7.2. Create from permissioned network using gcloud CLI
+Now jump to section 7.3. <br>
 
-To create these varibles, you need to either run from Cloud shell after completing the steps above, or from your permitted, GKE authorized network.<br>
+### 7.2. OPTION 2: Create from permissioned network using gcloud CLI (recommended option)
 
+To create these varibles from your permitted, GKE authorized network.<br>
+    
+### 7.3. Create the environment variables    
+ 
 1) Project ID
 ```
 gcloud composer environments run $COMPOSER_ENV_NM \
