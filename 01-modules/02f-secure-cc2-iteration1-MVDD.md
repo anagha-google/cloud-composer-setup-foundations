@@ -258,42 +258,7 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 The DAG expects some environment variables.<br>
 Lets set the same.<br>
 
-
-### 7.1. OPTION 1: Create via Cloud Shell (not recommended)
-To allow yourself to access a secure Cloud Composer cluster from gcloud, lets capture the non-static IP granted to cloud shell and add it to the authorized networks-
-
-a) Your Cloud Shell IP address-
-```
-MY_CLOUD_SHELL_IP=$(dig +short myip.opendns.com @resolver1.opendns.com)
-```
-
-b) The Cloud Composer GKE cluster
-```
-CC2_GKE_CLUSTER=`gcloud container clusters list | grep NAME | cut -d":" -f2 | sed 's/^ *//g'`
-```
-
-c) Existing authorized networks
-```
-EXISTING_CIDR=`gcloud container clusters describe $CC2_GKE_CLUSTER --format "flattened(masterAuthorizedNetworksConfig.cidrBlocks[])" --region us-central1 | cut -d":" -f2 | sed 's/^ *//g'`
-```
-
-d) Update authorized networks to include your cloud shell IP address
-```
-gcloud container clusters update $CC2_GKE_CLUSTER \
-    --enable-master-authorized-networks \
-    --master-authorized-networks ${EXISTING_CIDR},${MY_CLOUD_SHELL_IP}/32 \
-    --region $LOCATION
-```
-
-e) Update the firewall rule for the subnet hosting the GKE cluster to allow your cloud shell IP address<br>
-
-Now jump to section 7.3. <br>
-
-### 7.2. OPTION 2: Create from permissioned network using gcloud CLI (recommended option)
-
-To create these varibles from your permitted, GKE authorized network.<br>
-    
-### 7.3. Create the environment variables    
+Note: This section can be run ONLY from your permissioned/authorized network (OFFICE_CIDR as referenced in the lab).<br>
  
 1) Project ID
 ```
