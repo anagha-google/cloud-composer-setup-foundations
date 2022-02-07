@@ -41,6 +41,10 @@ COMPOSER_ENV_NM=cc2-$PROJECT_KEYWORD-secure
 
 PUBSUB_TRIGGER_TOPIC=cc2-hw-trigger-topic-$SVC_PROJECT_NUMBER
 DAG_ID=hello_world_dag
+
+AIRFLOW_URI=`gcloud composer environments describe $COMPOSER_ENV_NM \
+    --location $LOCATION \
+    --format='value(config.airflowUri)'`
 ```
 
 b) Create a Pub/Sub topic
@@ -62,21 +66,7 @@ Browse through the Pub/Sub topic UI
 ![01-02-12](../00-images/01-02-12.png)
 <br><br><br>
 
-## 2.0. Get the Airflow Web URL
-
-```
-AIRFLOW_URI=`gcloud composer environments describe $COMPOSER_ENV_NM \
-    --location $LOCATION \
-    --format='value(config.airflowUri)'`
-```
-
-Validate:
-```
-echo $AIRFLOW_URI
-https://e2XXXXXXX09e8bf9-dot-us-central1.composer.googleusercontent.com
-```
-
-## 3.0. Review the Airflow DAG executor script
+## 2.0. Review the Airflow DAG executor script
 
 In cloud shell, navigate to the scripts directory for the exercise-
 ```
@@ -139,8 +129,9 @@ gcloud functions deploy cc2_hw_pubsub_trigger_fn \
 --entry-point trigger_dag_gcf \
 --trigger-topic $PUBSUB_TRIGGER_TOPIC \
 --runtime python39 \
---vpc-connector projects/$SHARED_VPC_HOST_PROJECT_ID/locations/$LOCATION/connectors/zeus-gcf-vpc-cnnctr \
---service-account=${UMSA_FQN}
+--service-account=${UMSA_FQN} \
+--vpc-connector projects/$SHARED_VPC_HOST_PROJECT_ID/locations/$LOCATION/connectors/$PROJECT_KEYWORD-gcf-vpc-cnnctr 
+
 ```
 
 a) In the cloud console, navigate to Cloud Functions-
