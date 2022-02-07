@@ -195,7 +195,7 @@ gsutil cp inputFile.txt $SRC_FILE_STAGING_BUCKET_PATH
 ![gcs-2](../00-images/02f-06-gcs-files.png)
 <br>
 
-### 4.4. Grant IAM permissions 
+### 4.4. Grant GCS specfic IAM permissions 
 The UMSA will execute the Composer pipeline that uses a Dataflow template that reads from GCS, as the user managed service account (UMSA).
 So, we will need to grant the UMSA the permissions to access the bucket. This was already completed in the very first module.
 ```
@@ -208,7 +208,7 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 
 <hr>
 
-## 5. Cloud Dataflow specific permissions
+## 5. Grant Cloud Dataflow specific IAM permissions
 
 The Composer DAG launches Cloud Dataflow which uses a Dataflow template - therefore no code walk through of Dataflow job.<br> 
 We will run Composer as the UMSA.<br> 
@@ -231,7 +231,7 @@ gcloud projects add-iam-policy-binding $SVC_PROJECT_ID --member=serviceAccount:$
 
 <hr>
 
-## 6. BigQuery specific permissions
+## 6. Grant BigQuery specific IAM permissions
 
 The Cloud Dataflow template persis to BigQuery and we will run the DAG as the UMSA. Therefore, we will need to grant the **UMSA**, the requisite permissions. This was already completed in the very first module.<br>
 
