@@ -99,14 +99,6 @@ location:GEOGRAPHY,average_temperature:INTEGER,month:STRING,inches_of_rain:NUMER
 <br><br>
 
 
-### 3.3. Grant IAM permissions for the user managed service account to BigQuery
-
-This was already completed in the very first module.
-
-![bq-5](../00-images/02f-03-bq-tbl.png)
-<br><br>
-
-<hr>
 
 ## 4. Create a GCS bucket, stage the source files, and grant IAM permissions 
 
