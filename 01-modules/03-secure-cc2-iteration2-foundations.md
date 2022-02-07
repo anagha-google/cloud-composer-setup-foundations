@@ -177,22 +177,12 @@ record-sets transaction add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 
 
 ```
 
-![dns-gapi-2](../00-images/03-04-dns-gapi.png)
-<br><br>
-
 #### 5.1.c Create CNAME record
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="googleapis" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add restricted.googleapis.com. --name="*.googleapis.com." --ttl="300" --type="CNAME" --zone="googleapis" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="googleapis"
 
 ```
-
-
-![dns-gapi-3](../00-images/03-05-dns-gapi.png)
-<br><br>
-
-![dns-gapi-4](../00-images/03-06-dns-gapi.png)
-<br><br>
 
 
 ### 5.2. DNS entries gcr.io
@@ -218,12 +208,33 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction st
 
 ```
 
+![dns-gapi-2](../00-images/03-04-dns-gapi.png)
+<br><br>
+
+![dns-gapi-3](../00-images/03-05-dns-gapi.png)
+<br><br>
+
+![dns-gapi-4](../00-images/03-06-dns-gapi.png)
+<br><br>
+
+
+
 ### 5.3. DNS entries composer.cloud.google.com
 #### 5.3.a Create zone
 
 ```
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID managed-zones create composer-cloud-google --description="" --dns-name="composer.cloud.google.com." --visibility="private" --networks=$SHARED_VPC_NETWORK_NM
 ```
+
+
+![dns-gapi-2](../00-images/03-04-dns-gapi.png)
+<br><br>
+
+![dns-gapi-3](../00-images/03-05-dns-gapi.png)
+<br><br>
+
+![dns-gapi-4](../00-images/03-06-dns-gapi.png)
+<br><br>
 
 #### 5.3.b Create A record
 
@@ -237,6 +248,12 @@ gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction st
 gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction start --zone="composer-cloud-google" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction add composer.cloud.google.com. --name="*.composer.cloud.google.com." --ttl="300" --type="CNAME" --zone="composer-cloud-google" && gcloud beta dns --project=$SHARED_VPC_HOST_PROJECT_ID record-sets transaction execute --zone="composer-cloud-google"
 
 ```
+
+![dns-gapi-3](../00-images/03-05-dns-gapi.png)
+<br><br>
+
+![dns-gapi-4](../00-images/03-06-dns-gapi.png)
+<br><br>
 
 ## 6.0 Configure incremental firewall rules in the host project
 
