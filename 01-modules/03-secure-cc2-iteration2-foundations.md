@@ -72,6 +72,7 @@ ACM_POLICY_NUMBER=`gcloud access-context-manager policies list --organization $O
 
 ## 4. Create access levels in the host project for the VPC perimeter 
 
+
 ### 4.1. Create access level for the office CIDR & VPC Access Connector Subnet
 
 ```
@@ -93,6 +94,13 @@ Delete the file once the access level is created-
 ```
 rm ip_access_conditions.yaml
 ```
+
+![ip_access](../00-images/03-00-acm.png)
+<br><br>
+
+![ip_access](../00-images/03-01-ap-1.png)
+<br><br>
+
 
 ### 4.2. Create access level for the operator and the Cloud Build GMSA 
 
@@ -127,6 +135,9 @@ Delete the file once the access level is created-
 ```
 rm access_conditions.yaml
 ```
+
+![ip_access-2](../00-images/03-02-ap-2.png)
+<br><br>
 
 ## 5. Create DNS entries in the host project for googleapis.com, gcr.io and composer.cloud.google.com
 
