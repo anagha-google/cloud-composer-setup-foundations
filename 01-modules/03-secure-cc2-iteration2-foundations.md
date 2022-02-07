@@ -306,6 +306,7 @@ ENDOFFILE
 
 ```
 gcloud access-context-manager perimeters create $PROJECT_KEYWORD_perimeter \
+--policy=$ACM_POLICY_NUMBER \
 --title=$PROJECT_KEYWORD_perimeter \
 --perimeter-type="regular" \
 --resources=projects/$SVC_PROJECT_NUMBER,projects/$SHARED_VPC_HOST_PROJECT_NUMBER \
@@ -313,8 +314,7 @@ gcloud access-context-manager perimeters create $PROJECT_KEYWORD_perimeter \
 --restricted-services=$VPC_SC_SERVICES_SCOPE \
 --vpc-allowed-services=$VPC_SC_SERVICES_SCOPE \
 --ingress-policies=$PROJECT_KEYWORD-perimeter-ingress-policies.yaml \
---egress-policies=$PROJECT_KEYWORD-perimeter-egress-policies.yaml \
---policy=$ACM_POLICY_NUMBER
+--egress-policies=$PROJECT_KEYWORD-perimeter-egress-policies.yaml 
 ```
 
 ### 7.0.4. Retest Cloud Composer DAGs
