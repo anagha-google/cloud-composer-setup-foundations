@@ -236,20 +236,21 @@ rm dummy.txt
 <br>
 <br>
 
-
-### 9.0.2. Validate successful GCF execution
-
-Go to the Cloud Function Logs, in the cloud console and check for errors..
-
 ![tab-14](../00-images/02d-14-gcf.png)
 <br>
 <br>
 
 
-And then go to Airflow web UI and click on the DAG node, and look at the logs...
+### 9.0.2. Validate successful GCF execution
+
+Go to the Cloud Function Logs, in the cloud console and check for errors..
 ![tab-15](../00-images/02d-15-gcf.png)
 <br>
 <br>
+
+
+And then go to Airflow web UI and click on the DAG node, and look at the logs...
+
 ![tab-16](../00-images/02d-16-gcf.png)
 <br>
 <br>
