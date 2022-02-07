@@ -13,7 +13,7 @@ PROJECT_KEYWORD="thor"
 OFFICE_CIDR=98.222.97.10/32 
 
 ORG_ID=akhanolkar.altostrat.com                              
-ORG_ID_NBR=236589261571                                      
+ORG_ID_NUMBER=236589261571                                      
 
 SVC_PROJECT_NUMBER=509862753528                              
 SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     
