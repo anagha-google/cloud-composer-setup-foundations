@@ -89,6 +89,11 @@ gcloud access-context-manager levels create OFFICE_CIDR_ACCESS_LVL \
    --policy=$ACM_POLICY_NUMBER
 ```
 
+Delete the file once the access level is created-
+```
+rm ip_access_conditions.yaml
+```
+
 ### 4.2. Create access level for the operator and the Cloud Build GMSA 
 
 Both the UPN and the service project Cloud Build Google Managed Service Account will need access to the perimeter. Configure the same.
@@ -117,6 +122,11 @@ gcloud access-context-manager levels create UPN_SPN_ACCESS_LVL \
    --policy=$ACM_POLICY_NUMBER
 ```
 
+
+Delete the file once the access level is created-
+```
+rm access_conditions.yaml
+```
 
 ## 5. Create DNS entries in the host project for googleapis.com, gcr.io and composer.cloud.google.com
 
@@ -295,8 +305,8 @@ ENDOFFILE
 ### 7.0.3. Create perimeter
 
 ```
-gcloud access-context-manager perimeters create zeus_perimeter \
---title=zeus_perimeter \
+gcloud access-context-manager perimeters create $PROJECT_KEYWORD_perimeter \
+--title=$PROJECT_KEYWORD_perimeter \
 --perimeter-type="regular" \
 --resources=projects/$SVC_PROJECT_NUMBER,projects/$SHARED_VPC_HOST_PROJECT_NUMBER \
 --access-levels=accessPolicies/$ACM_POLICY_NUMBER/accessLevels/UPN_SPN_ACCESS_LVL,accessPolicies/$ACM_POLICY_NUMBER/accessLevels/OFFICE_CIDR_ACCESS_LVL \
