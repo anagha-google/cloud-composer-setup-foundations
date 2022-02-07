@@ -218,21 +218,7 @@ d) Review the rest of the tabs
 ![tab-12](../00-images/02d-12-gcf.png)
 <br>
 <br>
-![tab-13](../00-images/02d-13-gcf.png)
-<br>
-<br>
-![tab-14](../00-images/02d-14-gcf.png)
-<br>
-<br>
-![tab-15](../00-images/02d-15-gcf.png)
-<br>
-<br>
-![tab-16](../00-images/02d-16-gcf.png)
-<br>
-<br>
-![tab-17](../00-images/02d-17-gcf.png)
-<br>
-<br>
+
 
 <hr>
 
@@ -246,15 +232,29 @@ gsutil cp dummy.txt $GCF_TRIGGER_BUCKET_FQN
 rm dummy.txt
 ```
 
+![tab-13](../00-images/02d-13-gcf.png)
+<br>
+<br>
+
+
 ### 9.0.2. Validate successful GCF execution
 
 Go to the Cloud Function Logs, in the cloud console and check for errors..
 
-![01-02-04](../00-images/01-02-04.png)
+![tab-14](../00-images/02d-14-gcf.png)
+<br>
 <br>
 
+
 And then go to Airflow web UI and click on the DAG node, and look at the logs...
-![01-02-05](../00-images/01-02-05.png)
+![tab-15](../00-images/02d-15-gcf.png)
+<br>
+<br>
+![tab-16](../00-images/02d-16-gcf.png)
+<br>
+<br>
+![tab-17](../00-images/02d-17-gcf.png)
+<br>
 <br>
 
 <hr>
