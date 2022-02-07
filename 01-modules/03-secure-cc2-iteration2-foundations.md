@@ -5,24 +5,29 @@ This module covers configuring VPC-SC over and above the secure setup from the p
 
 The following are the variabes we will use, execute the same in cloud shell scoped to your host project-
 ```
-PROJECT_KEYWORD="thor"  # Replace with your keyword from module 1
 
-ORG_ID=akhanolkar.altostrat.com                              #Replace with yours
-ORG_ID_NBR=236589261571                                      #Replace with yours
+# Replace with your keyword from module 1
+PROJECT_KEYWORD="thor"  
 
-SVC_PROJECT_NUMBER=509862753528                              #Replace with yours
-SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     #Data analytics service project
+#Replace with yours
+OFFICE_CIDR=98.222.97.10/32 
 
-SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj        #Shared VPC project - replace with yours
-SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                  #Shared VPC project - replace with yours
+ORG_ID=akhanolkar.altostrat.com                              
+ORG_ID_NBR=236589261571                                      
 
-LOCATION=us-central1
+SVC_PROJECT_NUMBER=509862753528                              
+SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     
 
-ADMIN_UPN_FQN=admin@$ORG_ID #Replace with yours if its a different construct
+SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj        
+SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                  
+
+ADMIN_UPN_FQN=admin@$ORG_ID 
+
 SVC_PROJECT_UMSA="$PROJECT_KEYWORD-sa"
 SVC_PROJECT_UMSA_FQN=$SVC_PROJECT_UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 
 COMPOSER_ENV_NM=cc2-$PROJECT_KEYWORD-secure
+LOCATION=us-central1
 
 SHARED_VPC_NETWORK_NM=$PROJECT_KEYWORD-shared-vpc
 SHARED_VPC_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/global/networks/$SHARED_VPC_NETWORK_NM"
@@ -32,7 +37,6 @@ SHARED_VPC_CC2_SNET_FQN="projects/$SHARED_VPC_HOST_PROJECT_ID/regions/$LOCATION/
 SHARED_VPC_CONNECTOR_SNET_NM=$PROJECT_KEYWORD-vpc-cnctr-snet
 SHARED_VPC_CONNECTOR_SNET_CIDR=10.70.0.0/28
 
-OFFICE_CIDR=98.222.97.10/32 # Replace with your CIDR
 
 VPC_SC_SERVICES_SCOPE="bigquery.googleapis.com,dataflow.googleapis.com,cloudfunctions.googleapis.com,pubsub.googleapis.com,sqladmin.googleapis.com,storage.googleapis.com,compute.googleapis.com,container.googleapis.com,containerregistry.googleapis.com,monitoring.googleapis.com,composer.googleapis.com,artifactregistry.googleapis.com"
 ```
