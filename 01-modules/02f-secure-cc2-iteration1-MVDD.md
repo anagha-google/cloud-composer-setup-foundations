@@ -35,7 +35,8 @@ In cloud shell, lets define variables to use
 
 ```
 
-#Replace with yours
+#Replace with your environment and identity information 
+
 PROJECT_KEYWORD="thor"  # Replace with your keyword from module 1
 
 
@@ -51,7 +52,7 @@ SHARED_VPC_HOST_PROJECT_NUMBER=239457183145
 
 LOCATION=us-central1
 
-ADMIN_UPN_FQN=admin@$ORG_ID #Replace with yours if its a different construct
+ADMIN_UPN_FQN=admin@$ORG_ID 
 SVC_PROJECT_UMSA="$PROJECT_KEYWORD-sa"
 SVC_PROJECT_UMSA_FQN=$SVC_PROJECT_UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
 
