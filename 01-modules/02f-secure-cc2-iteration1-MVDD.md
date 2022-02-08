@@ -37,7 +37,7 @@ In cloud shell, lets define variables to use
 
 #Replace with your environment and identity information 
 
-PROJECT_KEYWORD="thor"  # Replace with your keyword from module 1
+PROJECT_KEYWORD="thor"  
 
 
 ORG_ID=akhanolkar.altostrat.com                              
