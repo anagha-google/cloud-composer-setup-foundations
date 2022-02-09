@@ -132,3 +132,5 @@ This is a community effort. Contributions are welcome.<br>
 | -- | :---    | :---| :---| 
 | 1 | Anagha Khanolkar | Author | Data Analytics Specialist Engineer, NATT, Google Cloud |
 | 2 | Jay O' Leary | Testing | Data Analytics Specialist Engineer, SRTT, Google Cloud |
+
+Special thanks to Joseph Zhou for Argolis related consults, Eddie Villalba for GKE related, Christopher Abraham for Networking, and Jason Bisson for security in general.
