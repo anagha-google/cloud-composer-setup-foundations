@@ -39,16 +39,14 @@ In cloud shell, lets define variables to use
 
 PROJECT_KEYWORD="thor"  
 
-
 ORG_ID=akhanolkar.altostrat.com                              
-ORG_ID_NBR=236589261571                                     
+ORG_ID_NBR=xxxxxxx                                     
 
-SVC_PROJECT_NUMBER=509862753528                              
+SVC_PROJECT_NUMBER=xxxxxxx                              
 SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     
 
 SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj       
-SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                  
-
+SHARED_VPC_HOST_PROJECT_NUMBER=xxxxxx                  
 
 LOCATION=us-central1
 
