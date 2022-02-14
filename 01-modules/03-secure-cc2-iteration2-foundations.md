@@ -10,16 +10,16 @@ The following are the variabes we will use, execute the same in cloud shell scop
 PROJECT_KEYWORD="thor"  
 
 #Replace with yours
-OFFICE_CIDR=98.222.97.10/32 
+OFFICE_CIDR=xx.xxx.97.10/32 
 
-ORG_ID=akhanolkar.altostrat.com                              
-ORG_ID_NUMBER=236589261571                                      
+ORG_ID=akhxxxlkar.altostrat.com                              
+ORG_ID_NUMBER=xxx                                   
 
-SVC_PROJECT_NUMBER=509862753528                              
+SVC_PROJECT_NUMBER=xxxx                              
 SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     
 
 SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj        
-SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                  
+SHARED_VPC_HOST_PROJECT_NUMBER=xxxxxx                  
 
 ADMIN_UPN_FQN=admin@$ORG_ID 
 
