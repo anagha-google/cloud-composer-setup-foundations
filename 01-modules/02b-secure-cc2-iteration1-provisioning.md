@@ -18,16 +18,16 @@ In Cloud shell scoped to the service project, declare the below-
 PROJECT_KEYWORD="thor"  # Replace with your keyword from module 1
 
 #Replace with yours
-ORG_ID=akhanolkar.altostrat.com                              
-ORG_ID_NBR=236589261571                                      
+ORG_ID=akaxxxar.altostrat.com                              
+ORG_ID_NBR=xxxxxxxx                                      
 
 #Replace with yours
-SVC_PROJECT_NUMBER=509862753528                              
+SVC_PROJECT_NUMBER=5xxxx                              
 SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     
 
 #Shared VPC project - replace with yours
 SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj        
-SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                 
+SHARED_VPC_HOST_PROJECT_NUMBER=xxxxx                 
 
 
 UMSA="$PROJECT_KEYWORD-sa"
