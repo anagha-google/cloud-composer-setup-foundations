@@ -23,16 +23,16 @@ From cloud shell, run the commands below in the service project-
 PROJECT_KEYWORD="thor"  
 
 #Replace with yours
-ORG_ID=akhanolkar.altostrat.com                              
-ORG_ID_NBR=236589261571                                      
+ORG_ID=akxxxxolkar.altostrat.com                              
+ORG_ID_NBR=xxxxxx                                      
 
 #Replace with yours
-SVC_PROJECT_NUMBER=509862753528                             
+SVC_PROJECT_NUMBER=xxxxx                             
 SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     
 
 #Replace with yours
 SHARED_VPC_HOST_PROJECT_ID=$PROJECT_KEYWORD-host-proj        
-SHARED_VPC_HOST_PROJECT_NUMBER=239457183145                  
+SHARED_VPC_HOST_PROJECT_NUMBER=xxxx                  
 
 
 LOCATION=us-central1
