@@ -41,7 +41,7 @@ From the cloud console project dashboard, capture the project number. We will ne
 In Cloud Shell, lets create some variables we will use for the rest of the project-
 ```
 PROJECT_KEYWORD="thor" # Use a keyword of your preference, as prefix to your project names
-SVC_PROJECT_NUMBER=509862753528  # Replace with your project's
+SVC_PROJECT_NUMBER=xxxx  # Replace with your project's
 SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj  # Replace with your project's
 UMSA="$PROJECT_KEYWORD-sa"
 UMSA_FQN=$UMSA@$SVC_PROJECT_ID.iam.gserviceaccount.com
