@@ -21,11 +21,11 @@ a) The variables
 PROJECT_KEYWORD="thor"  
 
 #Replace with yours
-ORG_ID=akhanolkar.altostrat.com                             
-ORG_ID_NBR=236589261571                                      
+ORG_ID=akxxxxlkar.altostrat.com                             
+ORG_ID_NBR=xxxxxxx                                      
 
 #Replace with yours
-SVC_PROJECT_NUMBER=509862753528                              
+SVC_PROJECT_NUMBER=xxxxxxx                              
 SVC_PROJECT_ID=$PROJECT_KEYWORD-svc-proj                     
 
 #Replace with yours
