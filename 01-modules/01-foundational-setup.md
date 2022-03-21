@@ -26,7 +26,7 @@ None, but the rest of the modules are dependent on this module being successfull
 
 ## 1. Pre-requisites 
 
-Create a GCP project. You will need administrator privileges to the organization and owner privileges for the project for the rest of the modules.<br>
+Create a GCP project. You will need organization policy administrator privileges to the organization and owner privileges and security admin privileges for the project for the rest of the modules.<br>
 From the cloud console project dashboard, capture the project number. We will need to reference the project ID and project number for the rest of the modules.<br>
 
 ![Dashboard](../00-images/01-00-dashboard.png)
