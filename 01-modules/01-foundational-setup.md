@@ -282,9 +282,9 @@ gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
 
 #### 6.1.c. Compute Network Viewer role for UMSA
 ```
-gcloud projects add-iam-policy-binding $SVC_PROJECT_ID \
---member=serviceAccount:$SVC_PROJECT_UMSA_FQN \
---role=roles/compute.networkViewer
+gcloud projects add-iam-policy-binding ${SVC_PROJECT_ID} \
+    --member=serviceAccount:${UMSA_FQN} \
+    --role=roles/compute.networkViewer
 ```
 
 ### 6.2. Permissions for the lab attendee
