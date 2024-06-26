@@ -24,7 +24,7 @@ The security setup is by no means 100% comprehensive (not air gap), but is a qui
 
 ## Motivation and Audience
 
-Simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on the intricacies of foundational setup, unblocking and improving speed to productivity in their core competency (analytics). For the GCP Customer Engineer, the hands on labs cover provisioning in **Argolis**. 
+Demystify security Cloud Composer based pipelines on GCP, simplify the journey of a Data Analytics Architect/Engineer persona on GCP, by educating on the intricacies of foundational secure setup, unblocking and improving speed to productivity in their core competency (analytics). For the GCP Customer Engineer, the hands on labs cover provisioning in **Argolis**. 
 
 ## Structure
 The repository contains modules that are deliberately detailed with sequential steps (versus fully scripted, automated) to provide an understanding of what is involved. The hands on lab modules will be complemented with Terraform scripts for automation.
